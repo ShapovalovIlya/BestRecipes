@@ -10,20 +10,24 @@
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* ViewController.swift */; };
-		869C6E592A9B390800F4861F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869C6E572A9B390800F4861F /* Main.storyboard */; };
 		869C6E5B2A9B390C00F4861F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 869C6E5A2A9B390C00F4861F /* Assets.xcassets */; };
 		869C6E5E2A9B390C00F4861F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 869C6E5C2A9B390C00F4861F /* LaunchScreen.storyboard */; };
+		869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E652A9B3A3700F4861F /* UIColor+.swift */; };
+		869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E682A9B3AD700F4861F /* ViewC.swift */; };
+		869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		869C6E4E2A9B390800F4861F /* Best Recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Best Recipes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		869C6E552A9B390800F4861F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		869C6E582A9B390800F4861F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		869C6E5A2A9B390C00F4861F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		869C6E5D2A9B390C00F4861F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		869C6E5F2A9B390C00F4861F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		869C6E652A9B3A3700F4861F /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		869C6E682A9B3AD700F4861F /* ViewC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewC.swift; sourceTree = "<group>"; };
+		869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +44,7 @@
 		869C6E452A9B390800F4861F = {
 			isa = PBXGroup;
 			children = (
-				869C6E502A9B390800F4861F /* Best Recipes */,
+				869C6E502A9B390800F4861F /* BestRecipes */,
 				869C6E4F2A9B390800F4861F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -48,31 +52,113 @@
 		869C6E4F2A9B390800F4861F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				869C6E4E2A9B390800F4861F /* Best Recipes.app */,
+				869C6E4E2A9B390800F4861F /* BestRecipes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		869C6E502A9B390800F4861F /* Best Recipes */ = {
+		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				869C6E742A9B4ED000F4861F /* Shared */,
+				869C6E732A9B4E9700F4861F /* Services */,
+				869C6E722A9B4E6300F4861F /* RecipeDetail */,
+				869C6E712A9B4E5300F4861F /* Discover */,
+				869C6E702A9B4E3400F4861F /* Home */,
+				869C6E6F2A9B4E2200F4861F /* Onboarding */,
+				869C6E6C2A9B3CF000F4861F /* Tabbar */,
+				869C6E672A9B3A8A00F4861F /* Extensions */,
+				869C6E6D2A9B467B00F4861F /* Aplication */,
+				869C6E6E2A9B4CB600F4861F /* Resources */,
+			);
+			path = BestRecipes;
+			sourceTree = "<group>";
+		};
+		869C6E672A9B3A8A00F4861F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				869C6E652A9B3A3700F4861F /* UIColor+.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		869C6E6C2A9B3CF000F4861F /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				869C6E682A9B3AD700F4861F /* ViewC.swift */,
+				869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */,
+			);
+			path = Tabbar;
+			sourceTree = "<group>";
+		};
+		869C6E6D2A9B467B00F4861F /* Aplication */ = {
+			isa = PBXGroup;
+			children = (
+				869C6E5F2A9B390C00F4861F /* Info.plist */,
 				869C6E512A9B390800F4861F /* AppDelegate.swift */,
 				869C6E532A9B390800F4861F /* SceneDelegate.swift */,
-				869C6E552A9B390800F4861F /* ViewController.swift */,
-				869C6E572A9B390800F4861F /* Main.storyboard */,
+			);
+			path = Aplication;
+			sourceTree = "<group>";
+		};
+		869C6E6E2A9B4CB600F4861F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				869C6E5A2A9B390C00F4861F /* Assets.xcassets */,
 				869C6E5C2A9B390C00F4861F /* LaunchScreen.storyboard */,
-				869C6E5F2A9B390C00F4861F /* Info.plist */,
 			);
-			path = "Best Recipes";
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		869C6E6F2A9B4E2200F4861F /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		869C6E702A9B4E3400F4861F /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				869C6E552A9B390800F4861F /* ViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		869C6E712A9B4E5300F4861F /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
+		869C6E722A9B4E6300F4861F /* RecipeDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RecipeDetail;
+			sourceTree = "<group>";
+		};
+		869C6E732A9B4E9700F4861F /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		869C6E742A9B4ED000F4861F /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		869C6E4D2A9B390800F4861F /* Best Recipes */ = {
+		869C6E4D2A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 869C6E622A9B390C00F4861F /* Build configuration list for PBXNativeTarget "Best Recipes" */;
+			buildConfigurationList = 869C6E622A9B390C00F4861F /* Build configuration list for PBXNativeTarget "BestRecipes" */;
 			buildPhases = (
 				869C6E4A2A9B390800F4861F /* Sources */,
 				869C6E4B2A9B390800F4861F /* Frameworks */,
@@ -82,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = "Best Recipes";
+			name = BestRecipes;
 			productName = "Best Recipes";
-			productReference = 869C6E4E2A9B390800F4861F /* Best Recipes.app */;
+			productReference = 869C6E4E2A9B390800F4861F /* BestRecipes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -102,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 869C6E492A9B390800F4861F /* Build configuration list for PBXProject "Best Recipes" */;
+			buildConfigurationList = 869C6E492A9B390800F4861F /* Build configuration list for PBXProject "BestRecipes" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -115,7 +201,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				869C6E4D2A9B390800F4861F /* Best Recipes */,
+				869C6E4D2A9B390800F4861F /* BestRecipes */,
 			);
 		};
 /* End PBXProject section */
@@ -127,7 +213,6 @@
 			files = (
 				869C6E5E2A9B390C00F4861F /* LaunchScreen.storyboard in Resources */,
 				869C6E5B2A9B390C00F4861F /* Assets.xcassets in Resources */,
-				869C6E592A9B390800F4861F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +223,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */,
 				869C6E562A9B390800F4861F /* ViewController.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
+				869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		869C6E572A9B390800F4861F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				869C6E582A9B390800F4861F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		869C6E5C2A9B390C00F4861F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -218,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -275,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -294,12 +374,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4WQFD456R9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Best Recipes/Info.plist";
+				INFOPLIST_FILE = BestRecipes/Aplication/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,9 +387,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.iliaByHimself.Best-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,12 +406,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4WQFD456R9;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Best Recipes/Info.plist";
+				INFOPLIST_FILE = BestRecipes/Aplication/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,32 +419,36 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.iliaByHimself.Best-Recipes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		869C6E492A9B390800F4861F /* Build configuration list for PBXProject "Best Recipes" */ = {
+		869C6E492A9B390800F4861F /* Build configuration list for PBXProject "BestRecipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				869C6E602A9B390C00F4861F /* Debug */,
 				869C6E612A9B390C00F4861F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		869C6E622A9B390C00F4861F /* Build configuration list for PBXNativeTarget "Best Recipes" */ = {
+		869C6E622A9B390C00F4861F /* Build configuration list for PBXNativeTarget "BestRecipes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				869C6E632A9B390C00F4861F /* Debug */,
 				869C6E642A9B390C00F4861F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
