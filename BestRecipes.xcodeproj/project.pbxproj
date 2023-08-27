@@ -26,6 +26,7 @@
 		869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E862A9B6F4000F4861F /* HomeRouter.swift */; };
 		869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E892A9B717200F4861F /* Recipe.swift */; };
 		869C6E8E2A9B7EB300F4861F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 869C6E8D2A9B7EB300F4861F /* Kingfisher */; };
+		869C6E902A9BB14100F4861F /* SponacularEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		869C6E842A9B694800F4861F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		869C6E862A9B6F4000F4861F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		869C6E892A9B717200F4861F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponacularEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */,
+				869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
+				869C6E902A9BB14100F4861F /* SponacularEndpoint.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
