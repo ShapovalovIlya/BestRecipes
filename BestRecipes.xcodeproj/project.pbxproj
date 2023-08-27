@@ -21,6 +21,10 @@
 		869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */; };
 		869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */; };
 		869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */; };
+		869C6E832A9B693200F4861F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E822A9B693200F4861F /* HomeView.swift */; };
+		869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E842A9B694800F4861F /* HomePresenter.swift */; };
+		869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E862A9B6F4000F4861F /* HomeRouter.swift */; };
+		869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E892A9B717200F4861F /* Recipe.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,10 @@
 		869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponacularApiClient.swift; sourceTree = "<group>"; };
 		869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedRecipeCell.swift; sourceTree = "<group>"; };
+		869C6E822A9B693200F4861F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		869C6E842A9B694800F4861F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		869C6E862A9B6F4000F4861F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		869C6E892A9B717200F4861F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +81,7 @@
 		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				869C6E882A9B716900F4861F /* Models */,
 				869C6E742A9B4ED000F4861F /* Shared */,
 				869C6E732A9B4E9700F4861F /* Services */,
 				869C6E722A9B4E6300F4861F /* RecipeDetail */,
@@ -134,7 +143,10 @@
 		869C6E702A9B4E3400F4861F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				869C6E822A9B693200F4861F /* HomeView.swift */,
 				869C6E552A9B390800F4861F /* HomeViewController.swift */,
+				869C6E842A9B694800F4861F /* HomePresenter.swift */,
+				869C6E862A9B6F4000F4861F /* HomeRouter.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -169,6 +181,14 @@
 				869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		869C6E882A9B716900F4861F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				869C6E892A9B717200F4861F /* Recipe.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +271,10 @@
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
+				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
+				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
+				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 			);
