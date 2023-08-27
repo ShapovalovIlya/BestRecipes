@@ -20,8 +20,6 @@ class MyCustomTabBarController : UITabBarController {
         return searchBar
     }()
     
-    
-    
     let btnMiddle : UIButton = {
        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         btn.setTitle("", for: .normal)
