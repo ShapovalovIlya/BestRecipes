@@ -15,6 +15,7 @@
 		869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E652A9B3A3700F4861F /* UIColor+.swift */; };
 		869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E682A9B3AD700F4861F /* ViewC.swift */; };
 		869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */; };
+		869C6E762A9B53DD00F4861F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 869C6E752A9B53DD00F4861F /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		869C6E652A9B3A3700F4861F /* UIColor+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		869C6E682A9B3AD700F4861F /* ViewC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewC.swift; sourceTree = "<group>"; };
 		869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomTabBarController.swift; sourceTree = "<group>"; };
+		869C6E752A9B53DD00F4861F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,7 @@
 		869C6E452A9B390800F4861F = {
 			isa = PBXGroup;
 			children = (
+				869C6E752A9B53DD00F4861F /* README.md */,
 				869C6E502A9B390800F4861F /* BestRecipes */,
 				869C6E4F2A9B390800F4861F /* Products */,
 			);
@@ -211,6 +214,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				869C6E762A9B53DD00F4861F /* README.md in Resources */,
 				869C6E5E2A9B390C00F4861F /* LaunchScreen.storyboard in Resources */,
 				869C6E5B2A9B390C00F4861F /* Assets.xcassets in Resources */,
 			);
