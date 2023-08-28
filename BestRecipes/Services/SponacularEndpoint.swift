@@ -8,7 +8,7 @@
 import Foundation
 
 private struct Constants {
-    static let apiKey: String = "317592d32b1e4346ba205b6abdd25330"
+    static let apiKeyItem: URLQueryItem = .init(name: "apiKey", value: "317592d32b1e4346ba205b6abdd25330")
 }
 
 struct SponacularEndpoint {
@@ -21,8 +21,12 @@ struct SponacularEndpoint {
         components.host = "api.spoonacular.com"
         components.path = path
         
-        if !queryItems.isEmpty {
-            components.queryItems = queryItems
+        if queryItems.isEmpty {
+            components.queryItems = [Constants.apiKeyItem]
+        } else {
+            var items = queryItems
+            items.append(Constants.apiKeyItem)
+            components.queryItems = items
         }
         
         guard let url = components.url else {
@@ -31,7 +35,44 @@ struct SponacularEndpoint {
         return url
     }
     
+    
+    /// Эндпоинт для GET запросов. Возвращает подробную информацию о рецепте.
+    /// - Parameter id: Уникальный id рецепта (`Recipe`)
+    /// - Returns: запрос возвращает модель `Recipe`
     static func getRecipeInfo(id: String) -> Self {
-        .init(path: "recipe/\(id)/information?apiKey=\(Constants.apiKey)")
+        .init(path: "/recipe/\(id)/information")
+    }
+    
+    /// Эндпоинт для GET запросов. Возвращает массив из 20 популярных рецептов.
+    /// - Returns: запрос возвращает модель `[Recipe]`
+    static let getPopularRecipes = Self(
+        path: "/recipes",
+        queryItems: [
+            .init(name: "sort", value: "popularity"),
+            .init(name: "number", value: "20")
+        ]
+    )
+    
+    /// Эндпоинт для GET запросов. Возвращает массив из 20 недавних рецептов.
+    /// - Returns: запрос возвращает модель `[Recipe]`
+    static let getRecentRecipes = Self(
+        path: "/recipes",
+        queryItems: [
+            .init(name: "sort", value: "time"),
+            .init(name: "number", value: "20")
+        ]
+    )
+    
+    /// Эндпоинт для GET запросов. Возвращает массив из 10 автокомплитов для поисковой строки.
+    /// - Parameter text: Текст поисковой строки.
+    /// - Returns: запрос возвращает модель
+    static func getAutocomplete(_ text: String?) -> Self {
+        .init(
+            path: "/recipes/autocomplete",
+            queryItems: [
+                .init(name: "number", value: "10"),
+                .init(name: "query", value: text)
+            ]
+        )
     }
 }
