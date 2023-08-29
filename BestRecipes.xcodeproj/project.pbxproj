@@ -76,6 +76,7 @@
 		869C6E452A9B390800F4861F = {
 			isa = PBXGroup;
 			children = (
+				869C6E9A2A9E2CE600F4861F /* Constants.swift */,
 				869C6E752A9B53DD00F4861F /* README.md */,
 				869C6E502A9B390800F4861F /* BestRecipes */,
 				869C6E4F2A9B390800F4861F /* Products */,
@@ -140,7 +141,6 @@
 			children = (
 				869C6E5A2A9B390C00F4861F /* Assets.xcassets */,
 				869C6E5C2A9B390C00F4861F /* LaunchScreen.storyboard */,
-				869C6E9A2A9E2CE600F4861F /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
