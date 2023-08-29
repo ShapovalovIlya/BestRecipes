@@ -12,6 +12,10 @@ import OSLog
 protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidDisappear()
+    func searchTextDidChange(_ text: String)
+    func seeAllTrendingButtonTap()
+    func seeAllRecentButtonTap()
+    func seeAllCreatorsButtonTap()
 }
 
 //MARK: - HomePresenterDelegate
@@ -35,6 +39,7 @@ final class HomePresenter: HomePresenterProtocol {
     init(
         apiClient: SponacularApiClientProtocol,
         router: HomeRouterProtocol
+        
     ) {
         self.apiClient = apiClient
         self.router = router
@@ -55,6 +60,23 @@ final class HomePresenter: HomePresenterProtocol {
     func viewDidDisappear() {
         
     }
+    
+    func searchTextDidChange(_ text: String) {
+        
+    }
+    
+    func seeAllTrendingButtonTap() {
+        
+    }
+    
+    func seeAllRecentButtonTap() {
+        
+    }
+    
+    func seeAllCreatorsButtonTap() {
+        
+    }
+    
 }
 
 private extension HomePresenter {

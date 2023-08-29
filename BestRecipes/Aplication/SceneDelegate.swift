@@ -10,11 +10,18 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = MyCustomTabBarController()
+    let router = HomeRouter()
+        let client = SponacularApiClient()
+        let presenter = HomePresenter(apiClient: client, router: router)
+        let homeView = HomeView()
+        let controller = HomeViewController(homeView: homeView, presenter: presenter)
+        presenter.delegate = controller
+        window?.rootViewController = controller
         window?.makeKeyAndVisible()
     }
 

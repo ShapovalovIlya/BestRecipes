@@ -18,6 +18,7 @@ final class HomeViewController: UIViewController {
     private let presenter: HomePresenterProtocol
     private var dataSource: UICollectionViewDiffableDataSource<Section, Recipe>?
     
+    
     //MARK: - Public properties
     
     //MARK: - init(_:)
@@ -48,7 +49,7 @@ final class HomeViewController: UIViewController {
     //MARK: - Life Cycle
     override func loadView() {
         self.view = homeView
-        
+        homeView.frame = self.view.bounds
         logger.debug("View loaded")
     }
 
@@ -57,6 +58,10 @@ final class HomeViewController: UIViewController {
         
         presenter.viewDidLoad()
         logger.debug("View did load")
+        self.homeView.searchBar.delegate = self
+        
+        
+       
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -87,6 +92,13 @@ extension HomeViewController: UICollectionViewDelegate {
     
 }
 
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.searchTextDidChange(searchText)
+        
+    }
+}
+
 private extension HomeViewController {
     //MARK: - Section
     enum Section: Int, CaseIterable {
@@ -111,5 +123,16 @@ private extension HomeViewController {
             cell.configure(with: recipe)
         }
     }
+    
+
+
+    
+    
+ 
+    
+    
+    
 }
+
+
 
