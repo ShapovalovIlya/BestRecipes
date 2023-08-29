@@ -18,10 +18,10 @@ struct Endpoint {
         components.path = path
         
         if queryItems.isEmpty {
-            components.queryItems = [Constants.apiKeyItem]
+            components.queryItems = [Secret.apiKeyItem]
         } else {
             var items = queryItems
-            items.append(Constants.apiKeyItem)
+            items.append(Secret.apiKeyItem)
             components.queryItems = items
         }
         
