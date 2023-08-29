@@ -26,10 +26,11 @@
 		869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E862A9B6F4000F4861F /* HomeRouter.swift */; };
 		869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E892A9B717200F4861F /* Recipe.swift */; };
 		869C6E8E2A9B7EB300F4861F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 869C6E8D2A9B7EB300F4861F /* Kingfisher */; };
-		869C6E902A9BB14100F4861F /* SponacularEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */; };
+		869C6E902A9BB14100F4861F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E8F2A9BB14100F4861F /* Endpoint.swift */; };
 		869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E942A9D1C2D00F4861F /* Autocomplete.swift */; };
 		869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E962A9D2B6F00F4861F /* Amount.swift */; };
 		869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E982A9D2B8500F4861F /* Ingredient.swift */; };
+		869C6E9B2A9E2CE600F4861F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E9A2A9E2CE600F4861F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,10 +54,11 @@
 		869C6E842A9B694800F4861F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		869C6E862A9B6F4000F4861F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		869C6E892A9B717200F4861F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponacularEndpoint.swift; sourceTree = "<group>"; };
+		869C6E8F2A9BB14100F4861F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		869C6E942A9D1C2D00F4861F /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
 		869C6E962A9D2B6F00F4861F /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
 		869C6E982A9D2B8500F4861F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		869C6E9A2A9E2CE600F4861F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 			children = (
 				869C6E5A2A9B390C00F4861F /* Assets.xcassets */,
 				869C6E5C2A9B390C00F4861F /* LaunchScreen.storyboard */,
+				869C6E9A2A9E2CE600F4861F /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -182,7 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */,
-				869C6E8F2A9BB14100F4861F /* SponacularEndpoint.swift */,
+				869C6E8F2A9BB14100F4861F /* Endpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -305,7 +308,8 @@
 				869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */,
-				869C6E902A9BB14100F4861F /* SponacularEndpoint.swift in Sources */,
+				869C6E9B2A9E2CE600F4861F /* Constants.swift in Sources */,
+				869C6E902A9BB14100F4861F /* Endpoint.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  SponacularEndpoint.swift
+//  Endpoint.swift
 //  BestRecipes
 //
 //  Created by Илья Шаповалов on 27.08.2023.
@@ -7,11 +7,7 @@
 
 import Foundation
 
-private struct Constants {
-    static let apiKeyItem: URLQueryItem = .init(name: "apiKey", value: "317592d32b1e4346ba205b6abdd25330")
-}
-
-struct SponacularEndpoint {
+struct Endpoint {
     let path: String
     var queryItems: [URLQueryItem] = .init()
     
