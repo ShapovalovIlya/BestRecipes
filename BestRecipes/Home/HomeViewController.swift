@@ -93,11 +93,6 @@ extension HomeViewController: HomePresenterDelegate {
             toSection: .creators
         )
         
-//        snapshot.appendItems(recipes, toSection: .creators)
-//        snapshot.appendItems(recipes, toSection: .popular)
-//        snapshot.appendItems(recipes, toSection: .recent)
-//        snapshot.appendItems(recipes, toSection: .trending)
-        
         dataSource?.apply(snapshot)
     }
 }

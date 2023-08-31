@@ -11,6 +11,6 @@ protocol SponacularApiClientProtocol {
     
 }
 
-final class SponacularApiClient {
+final class SponacularApiClient: SponacularApiClientProtocol {
     
 }

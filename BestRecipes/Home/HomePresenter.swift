@@ -55,6 +55,10 @@ final class HomePresenter: HomePresenterProtocol {
     func viewDidDisappear() {
         
     }
+    
+    func detailButtonTap() {
+//        router.showDetail(recipe: <#T##Recipe#>)
+    }
 }
 
 private extension HomePresenter {

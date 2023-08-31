@@ -14,7 +14,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        window?.rootViewController = MyCustomTabBarController()
+        
+        let apiClient = SponacularApiClient()
+        let tabBar = MyCustomTabBarController()
+        let homeNavigation = UINavigationController()
+        
+        let homeRouter = HomeRouter(
+            navigationController: homeNavigation,
+            apiClient: apiClient)
+        
+        homeRouter.initialView()
+        
+        tabBar.setViewControllers(
+            homeNavigation
+        )
+        
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
     }
 
