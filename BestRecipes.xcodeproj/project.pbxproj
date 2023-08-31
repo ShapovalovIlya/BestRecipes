@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		686827822A9FAF870069234D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827812A9FAF870069234D /* DetailViewController.swift */; };
+		686827842A9FB60C0069234D /* NumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827832A9FB60C0069234D /* NumberCell.swift */; };
+		686827862A9FB6730069234D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827852A9FB6730069234D /* Product.swift */; };
+		686827882A9FB67D0069234D /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827872A9FB67D0069234D /* ProductList.swift */; };
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* HomeViewController.swift */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		686827812A9FAF870069234D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		686827832A9FB60C0069234D /* NumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCell.swift; sourceTree = "<group>"; };
+		686827852A9FB6730069234D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		686827872A9FB67D0069234D /* ProductList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +71,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6868278A2AA073960069234D /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		869C6E452A9B390800F4861F = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +98,7 @@
 		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				6868278A2AA073960069234D /* Detail */,
 				869C6E882A9B716900F4861F /* Models */,
 				869C6E742A9B4ED000F4861F /* Shared */,
 				869C6E732A9B4E9700F4861F /* Services */,
@@ -94,6 +110,10 @@
 				869C6E672A9B3A8A00F4861F /* Extensions */,
 				869C6E6D2A9B467B00F4861F /* Aplication */,
 				869C6E6E2A9B4CB600F4861F /* Resources */,
+				686827812A9FAF870069234D /* DetailViewController.swift */,
+				686827832A9FB60C0069234D /* NumberCell.swift */,
+				686827852A9FB6730069234D /* Product.swift */,
+				686827872A9FB67D0069234D /* ProductList.swift */,
 			);
 			path = BestRecipes;
 			sourceTree = "<group>";
@@ -273,17 +293,21 @@
 				869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				869C6E7A2A9B67F000F4861F /* RecipeDetailViewController.swift in Sources */,
+				686827842A9FB60C0069234D /* NumberCell.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */,
 				869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
+				686827822A9FAF870069234D /* DetailViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				686827862A9FB6730069234D /* Product.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
+				686827882A9FB67D0069234D /* ProductList.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
