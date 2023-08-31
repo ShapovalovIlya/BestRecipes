@@ -16,7 +16,7 @@ protocol HomePresenterProtocol: AnyObject {
 
 //MARK: - HomePresenterDelegate
 protocol HomePresenterDelegate: AnyObject {
-    func recipesDidLoad(_ recipes: [Recipe])
+    func recipesDidLoad(_ recipes: RecipesList)
 }
 
 final class HomePresenter: HomePresenterProtocol {

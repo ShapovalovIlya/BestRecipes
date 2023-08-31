@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* HomeViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				869C6E942A9D1C2D00F4861F /* Autocomplete.swift */,
 				869C6E962A9D2B6F00F4861F /* Amount.swift */,
 				869C6E982A9D2B8500F4861F /* Ingredient.swift */,
+				8629679C2AA090E5000254B3 /* RecipesList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
+				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
