@@ -26,6 +26,7 @@
 		869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E862A9B6F4000F4861F /* HomeRouter.swift */; };
 		869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E892A9B717200F4861F /* Recipe.swift */; };
 		869C6E8E2A9B7EB300F4861F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 869C6E8D2A9B7EB300F4861F /* Kingfisher */; };
+		B964EB9B2AA16EE10078FABA /* MyCustomTabBarPresenterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B964EB9A2AA16EE10078FABA /* MyCustomTabBarPresenterImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		869C6E842A9B694800F4861F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		869C6E862A9B6F4000F4861F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		869C6E892A9B717200F4861F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		B964EB9A2AA16EE10078FABA /* MyCustomTabBarPresenterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCustomTabBarPresenterImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			children = (
 				869C6E682A9B3AD700F4861F /* ViewC.swift */,
 				869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */,
+				B964EB9A2AA16EE10078FABA /* MyCustomTabBarPresenterImpl.swift */,
 			);
 			path = Tabbar;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				B964EB9B2AA16EE10078FABA /* MyCustomTabBarPresenterImpl.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,

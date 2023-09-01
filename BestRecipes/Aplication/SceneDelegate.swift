@@ -12,11 +12,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
-        window?.rootViewController = MyCustomTabBarController()
-        window?.makeKeyAndVisible()
-    }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+        let customTabBarController = MyCustomTabBarController()
+      
+        window?.rootViewController = UINavigationController(rootViewController: customTabBarController)
+        window?.makeKeyAndVisible()    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

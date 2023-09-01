@@ -1,27 +1,32 @@
 
 import UIKit
-import Foundation
 
-class MyCustomTabBarController : UITabBarController {
+protocol MyCustomTabBarView: AnyObject {
+    func setupSearchBar()
+    func setupCustomTabBar()
+    func addSomeTabItems()
+    func configureMiddleButton()
+}
+
+
+class MyCustomTabBarController: UITabBarController, MyCustomTabBarView {
+    var presenter: MyCustomTabBarPresenter!
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.sizeToFit()
         searchBar.searchBarStyle = .minimal
-//        searchBar.searchTextField.font = UIFont(name: "Poppins-Regular", size: 10)
-//        searchBar.setImage(UIImage(named: "Union"), for: UISearchBar.Icon.search, state: .normal)
         searchBar.searchTextField.borderStyle = .none
-//        searchBar.searchTextPositionAdjustment.horizontal = 10
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-//        searchBar.backgroundColor = .clear
         searchBar.layer.cornerRadius = 16
         searchBar.layer.borderWidth = 2
         searchBar.layer.borderColor = UIColor.customBorderColor.cgColor
         return searchBar
+        
     }()
     
-    let btnMiddle : UIButton = {
-       let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    let btnMiddle: UIButton = {
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         btn.setTitle("", for: .normal)
         btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1)
         btn.layer.cornerRadius = 22
@@ -29,45 +34,57 @@ class MyCustomTabBarController : UITabBarController {
         btn.layer.shadowOpacity = 0.2
         btn.layer.shadowOffset = CGSize(width: 4, height: 4)
         btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal) // картинка
-//        btn.setBackgroundImage(UIImage(systemName: "plus"), for: .normal) // системный плюс
+        //        btn.setBackgroundImage(UIImage(systemName: "plus"), for: .normal) // системный плюс
         return btn
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.titleView = searchBar
-        self.tabBar.addSubview(btnMiddle)
-        setupCustomTabBar()
-        addSomeTabItems()
-        btnMiddle.frame = CGRect(x: Int(self.tabBar.bounds.width)/2 - 22, y: -22, width: 44, height: 44)
         
+        presenter = MyCustomTabBarPresenterImpl(view: self)
+        presenter.viewDidLoad()
     }
+}
 
+extension MyCustomTabBarController {
+    
+    func setupSearchBar() {
+        navigationItem.titleView = searchBar
+    }
+    
     func setupCustomTabBar() {
-        let path : UIBezierPath = getPathForTabBar()
+        let path: UIBezierPath = getPathForTabBar()
         let shape = CAShapeLayer()
         shape.path = path.cgPath
-        shape.lineWidth = 3
+        shape.lineWidth = 10
         shape.strokeColor = UIColor.white.cgColor
-        shape.fillColor = UIColor.white.cgColor
-        self.tabBar.layer.insertSublayer(shape, at: 0)
-        self.tabBar.itemWidth = 40
-        self.tabBar.itemPositioning = .centered
-        self.tabBar.itemSpacing = 60
-        self.tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
+        shape.fillColor = UIColor.yellow.cgColor
+        tabBar.layer.insertSublayer(shape, at: 0)
+        tabBar.itemWidth = 40
+        tabBar.itemPositioning = .centered
+        tabBar.itemSpacing = 60
+        tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
     }
     
     func addSomeTabItems() {
-        let vc1 = UINavigationController(rootViewController: ViewC1())
-        let vc2 = UINavigationController(rootViewController: ViewC2())
-        let vc3 = UINavigationController(rootViewController: ViewC3())
-        let vc4 = UINavigationController(rootViewController: ViewC4())
-        setViewControllers([vc1, vc2, vc3, vc4], animated: false)
-        guard let items = tabBar.items else { return}
-        items[0].image = UIImage(systemName: "house")
-        items[1].image = UIImage(systemName: "bookmark")
-        items[2].image = UIImage(systemName: "bell")
-        items[3].image = UIImage(systemName: "person")
+        let vc1 = setupTB(vc: ViewC1(), itemName: "house", itemImage: "house")
+        let vc2 = setupTB(vc: ViewC2(), itemName: "bookmark", itemImage: "bookmark")
+        let vc3 = setupTB(vc: ViewC3(), itemName: "bell", itemImage: "bell")
+        let vc4 = setupTB(vc: ViewC4(), itemName: "person", itemImage: "person")
+        viewControllers = [vc1, vc2, vc3, vc4]
+    }
+    
+    func setupTB(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
+        let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage), tag: 0)
+        item.titlePositionAdjustment = .init(horizontal: 0, vertical: 10)
+        let navC = UINavigationController(rootViewController: vc)
+        navC.tabBarItem = item
+        return navC
+    }
+    
+    func configureMiddleButton() {
+        btnMiddle.frame = CGRect(x: Int(tabBar.bounds.width) / 2 - 22, y: -22, width: 44, height: 44)
+        tabBar.addSubview(btnMiddle)
     }
     
     func getPathForTabBar() -> UIBezierPath {
