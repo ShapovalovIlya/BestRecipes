@@ -32,6 +32,8 @@
 		869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E962A9D2B6F00F4861F /* Amount.swift */; };
 		869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E982A9D2B8500F4861F /* Ingredient.swift */; };
 		869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E9A2A9E2CE600F4861F /* Secret.swift */; };
+		86B3D0422AA534FA009BF738 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0412AA534FA009BF738 /* MealType.swift */; };
+		86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0432AA541BE009BF738 /* RecipeResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,8 @@
 		869C6E962A9D2B6F00F4861F /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
 		869C6E982A9D2B8500F4861F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		869C6E9A2A9E2CE600F4861F /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		86B3D0412AA534FA009BF738 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		86B3D0432AA541BE009BF738 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +212,8 @@
 				869C6E962A9D2B6F00F4861F /* Amount.swift */,
 				869C6E982A9D2B8500F4861F /* Ingredient.swift */,
 				8629679C2AA090E5000254B3 /* RecipesList.swift */,
+				86B3D0412AA534FA009BF738 /* MealType.swift */,
+				86B3D0432AA541BE009BF738 /* RecipeResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,7 +304,9 @@
 			files = (
 				869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
+				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
 				869C6E7A2A9B67F000F4861F /* RecipeDetailViewController.swift in Sources */,
+				86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */,
 				869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */,

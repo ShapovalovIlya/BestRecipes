@@ -48,15 +48,15 @@ struct Recipe: Decodable, Hashable {
     let title: String
     
     /// title автора
-    let sourceName: String
+    let sourceName: String?
     
     /// URL-ссылка на картинку рецепта
     let image: String
     
     /// Краткое описание
-    let summary: String
+    let summary: String?
     
     /// Список ингредиентов в рецепте
-    let extendedIngredients: [Ingredient]
+    let extendedIngredients: [Ingredient]?
     
 }

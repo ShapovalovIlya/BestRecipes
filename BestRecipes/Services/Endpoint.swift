@@ -31,37 +31,51 @@ struct Endpoint {
         return url
     }
     
-    
-    /// Эндпоинт для GET запросов. Возвращает подробную информацию о рецепте.
-    /// - Parameter id: Уникальный id рецепта (`Recipe`)
-    /// - Returns: запрос возвращает модель `Recipe`
     static func getRecipeInfo(id: String) -> Self {
-        .init(path: "/recipe/\(id)/information")
+        .init(
+            path: "/recipes/\(id)/information",
+            queryItems: [
+                .init(name: "includeNutrition", value: false.description)
+            ]
+        )
     }
     
-    /// Эндпоинт для GET запросов. Возвращает массив из 20 популярных рецептов.
-    /// - Returns: запрос возвращает модель `[Recipe]`
-    static let getPopularRecipes = Self(
-        path: "/recipes",
-        queryItems: [
-            .init(name: "sort", value: "popularity"),
-            .init(name: "number", value: "20")
-        ]
-    )
+    static func getRecipes(
+        sortedBy sortion: Sortion,
+        number: Int = 20,
+        offset: Int = 0
+    ) -> Self {
+        .init(
+            path: "/recipes/complexSearch",
+            queryItems: [
+                .init(name: "sort", value: sortion.rawValue),
+                .init(name: "number", value: number.description),
+                .init(name: "offset", value: offset.description),
+                .init(name: "fillIngredients", value: false.description),
+                .init(name: "addRecipeInformation", value: false.description),
+                .init(name: "addRecipeNutrition", value: false.description)
+            ]
+        )
+    }
     
-    /// Эндпоинт для GET запросов. Возвращает массив из 20 недавних рецептов.
-    /// - Returns: запрос возвращает модель `[Recipe]`
-    static let getRecentRecipes = Self(
-        path: "/recipes",
-        queryItems: [
-            .init(name: "sort", value: "time"),
-            .init(name: "number", value: "20")
-        ]
-    )
+    static func getRecipes(
+        ofType type: MealType,
+        number: Int = 20,
+        offset: Int = 0
+    ) -> Self {
+        .init(
+            path: "/recipes/complexSearch",
+            queryItems: [
+                .init(name: "type", value: type.rawValue),
+                .init(name: "number", value: number.description),
+                .init(name: "offset", value: offset.description),
+                .init(name: "fillIngredients", value: false.description),
+                .init(name: "addRecipeInformation", value: false.description),
+                .init(name: "addRecipeNutrition", value: false.description)
+            ]
+        )
+    }
     
-    /// Эндпоинт для GET запросов. Возвращает массив из 10 автокомплитов для поисковой строки.
-    /// - Parameter text: Текст поисковой строки.
-    /// - Returns: запрос возвращает модель
     static func getAutocomplete(_ text: String?) -> Self {
         .init(
             path: "/recipes/autocomplete",
@@ -70,5 +84,13 @@ struct Endpoint {
                 .init(name: "query", value: text)
             ]
         )
+    }
+    
+}
+
+extension Endpoint {
+    enum Sortion: String {
+        case time
+        case popularity
     }
 }
