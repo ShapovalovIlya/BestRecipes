@@ -5,15 +5,14 @@
 //  Created by Максим Нурутдинов on 04.09.2023.
 //
 
-
-
 import UIKit
 
 final class MyCustomTabBarController: UITabBarController {
-    let btnMiddle: UIButton = makeButton()
+    private let btnMiddle: UIButton = makeButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCustomTabBar()
         configureMiddleButton()
     }
@@ -31,7 +30,7 @@ private extension MyCustomTabBarController {
         shape.path = path.cgPath
         shape.lineWidth = 10
         shape.strokeColor = UIColor.white.cgColor
-        shape.fillColor = UIColor.yellow.cgColor
+        shape.fillColor = UIColor.white.cgColor
         tabBar.layer.insertSublayer(shape, at: 0)
         tabBar.itemWidth = 40
         tabBar.itemPositioning = .centered
@@ -40,7 +39,12 @@ private extension MyCustomTabBarController {
     }
     
     func configureMiddleButton() {
-        btnMiddle.frame = CGRect(x: Int(tabBar.bounds.width) / 2 - 22, y: -22, width: 44, height: 44)
+        btnMiddle.frame = CGRect(
+            x: Int(tabBar.bounds.width) / 2 - 22,
+            y: -22,
+            width: 44,
+            height: 44
+        )
         tabBar.addSubview(btnMiddle)
     }
     
@@ -54,11 +58,28 @@ private extension MyCustomTabBarController {
         let path : UIBezierPath = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: leftXUntilHole , y: 0)) // 1.Line
-        path.addCurve(to: CGPoint(x: leftXUntilHole + (holeWidth/3), y: holeHeight/2), controlPoint1: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*6,y: 0), controlPoint2: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*8, y: holeHeight/2)) // part I
         
-        path.addCurve(to: CGPoint(x: leftXUntilHole + (2*holeWidth)/3, y: holeHeight/2), controlPoint1: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2/5, y: (holeHeight/2)*6/4), controlPoint2: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2 + (holeWidth/3)/3*3/5, y: (holeHeight/2)*6/4)) // part II
+        // part I
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + (holeWidth/3), y: holeHeight/2),
+            controlPoint1: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*6,y: 0),
+            controlPoint2: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*8, y: holeHeight/2)
+        )
         
-        path.addCurve(to: CGPoint(x: leftXUntilHole + holeWidth, y: 0), controlPoint1: CGPoint(x: leftXUntilHole + (2*holeWidth)/3,y: holeHeight/2), controlPoint2: CGPoint(x: leftXUntilHole + (2*holeWidth)/3 + (holeWidth/3)*2/8, y: 0)) // part III
+        // part II
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + (2*holeWidth)/3, y: holeHeight/2),
+            controlPoint1: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2/5, y: (holeHeight/2)*6/4),
+            controlPoint2: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2 + (holeWidth/3)/3*3/5, y: (holeHeight/2)*6/4)
+        )
+        
+        // part III
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + holeWidth, y: 0),
+            controlPoint1: CGPoint(x: leftXUntilHole + (2*holeWidth)/3,y: holeHeight/2),
+            controlPoint2: CGPoint(x: leftXUntilHole + (2*holeWidth)/3 + (holeWidth/3)*2/8, y: 0)
+        )
+        
         path.addLine(to: CGPoint(x: frameWidth, y: 0)) // 2. Line
         path.addLine(to: CGPoint(x: frameWidth, y: frameHeight)) // 3. Line
         path.addLine(to: CGPoint(x: 0, y: frameHeight)) // 4. Line
@@ -75,8 +96,7 @@ private extension MyCustomTabBarController {
         btn.layer.shadowColor = UIColor.black.cgColor
         btn.layer.shadowOpacity = 0.2
         btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal) // картинка
-        //        btn.setBackgroundImage(UIImage(systemName: "plus"), for: .normal) // системный плюс
+        btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal)
         return btn
     }
 }

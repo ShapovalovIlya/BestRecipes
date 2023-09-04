@@ -24,19 +24,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let customTabBarController = MyCustomTabBarController()
         
-        let homeRouter = HomeRouter(navigationController: homeNavigation, apiClient: apiClient)
+        let homeRouter = HomeRouter(
+            navigationController: homeNavigation,
+            apiClient: apiClient
+        )
         homeRouter.setupInitial()
 
-        let favoritsRouter = FavoritesRouter(navigationController: favoritesNavigation, apiClient: apiClient)
+        let favoritsRouter = FavoritesRouter(
+            navigationController: favoritesNavigation,
+            apiClient: apiClient
+        )
         favoritsRouter.setupInitial()
         
-        let bellRouter = BellRouter(navigationController: bellNavigation, apiClient: apiClient)
+        let bellRouter = BellRouter(
+            navigationController: bellNavigation,
+            apiClient: apiClient
+        )
         bellRouter.setupInitial()
         
-        let profileRouter = FavoritesRouter(navigationController: profileNavigation, apiClient: apiClient)
+        let profileRouter = FavoritesRouter(
+            navigationController: profileNavigation,
+            apiClient: apiClient
+        )
         profileRouter.setupInitial()
 
-        customTabBarController.navigationControllers(homeNavigation, favoritesNavigation, bellNavigation, profileNavigation)
+        customTabBarController.navigationControllers(
+            homeNavigation,
+            favoritesNavigation,
+            bellNavigation,
+            profileNavigation
+        )
         
         window?.rootViewController = customTabBarController
         window?.makeKeyAndVisible()
