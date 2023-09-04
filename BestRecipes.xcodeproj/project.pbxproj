@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		684A01412AA6677200EACAAC /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A01402AA6677200EACAAC /* TitleSupplementaryView.swift */; };
+		684A01432AA66C0400EACAAC /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A01422AA66C0400EACAAC /* DetailView.swift */; };
 		686827822A9FAF870069234D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827812A9FAF870069234D /* DetailViewController.swift */; };
 		686827842A9FB60C0069234D /* NumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827832A9FB60C0069234D /* NumberCell.swift */; };
 		686827862A9FB6730069234D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686827852A9FB6730069234D /* Product.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		684A01402AA6677200EACAAC /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		684A01422AA66C0400EACAAC /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		686827812A9FAF870069234D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		686827832A9FB60C0069234D /* NumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberCell.swift; sourceTree = "<group>"; };
 		686827852A9FB6730069234D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				686827812A9FAF870069234D /* DetailViewController.swift */,
+				684A01422AA66C0400EACAAC /* DetailView.swift */,
 				686827832A9FB60C0069234D /* NumberCell.swift */,
 				686827852A9FB6730069234D /* Product.swift */,
 				686827872A9FB67D0069234D /* ProductList.swift */,
@@ -311,6 +314,7 @@
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				686827822A9FAF870069234D /* DetailViewController.swift in Sources */,
 				684A01412AA6677200EACAAC /* TitleSupplementaryView.swift in Sources */,
+				684A01432AA66C0400EACAAC /* DetailView.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
 				686827862A9FB6730069234D /* Product.swift in Sources */,
