@@ -7,10 +7,7 @@
 
 import UIKit
 
-class NumberCell: UICollectionViewCell {
-  static let reuseIdentifier = String(describing: NumberCell.self)
-  
-  //@IBOutlet weak var label: UILabel!
+final class NumberCell: UICollectionViewCell {
   
   lazy var textLabel: UILabel = {
     let element = UILabel()
