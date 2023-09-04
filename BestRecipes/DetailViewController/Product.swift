@@ -7,4 +7,5 @@
 
 struct Product: Hashable {
   let name: String
+  let imageName: String
 }
