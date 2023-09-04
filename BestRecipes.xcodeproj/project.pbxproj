@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		865224562AA60F300091413F /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865224552AA60F300091413F /* FavoritesRouter.swift */; };
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* HomeViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		865224552AA60F300091413F /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */,
+				865224552AA60F300091413F /* FavoritesRouter.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
+				865224562AA60F300091413F /* FavoritesRouter.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 			);

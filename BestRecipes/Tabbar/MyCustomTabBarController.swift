@@ -1,16 +1,15 @@
 
 import UIKit
 
-protocol MyCustomTabBarView: AnyObject {
-    func setupSearchBar()
-    func setupCustomTabBar()
-    func addSomeTabItems()
-    func configureMiddleButton()
-}
+//protocol MyCustomTabBarView: AnyObject {
+//    func setupSearchBar()
+//    func setupCustomTabBar()
+//    func addSomeTabItems()
+//    func configureMiddleButton()
+//}
 
 
-class MyCustomTabBarController: UITabBarController, MyCustomTabBarView {
-    var presenter: MyCustomTabBarPresenter!
+final class MyCustomTabBarController: UITabBarController {
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -25,33 +24,28 @@ class MyCustomTabBarController: UITabBarController, MyCustomTabBarView {
         
     }()
     
-    let btnMiddle: UIButton = {
-        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        btn.setTitle("", for: .normal)
-        btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1)
-        btn.layer.cornerRadius = 22
-        btn.layer.shadowColor = UIColor.black.cgColor
-        btn.layer.shadowOpacity = 0.2
-        btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal) // картинка
-        //        btn.setBackgroundImage(UIImage(systemName: "plus"), for: .normal) // системный плюс
-        return btn
-    }()
+    let btnMiddle: UIButton = makeButton()
     
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter = MyCustomTabBarPresenterImpl(view: self)
-        presenter.viewDidLoad()
+        setupCustomTabBar()
+        configureMiddleButton()
+    }
+    
+    //MARK: - Public methods
+    func navigationControllers(_ controllers: UIViewController...) {
+        self.viewControllers = controllers
     }
 }
 
-extension MyCustomTabBarController {
+private extension MyCustomTabBarController {
     
     func setupSearchBar() {
-        navigationItem.titleView = searchBar
+  //      navigationItem.titleView = searchBar
     }
-    
+
     func setupCustomTabBar() {
         let path: UIBezierPath = getPathForTabBar()
         let shape = CAShapeLayer()
@@ -66,21 +60,21 @@ extension MyCustomTabBarController {
         tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
     }
     
-    func addSomeTabItems() {
-        let vc1 = setupTB(vc: ViewC1(), itemName: "house", itemImage: "house")
-        let vc2 = setupTB(vc: ViewC2(), itemName: "bookmark", itemImage: "bookmark")
-        let vc3 = setupTB(vc: ViewC3(), itemName: "bell", itemImage: "bell")
-        let vc4 = setupTB(vc: ViewC4(), itemName: "person", itemImage: "person")
-        viewControllers = [vc1, vc2, vc3, vc4]
-    }
+//    func addSomeTabItems() {
+//        let vc1 = setupTB(vc: ViewC1(), itemName: "house", itemImage: "house")
+//        let vc2 = setupTB(vc: ViewC2(), itemName: "bookmark", itemImage: "bookmark")
+//        let vc3 = setupTB(vc: ViewC3(), itemName: "bell", itemImage: "bell")
+//        let vc4 = setupTB(vc: ViewC4(), itemName: "person", itemImage: "person")
+//        viewControllers = [vc1, vc2, vc3, vc4]
+//    }
     
-    func setupTB(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
-        let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage), tag: 0)
-        item.titlePositionAdjustment = .init(horizontal: 0, vertical: 10)
-        let navC = UINavigationController(rootViewController: vc)
-        navC.tabBarItem = item
-        return navC
-    }
+//    func setupTB(vc: UIViewController, itemName: String, itemImage: String) -> UINavigationController {
+//        let item = UITabBarItem(title: itemName, image: UIImage(systemName: itemImage), tag: 0)
+//        item.titlePositionAdjustment = .init(horizontal: 0, vertical: 10)
+//        let navC = UINavigationController(rootViewController: vc)
+//        navC.tabBarItem = item
+//        return navC
+//    }
     
     func configureMiddleButton() {
         btnMiddle.frame = CGRect(x: Int(tabBar.bounds.width) / 2 - 22, y: -22, width: 44, height: 44)
@@ -93,20 +87,50 @@ extension MyCustomTabBarController {
         let holeWidth = 150
         let holeHeight = 50
         let leftXUntilHole = Int(frameWidth/2) - Int(holeWidth/2)
+        let path: UIBezierPath = UIBezierPath()
         
-        let path : UIBezierPath = UIBezierPath()
         path.move(to: CGPoint(x: 0, y: 0))
         path.addLine(to: CGPoint(x: leftXUntilHole , y: 0)) // 1.Line
-        path.addCurve(to: CGPoint(x: leftXUntilHole + (holeWidth/3), y: holeHeight/2), controlPoint1: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*6,y: 0), controlPoint2: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*8, y: holeHeight/2)) // part I
         
-        path.addCurve(to: CGPoint(x: leftXUntilHole + (2*holeWidth)/3, y: holeHeight/2), controlPoint1: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2/5, y: (holeHeight/2)*6/4), controlPoint2: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2 + (holeWidth/3)/3*3/5, y: (holeHeight/2)*6/4)) // part II
+        // part I
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + (holeWidth/3), y: holeHeight/2),
+            controlPoint1: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*6,y: 0),
+            controlPoint2: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*8, y: holeHeight/2)
+        )
         
-        path.addCurve(to: CGPoint(x: leftXUntilHole + holeWidth, y: 0), controlPoint1: CGPoint(x: leftXUntilHole + (2*holeWidth)/3,y: holeHeight/2), controlPoint2: CGPoint(x: leftXUntilHole + (2*holeWidth)/3 + (holeWidth/3)*2/8, y: 0)) // part III
+        // part II
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + (2*holeWidth)/3, y: holeHeight/2),
+            controlPoint1: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2/5, y: (holeHeight/2)*6/4),
+            controlPoint2: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2 + (holeWidth/3)/3*3/5, y: (holeHeight/2)*6/4)
+        )
+        
+        // part III
+        path.addCurve(
+            to: CGPoint(x: leftXUntilHole + holeWidth, y: 0),
+            controlPoint1: CGPoint(x: leftXUntilHole + (2*holeWidth)/3,y: holeHeight/2),
+            controlPoint2: CGPoint(x: leftXUntilHole + (2*holeWidth)/3 + (holeWidth/3)*2/8, y: 0)
+        )
+        
         path.addLine(to: CGPoint(x: frameWidth, y: 0)) // 2. Line
         path.addLine(to: CGPoint(x: frameWidth, y: frameHeight)) // 3. Line
         path.addLine(to: CGPoint(x: 0, y: frameHeight)) // 4. Line
         path.addLine(to: CGPoint(x: 0, y: 0)) // 5. Line
         path.close()
         return path
+    }
+    
+    static func makeButton() -> UIButton {
+        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        btn.setTitle("", for: .normal)
+        btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1)
+        btn.layer.cornerRadius = 22
+        btn.layer.shadowColor = UIColor.black.cgColor
+        btn.layer.shadowOpacity = 0.2
+        btn.layer.shadowOffset = CGSize(width: 4, height: 4)
+        btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal) // картинка
+        //        btn.setBackgroundImage(UIImage(systemName: "plus"), for: .normal) // системный плюс
+        return btn
     }
 }

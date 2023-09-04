@@ -14,10 +14,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        // Создаем зависимости
+        let apiClient = SponacularApiClient()
+        
+        // Создаем контроллеры для каждой вкладки
+        let homeNavigation = UINavigationController()
+        let favoritesNavigation = UINavigationController()
+        
+        // Создаем родительский таббар контроллер
         let customTabBarController = MyCustomTabBarController()
-      
-        window?.rootViewController = UINavigationController(rootViewController: customTabBarController)
-        window?.makeKeyAndVisible()    }
+        
+        // Создаем роутеры и настраиваем стартовое состояние вкладок таббара
+        let homeRouter = HomeRouter(
+            navigationController: homeNavigation,
+            apiClient: apiClient
+        )
+        homeRouter.setupInitial()
+        
+        let favoritesRouter = FavoritesRouter(
+            navigationController: favoritesNavigation,
+            apiClient: apiClient
+        )
+        favoritesRouter.setupInitial()
+        
+        // Передаем сконфигурированные контроллеры в таббар
+        customTabBarController.navigationControllers(
+            homeNavigation,
+            favoritesNavigation
+        )
+        
+        window?.rootViewController = customTabBarController
+        window?.makeKeyAndVisible()
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
