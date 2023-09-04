@@ -1,18 +1,17 @@
 //
-//  FavoritesRouter.swift
+//  ProfileRouter.swift
 //  BestRecipes
 //
-//  Created by Илья Шаповалов on 04.09.2023.
+//  Created by Максим Нурутдинов on 04.09.2023.
 //
 
 import UIKit
 
-final class FavoritesRouter {
-    //MARK: - Private properties
+final class ProfileRouter {
+    
     private let navigationController: UINavigationController
     private let apiClient: SponacularApiClientProtocol
     
-    //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
         apiClient: SponacularApiClientProtocol
@@ -21,14 +20,7 @@ final class FavoritesRouter {
         self.apiClient = apiClient
     }
     
-    //MARK: - Public methods
     func setupInitial() {
-        
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "bookmark"),
-            tag: 1
-        )
+        navigationController.tabBarItem = .init(title: nil, image: UIImage(systemName: "person"), tag: 4)
     }
-    
 }
