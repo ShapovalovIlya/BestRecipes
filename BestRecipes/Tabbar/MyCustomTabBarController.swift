@@ -38,7 +38,7 @@ class MyCustomTabBarController : UITabBarController {
         navigationItem.titleView = searchBar
         self.tabBar.addSubview(btnMiddle)
         setupCustomTabBar()
-        addSomeTabItems()
+      //  addSomeTabItems()
         btnMiddle.frame = CGRect(x: Int(self.tabBar.bounds.width)/2 - 22, y: -22, width: 44, height: 44)
         
     }
@@ -57,18 +57,28 @@ class MyCustomTabBarController : UITabBarController {
         self.tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
     }
     
-    func addSomeTabItems() {
-        let vc1 = UINavigationController(rootViewController: ViewC1())
-        let vc2 = UINavigationController(rootViewController: ViewC2())
-        let vc3 = UINavigationController(rootViewController: ViewC3())
-        let vc4 = UINavigationController(rootViewController: ViewC4())
-        setViewControllers([vc1, vc2, vc3, vc4], animated: false)
-        guard let items = tabBar.items else { return}
-        items[0].image = UIImage(systemName: "house")
-        items[1].image = UIImage(systemName: "bookmark")
-        items[2].image = UIImage(systemName: "bell")
-        items[3].image = UIImage(systemName: "person")
+    func setViewControllers(_ controllers: UIViewController...) {
+        setViewControllers(controllers, animated: false)
     }
+    
+//    func addSomeTabItems() {
+//
+//        let vc1 = UINavigationController(rootViewController: ViewC1())
+//        
+//        let vc2 = UINavigationController(rootViewController: ViewC2())
+//        
+//        let vc3 = UINavigationController(rootViewController: ViewC3())
+//        
+//        let vc4 = UINavigationController(rootViewController: ViewC4())
+//        
+//        setViewControllers([vc1, vc2, vc3, vc4], animated: false)
+//        
+//        guard let items = tabBar.items else { return}
+//        items[0].image = UIImage(systemName: "house")
+//        items[1].image = UIImage(systemName: "bookmark")
+//        items[2].image = UIImage(systemName: "bell")
+//        items[3].image = UIImage(systemName: "person")
+//    }
     
     func getPathForTabBar() -> UIBezierPath {
         let frameWidth = self.tabBar.bounds.width
