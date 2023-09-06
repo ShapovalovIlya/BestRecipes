@@ -13,9 +13,6 @@
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
 		865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7392AA87CC9009CA2EA /* DetailViewController.swift */; };
-		865DA7402AA87CC9009CA2EA /* NumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73A2AA87CC9009CA2EA /* NumberCell.swift */; };
-		865DA7412AA87CC9009CA2EA /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73B2AA87CC9009CA2EA /* Product.swift */; };
-		865DA7422AA87CC9009CA2EA /* ProductList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73C2AA87CC9009CA2EA /* ProductList.swift */; };
 		865DA7432AA87CC9009CA2EA /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */; };
 		865DA7452AA884A6009CA2EA /* OSLog+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7442AA884A6009CA2EA /* OSLog+.swift */; };
 		865DA7472AA886FD009CA2EA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7462AA886FD009CA2EA /* UIImage+.swift */; };
@@ -55,9 +52,6 @@
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		865DA7392AA87CC9009CA2EA /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		865DA73A2AA87CC9009CA2EA /* NumberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberCell.swift; sourceTree = "<group>"; };
-		865DA73B2AA87CC9009CA2EA /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
-		865DA73C2AA87CC9009CA2EA /* ProductList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductList.swift; sourceTree = "<group>"; };
 		865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		865DA7442AA884A6009CA2EA /* OSLog+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+.swift"; sourceTree = "<group>"; };
 		865DA7462AA886FD009CA2EA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
@@ -117,9 +111,6 @@
 			children = (
 				865DA7382AA87CC9009CA2EA /* DetailView.swift */,
 				865DA7392AA87CC9009CA2EA /* DetailViewController.swift */,
-				865DA73A2AA87CC9009CA2EA /* NumberCell.swift */,
-				865DA73B2AA87CC9009CA2EA /* Product.swift */,
-				865DA73C2AA87CC9009CA2EA /* ProductList.swift */,
 				865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */,
 				865DA7502AA8F543009CA2EA /* DetailPresenter.swift */,
 			);
@@ -362,15 +353,12 @@
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
-				865DA7412AA87CC9009CA2EA /* Product.swift in Sources */,
 				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */,
-				865DA7422AA87CC9009CA2EA /* ProductList.swift in Sources */,
 				865DA7472AA886FD009CA2EA /* UIImage+.swift in Sources */,
-				865DA7402AA87CC9009CA2EA /* NumberCell.swift in Sources */,
 				865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */,
 				865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */,
 				869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */,
