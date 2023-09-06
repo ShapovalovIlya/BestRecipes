@@ -16,12 +16,16 @@ final class HomeView: UIView, HomeViewProtocol {
     
     //MARK: - Public properties
     let collectionView: UICollectionView = makeCollection()
+    //
+    let frameOne: FrameOneCollectionViewCell = FrameOneCollectionViewCell.init()
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addSubview(collectionView)
+        //
+        addSubview(frameOne)
     }
     
     @available(*, unavailable)
