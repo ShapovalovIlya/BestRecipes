@@ -10,10 +10,6 @@ import OSLog
 
 final class DetailViewController: UIViewController {
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: DetailViewController.self)
-    )
     private let detailView: DetailViewProtocol
     private lazy var dataSource = makeDataSource()
     
@@ -24,7 +20,7 @@ final class DetailViewController: UIViewController {
         self.detailView = detailView
         super.init(nibName: nil, bundle: nil)
         
-        logger.debug("Initialized")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     @available(*, unavailable)
@@ -34,14 +30,14 @@ final class DetailViewController: UIViewController {
     
     //MARK: - deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     //  MARK: - Life Cycle
     override func loadView() {
         self.view = detailView
         
-        logger.debug("Load view")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     override func viewDidLoad() {
@@ -52,7 +48,7 @@ final class DetailViewController: UIViewController {
         
         productListDidLoad(list)
         
-        logger.debug("View did load")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
 }
