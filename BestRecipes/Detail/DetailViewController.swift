@@ -46,7 +46,7 @@ final class DetailViewController: UIViewController {
         dataSource.supplementaryViewProvider = makeHeaderRegistration().headerProvider
         detailView.collectionView.dataSource = dataSource
         
-        recipeDidLoad(list)
+        recipeDidLoad(Recipe.sample)
         
         Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
@@ -55,33 +55,45 @@ final class DetailViewController: UIViewController {
 
 private extension DetailViewController {
     enum Section: Int, CaseIterable {
-        case main
-        case additional
-        case all
+        case title
+        case summary
+        case ingredients
     }
     
     enum Item: Hashable {
-        
+        case title(Recipe)
+        case summary(String?)
+        case ingredient(Ingredient)
     }
     
     //MARK: - Typealias
     typealias Cell = NumberCell
     typealias Header = TitleSupplementaryView
-    typealias CellRegistration = UICollectionView.CellRegistration<Cell, Product>
+    typealias CellRegistration = UICollectionView.CellRegistration<Cell, Item>
     typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<Header>
     
     //MARK: - Private methods
     func recipeDidLoad(_ recipe: Recipe) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Product>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(recipe.featured, toSection: .main)
-        snapshot.appendItems(recipe.onSale, toSection: .additional)
-        snapshot.appendItems(recipe.all, toSection: .all)
-        
+        snapshot.appendItems(
+            [Item.title(recipe)],
+            toSection: .title
+        )
+        snapshot.appendItems(
+            [Item.summary(recipe.summary)],
+            toSection: .summary
+        )
+
+        snapshot.appendItems(
+            recipe.extendedIngredients?.map(Item.ingredient) ?? .init(),
+            toSection: .ingredients
+        )
+     
         dataSource.apply(snapshot)
     }
     
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Product> {
+    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         UICollectionViewDiffableDataSource(
             collectionView: detailView.collectionView,
             cellProvider: makeCellRegistration().cellProvider
@@ -89,8 +101,17 @@ private extension DetailViewController {
     }
     
     func makeCellRegistration() -> CellRegistration {
-        CellRegistration { cell, indexPath, product in
-            cell.configure(with: product)
+        CellRegistration { cell, indexPath, item in
+            switch item {
+            case let .title(recipe):
+                break
+                
+            case let .summary(summary):
+                break
+                
+            case let .ingredient(ingredient):
+                break
+            }
             cell.backgroundColor = .systemPink
         }
     }
@@ -100,13 +121,13 @@ private extension DetailViewController {
             let tutorialCollection = ["How to cook", "Instructions", "Ingredients"]
             
             switch Section(rawValue: indexPath.section) {
-            case .main:
+            case .title:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
-            case .additional:
+            case .summary:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
-            case .all:
+            case .ingredients:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 supplementaryView.numberLabel.text = "\(tutorialCollection.count) items"
                 
