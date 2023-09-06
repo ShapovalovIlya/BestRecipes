@@ -8,21 +8,26 @@
 import UIKit
 
 protocol HomeRouterProtocol {
-    
+    var navigationController: UINavigationController { get }
 }
 
 final class HomeRouter: HomeRouterProtocol {
     //MARK: - Private properties
-    private let navigationController: UINavigationController
     private let apiClient: ApiClientProtocol
+    private let assembly: HomeAssembly
+    
+    //MARK: - Public
+    let navigationController: UINavigationController
     
     //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        apiClient: ApiClientProtocol
+        apiClient: ApiClientProtocol,
+        assembly: HomeAssembly
     ) {
         self.navigationController = navigationController
         self.apiClient = apiClient
+        self.assembly = assembly
     }
     
     //MARK: - Public methods
