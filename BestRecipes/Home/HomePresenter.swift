@@ -20,7 +20,7 @@ protocol HomePresenterProtocol: AnyObject {
 
 //MARK: - HomePresenterDelegate
 protocol HomePresenterDelegate: AnyObject {
-    func recipesDidLoad(_ recipes: [Recipe])
+    func recipesDidLoad(_ recipes: [Product])
 }
 
 final class HomePresenter: HomePresenterProtocol {

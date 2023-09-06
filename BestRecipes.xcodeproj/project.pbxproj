@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F242B382AA4ADD900F0DC90 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F242B372AA4ADD900F0DC90 /* Category.swift */; };
+		3F242B3A2AA4ADE400F0DC90 /* Creators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F242B392AA4ADE400F0DC90 /* Creators.swift */; };
+		3F6BDABA2AA7A5B600983CB3 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BDAB92AA7A5B600983CB3 /* CategoryCell.swift */; };
+		3F6BDABC2AA8807100983CB3 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6BDABB2AA8807100983CB3 /* TitleSupplementaryView.swift */; };
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* HomeViewController.swift */; };
@@ -29,6 +33,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F242B372AA4ADD900F0DC90 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		3F242B392AA4ADE400F0DC90 /* Creators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creators.swift; sourceTree = "<group>"; };
+		3F6BDAB92AA7A5B600983CB3 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		3F6BDABB2AA8807100983CB3 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */,
+				3F6BDAB92AA7A5B600983CB3 /* CategoryCell.swift */,
+				3F6BDABB2AA8807100983CB3 /* TitleSupplementaryView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -189,6 +199,8 @@
 			isa = PBXGroup;
 			children = (
 				869C6E892A9B717200F4861F /* Recipe.swift */,
+				3F242B372AA4ADD900F0DC90 /* Category.swift */,
+				3F242B392AA4ADE400F0DC90 /* Creators.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -275,16 +287,20 @@
 				869C6E7A2A9B67F000F4861F /* RecipeDetailViewController.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */,
+				3F6BDABA2AA7A5B600983CB3 /* CategoryCell.swift in Sources */,
 				869C6E692A9B3AD800F4861F /* ViewC.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
+				3F242B382AA4ADD900F0DC90 /* Category.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				3F6BDABC2AA8807100983CB3 /* TitleSupplementaryView.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
+				3F242B3A2AA4ADE400F0DC90 /* Creators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

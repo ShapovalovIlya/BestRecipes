@@ -7,14 +7,14 @@
 
 import UIKit
 
-final class RatedRecipeCell: UICollectionViewCell {
+final class CategoryCell: UICollectionViewCell {
     
     var textLabel = UILabel()
     
     
     
     //MARK: - Public methods
-    static let cellId = "RatedRecipeCellId"
+    static let cellId = "CategoryCellId"
     
     //MARK: - Private methods
     
