@@ -26,7 +26,7 @@
 		869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */; };
 		869C6E762A9B53DD00F4861F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 869C6E752A9B53DD00F4861F /* README.md */; };
 		869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E772A9B67A900F4861F /* OnboardingViewController.swift */; };
-		869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */; };
+		869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7B2A9B680E00F4861F /* ApiClient.swift */; };
 		869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */; };
 		869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */; };
 		869C6E832A9B693200F4861F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E822A9B693200F4861F /* HomeView.swift */; };
@@ -65,7 +65,7 @@
 		869C6E6A2A9B3B0700F4861F /* MyCustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCustomTabBarController.swift; sourceTree = "<group>"; };
 		869C6E752A9B53DD00F4861F /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		869C6E772A9B67A900F4861F /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SponacularApiClient.swift; sourceTree = "<group>"; };
+		869C6E7B2A9B680E00F4861F /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		869C6E7F2A9B68BA00F4861F /* RatedRecipeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedRecipeCell.swift; sourceTree = "<group>"; };
 		869C6E822A9B693200F4861F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 		869C6E732A9B4E9700F4861F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */,
+				869C6E7B2A9B680E00F4861F /* ApiClient.swift */,
 				869C6E8F2A9BB14100F4861F /* Endpoint.swift */,
 			);
 			path = Services;
@@ -338,7 +338,7 @@
 				865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
-				869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */,
+				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
 				865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
