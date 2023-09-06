@@ -8,12 +8,6 @@
 import UIKit
 import OSLog
 
-enum Section: Int, CaseIterable {
-    case main
-    case additinal
-    case all
-}
-
 final class DetailViewController: UIViewController {
     //MARK: - Private properties
     private let logger = Logger(
@@ -64,6 +58,12 @@ final class DetailViewController: UIViewController {
 }
 
 private extension DetailViewController {
+    enum Section: Int, CaseIterable {
+        case main
+        case additional
+        case all
+    }
+    
     //MARK: - Typealias
     typealias Cell = NumberCell
     typealias Header = TitleSupplementaryView
@@ -75,7 +75,7 @@ private extension DetailViewController {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Product>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(list.featured, toSection: .main)
-        snapshot.appendItems(list.onSale, toSection: .additinal)
+        snapshot.appendItems(list.onSale, toSection: .additional)
         snapshot.appendItems(list.all, toSection: .all)
         
         dataSource.apply(snapshot)
@@ -103,7 +103,7 @@ private extension DetailViewController {
             case .main:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
-            case .additinal:
+            case .additional:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
             case .all:

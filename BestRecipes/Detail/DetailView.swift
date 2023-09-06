@@ -37,6 +37,12 @@ final class DetailView: UIView, DetailViewProtocol {
 
 //  MARK: -  Private Methods
 private extension DetailView {
+    enum Section: Int, CaseIterable {
+        case main
+        case additional
+        case all
+    }
+    
     static func makeCollectionView() -> UICollectionView {
         let collectionView = UICollectionView(
             frame: .zero,
@@ -49,7 +55,7 @@ private extension DetailView {
     static func makeCollectionViewLayout() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { sectionIndex, environment in
             switch Section(rawValue: sectionIndex) {
-            case .main, .additinal:
+            case .main, .additional:
                 return makeGridLayoutSection()
                 
             case .all:
