@@ -54,7 +54,7 @@ class OnboardingViewController: UIViewController {
     lazy var backgroundImageOnboarding: UIImageView = {
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "onboarding1")
+        image.image = UIImage(named: "onboarding")
         image.contentMode = .scaleAspectFill
        
         return image
@@ -112,7 +112,7 @@ class OnboardingViewController: UIViewController {
     lazy var backgroundImageOnboardingPage1: UIImageView = {
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "onboarding2")
+        image.image = UIImage(named: "onboarding1")
         image.contentMode = .scaleAspectFill
         
         return image
@@ -156,7 +156,7 @@ class OnboardingViewController: UIViewController {
     lazy var backgroundImageOnboardingPage2: UIImageView = {
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "onboarding3")
+        image.image = UIImage(named: "onboarding2")
         image.contentMode = .scaleAspectFill
         
         return image
@@ -200,7 +200,7 @@ class OnboardingViewController: UIViewController {
     lazy var backgroundImageOnboardingPage3: UIImageView = {
         let image = UIImageView(frame: .zero)
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "onboarding4")
+        image.image = UIImage(named: "onboarding3")
         image.contentMode = .scaleAspectFill
 
         return image

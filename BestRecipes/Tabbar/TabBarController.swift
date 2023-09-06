@@ -33,6 +33,15 @@ final class TabBarController: UITabBarController {
         tabBar.layer.insertSublayer(shape, at: 0)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let onboarding = OnboardingViewController()
+        onboarding.modalPresentationStyle = .automatic
+        onboarding.modalTransitionStyle = .coverVertical
+        self.present(onboarding, animated: true)
+    }
+    
     //MARK: - Public methods
     func navigationControllers(_ controllers: UIViewController...) {
         self.viewControllers = controllers

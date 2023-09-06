@@ -10,6 +10,8 @@ import UIKit
 extension UIColor {
     static let tabBarButtonColor: UIColor? = .init(hex: "#fe989b", alpha: 1)
     static let tabBarTintColor: UIColor? = .init(hex: "#fe989b", alpha: 1)
+    static let getStartedButtonColor: UIColor? = .init(named: "onboardingColor")
+    static let onboardingLabelAdditionalColor: UIColor? = .init(named: "onboardingLabelAdditional")
     
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
