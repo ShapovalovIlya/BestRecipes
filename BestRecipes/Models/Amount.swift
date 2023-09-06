@@ -17,6 +17,11 @@ struct Amount: Decodable, Hashable {
         case value
     }
     
+    init(unit: String, value: Double) {
+        self.unit = unit
+        self.value = value
+    }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let subContainer = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .metric)

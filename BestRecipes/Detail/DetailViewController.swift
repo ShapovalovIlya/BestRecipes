@@ -46,7 +46,7 @@ final class DetailViewController: UIViewController {
         dataSource.supplementaryViewProvider = makeHeaderRegistration().headerProvider
         detailView.collectionView.dataSource = dataSource
         
-        productListDidLoad(list)
+        recipeDidLoad(list)
         
         Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
@@ -60,6 +60,10 @@ private extension DetailViewController {
         case all
     }
     
+    enum Item: Hashable {
+        
+    }
+    
     //MARK: - Typealias
     typealias Cell = NumberCell
     typealias Header = TitleSupplementaryView
@@ -67,12 +71,12 @@ private extension DetailViewController {
     typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<Header>
     
     //MARK: - Private methods
-    func productListDidLoad(_ list: ProductList) {
+    func recipeDidLoad(_ recipe: Recipe) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Product>()
         snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(list.featured, toSection: .main)
-        snapshot.appendItems(list.onSale, toSection: .additional)
-        snapshot.appendItems(list.all, toSection: .all)
+        snapshot.appendItems(recipe.featured, toSection: .main)
+        snapshot.appendItems(recipe.onSale, toSection: .additional)
+        snapshot.appendItems(recipe.all, toSection: .all)
         
         dataSource.apply(snapshot)
     }

@@ -60,3 +60,7 @@ struct Recipe: Decodable, Hashable {
     let extendedIngredients: [Ingredient]?
     
 }
+
+extension Recipe {
+    
+}
