@@ -40,6 +40,6 @@ final class HomeView: UIView, HomeViewProtocol {
 
 private extension HomeView {
     static func makeCollection() -> UICollectionView {
-        UICollectionView()
+        UICollectionView(frame: .zero, collectionViewLayout: .init())
     }
 }
