@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		865224562AA60F300091413F /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865224552AA60F300091413F /* FavoritesRouter.swift */; };
+		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
+		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
+		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
+		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E512A9B390800F4861F /* AppDelegate.swift */; };
 		869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E532A9B390800F4861F /* SceneDelegate.swift */; };
 		869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E552A9B390800F4861F /* HomeViewController.swift */; };
@@ -26,14 +29,20 @@
 		869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E862A9B6F4000F4861F /* HomeRouter.swift */; };
 		869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E892A9B717200F4861F /* Recipe.swift */; };
 		869C6E8E2A9B7EB300F4861F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 869C6E8D2A9B7EB300F4861F /* Kingfisher */; };
-		B959B5552AA64F9900891920 /* ProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959B5532AA64F9900891920 /* ProfileRouter.swift */; };
-		B959B5562AA64F9900891920 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959B5542AA64F9900891920 /* ProfileViewController.swift */; };
-		B959B55C2AA6508900891920 /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959B55A2AA6508900891920 /* BellViewController.swift */; };
-		B959B55D2AA6508900891920 /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B959B55B2AA6508900891920 /* BellRouter.swift */; };
+		869C6E902A9BB14100F4861F /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E8F2A9BB14100F4861F /* Endpoint.swift */; };
+		869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E942A9D1C2D00F4861F /* Autocomplete.swift */; };
+		869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E962A9D2B6F00F4861F /* Amount.swift */; };
+		869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E982A9D2B8500F4861F /* Ingredient.swift */; };
+		869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E9A2A9E2CE600F4861F /* Secret.swift */; };
+		86B3D0422AA534FA009BF738 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0412AA534FA009BF738 /* MealType.swift */; };
+		86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0432AA541BE009BF738 /* RecipeResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		865224552AA60F300091413F /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
+		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
+		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
+		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
+		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		869C6E4E2A9B390800F4861F /* BestRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BestRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		869C6E512A9B390800F4861F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		869C6E532A9B390800F4861F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,10 +62,13 @@
 		869C6E842A9B694800F4861F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		869C6E862A9B6F4000F4861F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 		869C6E892A9B717200F4861F /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		B959B5532AA64F9900891920 /* ProfileRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileRouter.swift; sourceTree = "<group>"; };
-		B959B5542AA64F9900891920 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		B959B55A2AA6508900891920 /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
-		B959B55B2AA6508900891920 /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
+		869C6E8F2A9BB14100F4861F /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		869C6E942A9D1C2D00F4861F /* Autocomplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autocomplete.swift; sourceTree = "<group>"; };
+		869C6E962A9D2B6F00F4861F /* Amount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Amount.swift; sourceTree = "<group>"; };
+		869C6E982A9D2B8500F4861F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		869C6E9A2A9E2CE600F4861F /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
+		86B3D0412AA534FA009BF738 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
+		86B3D0432AA541BE009BF738 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,9 +83,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		865DA7322AA87BB2009CA2EA /* Bell */ = {
+			isa = PBXGroup;
+			children = (
+				865DA7332AA87BB2009CA2EA /* BellViewController.swift */,
+				865DA7342AA87BB2009CA2EA /* BellRouter.swift */,
+			);
+			path = Bell;
+			sourceTree = "<group>";
+		};
 		869C6E452A9B390800F4861F = {
 			isa = PBXGroup;
 			children = (
+				869C6E9A2A9E2CE600F4861F /* Secret.swift */,
 				869C6E752A9B53DD00F4861F /* README.md */,
 				869C6E502A9B390800F4861F /* BestRecipes */,
 				869C6E4F2A9B390800F4861F /* Products */,
@@ -91,14 +113,13 @@
 		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
-				B959B5522AA64F9900891920 /* Profile */,
+				865DA7322AA87BB2009CA2EA /* Bell */,
 				869C6E882A9B716900F4861F /* Models */,
 				869C6E742A9B4ED000F4861F /* Shared */,
 				869C6E732A9B4E9700F4861F /* Services */,
 				869C6E722A9B4E6300F4861F /* RecipeDetail */,
-				869C6E702A9B4E3400F4861F /* Home */,
 				869C6E712A9B4E5300F4861F /* Favorites */,
-				B959B5592AA6508900891920 /* Bell */,
+				869C6E702A9B4E3400F4861F /* Home */,
 				869C6E6F2A9B4E2200F4861F /* Onboarding */,
 				869C6E6C2A9B3CF000F4861F /* Tabbar */,
 				869C6E672A9B3A8A00F4861F /* Extensions */,
@@ -154,6 +175,7 @@
 		869C6E702A9B4E3400F4861F /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				869C6E932A9CE34C00F4861F /* Subviews */,
 				869C6E822A9B693200F4861F /* HomeView.swift */,
 				869C6E552A9B390800F4861F /* HomeViewController.swift */,
 				869C6E842A9B694800F4861F /* HomePresenter.swift */,
@@ -165,8 +187,8 @@
 		869C6E712A9B4E5300F4861F /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */,
 				869C6E7D2A9B684800F4861F /* FavoritesViewController.swift */,
-				865224552AA60F300091413F /* FavoritesRouter.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -183,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				869C6E7B2A9B680E00F4861F /* SponacularApiClient.swift */,
+				869C6E8F2A9BB14100F4861F /* Endpoint.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -199,26 +222,21 @@
 			isa = PBXGroup;
 			children = (
 				869C6E892A9B717200F4861F /* Recipe.swift */,
+				869C6E942A9D1C2D00F4861F /* Autocomplete.swift */,
+				869C6E962A9D2B6F00F4861F /* Amount.swift */,
+				869C6E982A9D2B8500F4861F /* Ingredient.swift */,
+				8629679C2AA090E5000254B3 /* RecipesList.swift */,
+				86B3D0412AA534FA009BF738 /* MealType.swift */,
+				86B3D0432AA541BE009BF738 /* RecipeResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		B959B5522AA64F9900891920 /* Profile */ = {
+		869C6E932A9CE34C00F4861F /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
-				B959B5532AA64F9900891920 /* ProfileRouter.swift */,
-				B959B5542AA64F9900891920 /* ProfileViewController.swift */,
 			);
-			path = Profile;
-			sourceTree = "<group>";
-		};
-		B959B5592AA6508900891920 /* Bell */ = {
-			isa = PBXGroup;
-			children = (
-				B959B55A2AA6508900891920 /* BellViewController.swift */,
-				B959B55B2AA6508900891920 /* BellRouter.swift */,
-			);
-			path = Bell;
+			path = Subviews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,23 +316,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B959B5552AA64F9900891920 /* ProfileRouter.swift in Sources */,
 				869C6E6B2A9B3B0700F4861F /* MyCustomTabBarController.swift in Sources */,
-				B959B55D2AA6508900891920 /* BellRouter.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
+				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
 				869C6E7A2A9B67F000F4861F /* RecipeDetailViewController.swift in Sources */,
+				86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */,
+				865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* SponacularApiClient.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
-				B959B5562AA64F9900891920 /* ProfileViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
+				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
-				B959B55C2AA6508900891920 /* BellViewController.swift in Sources */,
+				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
+				869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
+				869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */,
+				865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */,
+				865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */,
+				869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */,
+				869C6E902A9BB14100F4861F /* Endpoint.swift in Sources */,
 				869C6E832A9B693200F4861F /* HomeView.swift in Sources */,
-				865224562AA60F300091413F /* FavoritesRouter.swift in Sources */,
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 			);
