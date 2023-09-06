@@ -14,12 +14,12 @@ protocol HomeRouterProtocol {
 final class HomeRouter: HomeRouterProtocol {
     //MARK: - Private properties
     private let navigationController: UINavigationController
-    private let apiClient: SponacularApiClientProtocol
+    private let apiClient: ApiClientProtocol
     
     //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        apiClient: SponacularApiClientProtocol
+        apiClient: ApiClientProtocol
     ) {
         self.navigationController = navigationController
         self.apiClient = apiClient

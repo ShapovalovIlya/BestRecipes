@@ -1,56 +1,75 @@
 //
-//  MyCustomTabBarController.swift
+//  TabBarController.swift
 //  BestRecipes
 //
 //  Created by Максим Нурутдинов on 04.09.2023.
 //
 
 import UIKit
+import OSLog
 
-final class MyCustomTabBarController: UITabBarController {
-    private let btnMiddle: UIButton = makeButton()
+final class TabBarController: UITabBarController {
+    private let plusButton: UIButton = makeButton()
+    
+    //MARK: - Life Cycle
+    override func loadView() {
+        super.loadView()
+        
+        setupTabBar()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupCustomTabBar()
         configureMiddleButton()
+        Logger.viewCycle.debug("TabBarController: \(#function)")
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        let path: UIBezierPath = getPathFor(tabBar: tabBar.bounds)
+        let shape = makeShapeWith(path: path.cgPath)
+        tabBar.layer.insertSublayer(shape, at: 0)
+    }
+    
+    //MARK: - Public methods
     func navigationControllers(_ controllers: UIViewController...) {
         self.viewControllers = controllers
     }
 }
 
-private extension MyCustomTabBarController {
-    
-    func setupCustomTabBar() {
-        let path: UIBezierPath = getPathForTabBar()
-        let shape = CAShapeLayer()
-        shape.path = path.cgPath
-        shape.lineWidth = 10
-        shape.strokeColor = UIColor.white.cgColor
-        shape.fillColor = UIColor.white.cgColor
-        tabBar.layer.insertSublayer(shape, at: 0)
+private extension TabBarController {
+    //MARK: - Private methods
+    func setupTabBar() {
         tabBar.itemWidth = 40
         tabBar.itemPositioning = .centered
         tabBar.itemSpacing = 60
-        tabBar.tintColor = UIColor(hex: "#fe989b", alpha: 1.0)
+        tabBar.tintColor = .tabBarTintColor
+    }
+    
+    func makeShapeWith(path: CGPath) -> CAShapeLayer {
+        let shape = CAShapeLayer()
+        shape.path = path
+        shape.lineWidth = 10
+        shape.strokeColor = UIColor.white.cgColor
+        shape.fillColor = UIColor.white.cgColor
+        return shape
     }
     
     func configureMiddleButton() {
-        btnMiddle.frame = CGRect(
+        plusButton.frame = CGRect(
             x: Int(tabBar.bounds.width) / 2 - 22,
             y: -22,
             width: 44,
             height: 44
         )
-        tabBar.addSubview(btnMiddle)
+        tabBar.addSubview(plusButton)
     }
     
-    func getPathForTabBar() -> UIBezierPath {
-        let frameWidth = self.tabBar.bounds.width
-        let frameHeight = self.tabBar.bounds.height + 40
+    func getPathFor(tabBar rect: CGRect) -> UIBezierPath {
+        let frameWidth = rect.width
+        let frameHeight = rect.height + 40
         let holeWidth = 150
         let holeHeight = 50
         let leftXUntilHole = Int(frameWidth/2) - Int(holeWidth/2)
@@ -89,14 +108,14 @@ private extension MyCustomTabBarController {
     }
     
     static func makeButton() -> UIButton {
-        let btn = UIButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let btn = UIButton()
         btn.setTitle("", for: .normal)
-        btn.backgroundColor = UIColor(hex: "#fe989b", alpha: 1)
+        btn.backgroundColor = .tabBarButtonColor
         btn.layer.cornerRadius = 22
         btn.layer.shadowColor = UIColor.black.cgColor
         btn.layer.shadowOpacity = 0.2
         btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(UIImage(named: "icons8-plus"), for: .normal)
+        btn.setBackgroundImage(.tabbarPlusIcon, for: .normal)
         return btn
     }
 }

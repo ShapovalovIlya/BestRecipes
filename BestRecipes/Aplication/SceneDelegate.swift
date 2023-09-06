@@ -15,14 +15,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let apiClient = SponacularApiClient()
+        let apiClient = ApiClient()
         
         let homeNavigation = UINavigationController()
         let favoritesNavigation = UINavigationController()
         let bellNavigation = UINavigationController()
         let profileNavigation = UINavigationController()
         
-        let customTabBarController = MyCustomTabBarController()
+        let customTabBarController = TabBarController()
         
         let homeRouter = HomeRouter(
             navigationController: homeNavigation,

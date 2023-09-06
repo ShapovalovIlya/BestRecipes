@@ -9,8 +9,8 @@ import UIKit
 
 final class BellRouter {
     private let navigationController: UINavigationController
-    private let apiClient: SponacularApiClientProtocol
-    init(navigationController: UINavigationController, apiClient: SponacularApiClientProtocol) {
+    private let apiClient: ApiClientProtocol
+    init(navigationController: UINavigationController, apiClient: ApiClientProtocol) {
         self.navigationController = navigationController
         self.apiClient = apiClient
     }
