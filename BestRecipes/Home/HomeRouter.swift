@@ -8,13 +8,15 @@
 import UIKit
 
 protocol HomeRouterProtocol {
-    func showDetail(recipe: Recipe)
+    
 }
 
 final class HomeRouter: HomeRouterProtocol {
+    //MARK: - Private properties
     private let navigationController: UINavigationController
     private let apiClient: SponacularApiClientProtocol
     
+    //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
         apiClient: SponacularApiClientProtocol
@@ -23,29 +25,29 @@ final class HomeRouter: HomeRouterProtocol {
         self.apiClient = apiClient
     }
     
-    func initialView() {
+    //MARK: - Public methods
+    func setupInitial() {
         let homeView = HomeView()
-        let homePresenter = HomePresenter(
+        let presenter = HomePresenter(
             apiClient: apiClient,
             router: self
         )
         let homeViewController = HomeViewController(
             homeView: homeView,
-            presenter: homePresenter
+            presenter: presenter
         )
-        homePresenter.delegate = homeViewController
+        presenter.delegate = homeViewController
         
-        self.navigationController.viewControllers = [homeViewController]
-        self.navigationController.tabBarItem = .init(
+        navigationController.viewControllers = [homeViewController]
+        navigationController.tabBarItem = .init(
             title: nil,
             image: UIImage(systemName: "house"),
             tag: 0
         )
     }
     
-    func showDetail(recipe: Recipe) {
-        let detailViewController = UIViewController()
+    func showDetail() {
         
-        self.navigationController.present(detailViewController, animated: true)
     }
+    
 }
