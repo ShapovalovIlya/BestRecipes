@@ -60,3 +60,14 @@ struct Recipe: Decodable, Hashable {
     let extendedIngredients: [Ingredient]?
     
 }
+
+extension Recipe {
+    static let sample: Recipe = .init(
+        id: "id",
+        title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
+        sourceName: "Full Belly Sisters",
+        image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
+        summary: "Some long text",
+        extendedIngredients: Ingredient.sample
+    )
+}

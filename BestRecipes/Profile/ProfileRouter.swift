@@ -7,20 +7,38 @@
 
 import UIKit
 
-final class ProfileRouter {
+protocol ProfileRouterProtocol: AnyObject {
+    var navigationController: UINavigationController { get }
+}
+
+final class ProfileRouter: ProfileRouterProtocol {
+    //MARK: - Private properties
+    private let apiClient: ApiClient
+    private let assembly: ProfileAssembly
     
-    private let navigationController: UINavigationController
-    private let apiClient: SponacularApiClientProtocol
+    //MARK: - Public properties
+    let navigationController: UINavigationController
     
+    //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        apiClient: SponacularApiClientProtocol
+        apiClient: ApiClient,
+        assembly: ProfileAssembly
     ) {
         self.navigationController = navigationController
         self.apiClient = apiClient
+        self.assembly = assembly
     }
     
+    //MARK: - Public methods
     func setupInitial() {
-        navigationController.tabBarItem = .init(title: nil, image: UIImage(systemName: "person"), tag: 4)
+        let profileViewController = ProfileViewController()
+        navigationController.viewControllers = [profileViewController]
+        navigationController.tabBarItem = .init(
+            title: nil,
+            image: .profileTab,
+            tag: 3
+        )
+        navigationController.tabBarItem.selectedImage = .profileTabSelected
     }
 }

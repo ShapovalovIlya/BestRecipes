@@ -21,30 +21,26 @@ protocol HomePresenterDelegate: AnyObject {
 
 final class HomePresenter: HomePresenterProtocol {
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: HomePresenter.self)
-    )
     private let router: HomeRouterProtocol
-    private let apiClient: SponacularApiClientProtocol
+    private let apiClient: ApiClientProtocol
     
     //MARK: - Public properties
     weak var delegate: HomePresenterDelegate?
     
     //MARK: - init(_:)
     init(
-        apiClient: SponacularApiClientProtocol,
+        apiClient: ApiClientProtocol,
         router: HomeRouterProtocol
     ) {
         self.apiClient = apiClient
         self.router = router
         
-        logger.debug("Initialized")
+        Logger.system.debug("HomePresenter: \(#function)")
     }
     
     //MARK: - Deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.system.debug("HomePresenter: \(#function)")
     }
     
     //MARK: - Public methods

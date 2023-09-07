@@ -20,7 +20,7 @@ final class HomeView: UIView, HomeViewProtocol {
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        backgroundColor = .white
         addSubview(collectionView)
     }
     

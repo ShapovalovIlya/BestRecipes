@@ -38,9 +38,9 @@ final class DetailView: UIView, DetailViewProtocol {
 //  MARK: -  Private Methods
 private extension DetailView {
     enum Section: Int, CaseIterable {
-        case main
-        case additional
-        case all
+        case title
+        case summary
+        case list
     }
     
     static func makeCollectionView() -> UICollectionView {
@@ -55,10 +55,13 @@ private extension DetailView {
     static func makeCollectionViewLayout() -> UICollectionViewLayout {
         UICollectionViewCompositionalLayout { sectionIndex, environment in
             switch Section(rawValue: sectionIndex) {
-            case .main, .additional:
-                return makeGridLayoutSection()
+            case .title:
+                return makeTitleLayoutSection()
                 
-            case .all:
+            case .summary:
+                return makeSummaryLayoutSection()
+                
+            case .list:
                 return makeListLayoutSection()
                 
             case nil:
@@ -67,11 +70,11 @@ private extension DetailView {
         }
     }
     
-    static func makeGridLayoutSection() -> NSCollectionLayoutSection {
+    static func makeTitleLayoutSection() -> NSCollectionLayoutSection {
         // Each item will take up half of the width of the group
         // that contains it, as well as the entire available height:
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.5),
+            widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
         ))
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
@@ -82,10 +85,47 @@ private extension DetailView {
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalWidth(0.5)
+                heightDimension: .fractionalHeight(0.30)
             ),
             subitem: item,
-            count: 2
+            count: 1
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44)
+        )
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading)
+        
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
+    }
+    
+    static func makeSummaryLayoutSection() -> NSCollectionLayoutSection {
+        // Each item will take up half of the width of the group
+        // that contains it, as well as the entire available height:
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
+        ))
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        
+        //Each group will then take up the entire available
+        //width, and set its height to half of that width, to
+        //make each item square-shaped:
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(0.5)
+            ),
+            subitem: item,
+            count: 1
         )
         
         let section = NSCollectionLayoutSection(group: group)

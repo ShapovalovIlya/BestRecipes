@@ -15,47 +15,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let apiClient = SponacularApiClient()
+        let assembly: RootAssembly = Assembly()
         
-        let homeNavigation = UINavigationController()
-        let favoritesNavigation = UINavigationController()
-        let bellNavigation = UINavigationController()
-        let profileNavigation = UINavigationController()
+        let tabBar = assembly.makeTabbar()
+        let homeRouter = assembly.makeHomeRouter()
+        let favoritesRouter = assembly.makeFavoritesRouter()
+        let bellRouter = assembly.makeBellRouter()
+        let profileRouter = assembly.makeProfileRouter()
         
-        let customTabBarController = MyCustomTabBarController()
-        
-        let homeRouter = HomeRouter(
-            navigationController: homeNavigation,
-            apiClient: apiClient
-        )
-        homeRouter.setupInitial()
-
-        let favoritsRouter = FavoritesRouter(
-            navigationController: favoritesNavigation,
-            apiClient: apiClient
-        )
-        favoritsRouter.setupInitial()
-        
-        let bellRouter = BellRouter(
-            navigationController: bellNavigation,
-            apiClient: apiClient
-        )
-        bellRouter.setupInitial()
-        
-        let profileRouter = FavoritesRouter(
-            navigationController: profileNavigation,
-            apiClient: apiClient
-        )
-        profileRouter.setupInitial()
-
-        customTabBarController.navigationControllers(
-            homeNavigation,
-            favoritesNavigation,
-            bellNavigation,
-            profileNavigation
+        tabBar.navigationControllers(
+            homeRouter.navigationController,
+            favoritesRouter.navigationController,
+            bellRouter.navigationController,
+            profileRouter.navigationController
         )
         
-        window?.rootViewController = customTabBarController
+        window?.rootViewController = tabBar
         window?.makeKeyAndVisible()
         
     }
