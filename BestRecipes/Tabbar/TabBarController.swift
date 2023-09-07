@@ -25,10 +25,10 @@ final class TabBarController: UITabBarController {
         Logger.viewCycle.debug("TabBarController: \(#function)")
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        let path: UIBezierPath = getPathFor(tabBar: tabBar.bounds)
+        let path: UIBezierPath = makePath(in: tabBar.frame)
         let shape = makeShapeWith(path: path.cgPath)
         tabBar.layer.insertSublayer(shape, at: 0)
     }
@@ -63,6 +63,9 @@ private extension TabBarController {
         shape.lineWidth = 10
         shape.strokeColor = UIColor.white.cgColor
         shape.fillColor = UIColor.white.cgColor
+        shape.shadowColor = UIColor.black.cgColor
+        shape.shadowOpacity = 1
+        shape.shadowOffset = CGSize(width: 0, height: 4)
         return shape
     }
     
@@ -76,55 +79,50 @@ private extension TabBarController {
         tabBar.addSubview(plusButton)
     }
     
-    func getPathFor(tabBar rect: CGRect) -> UIBezierPath {
-        let frameWidth = rect.width
-        let frameHeight = rect.height + 40
-        let holeWidth = 150
-        let holeHeight = 50
-        let leftXUntilHole = Int(frameWidth/2) - Int(holeWidth/2)
+    func makePath(in rect: CGRect) -> UIBezierPath {
+        let path = UIBezierPath()
+        let width = rect.size.width
+        let height = rect.size.height
+        path.move(to: CGPoint(x: 0.02046*width, y: 0.07377*height))
+        path.addLine(to: CGPoint(x: 0.36093*width, y: 0.07377*height))
         
-        let path : UIBezierPath = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: leftXUntilHole , y: 0)) // 1.Line
-        
-        // part I
         path.addCurve(
-            to: CGPoint(x: leftXUntilHole + (holeWidth/3), y: holeHeight/2),
-            controlPoint1: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*6,y: 0),
-            controlPoint2: CGPoint(x: leftXUntilHole + ((holeWidth/3)/8)*8, y: holeHeight/2)
+            to: CGPoint(x: 0.41725*width, y: 0.20512*height),
+            controlPoint1: CGPoint(x: 0.38586*width, y: 0.07377*height),
+            controlPoint2: CGPoint(x: 0.40698*width, y: 0.13233*height)
         )
-        
-        // part II
         path.addCurve(
-            to: CGPoint(x: leftXUntilHole + (2*holeWidth)/3, y: holeHeight/2),
-            controlPoint1: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2/5, y: (holeHeight/2)*6/4),
-            controlPoint2: CGPoint(x: leftXUntilHole + (holeWidth/3) + (holeWidth/3)/3*2 + (holeWidth/3)/3*3/5, y: (holeHeight/2)*6/4)
+            to: CGPoint(x: 0.50128*width, y: 0.40984*height),
+            controlPoint1: CGPoint(x: 0.43055*width, y: 0.29939*height),
+            controlPoint2: CGPoint(x: 0.45583*width, y: 0.40984*height)
         )
-        
-        // part III
         path.addCurve(
-            to: CGPoint(x: leftXUntilHole + holeWidth, y: 0),
-            controlPoint1: CGPoint(x: leftXUntilHole + (2*holeWidth)/3,y: holeHeight/2),
-            controlPoint2: CGPoint(x: leftXUntilHole + (2*holeWidth)/3 + (holeWidth/3)*2/8, y: 0)
+            to: CGPoint(x: 0.58531*width, y: 0.20512*height),
+            controlPoint1: CGPoint(x: 0.54673*width, y: 0.40984*height),
+            controlPoint2: CGPoint(x: 0.57201*width, y: 0.29939*height)
         )
-        
-        path.addLine(to: CGPoint(x: frameWidth, y: 0)) // 2. Line
-        path.addLine(to: CGPoint(x: frameWidth, y: frameHeight)) // 3. Line
-        path.addLine(to: CGPoint(x: 0, y: frameHeight)) // 4. Line
-        path.addLine(to: CGPoint(x: 0, y: 0)) // 5. Line
+        path.addCurve(
+            to: CGPoint(x: 0.64162*width, y: 0.07377*height),
+            controlPoint1: CGPoint(x: 0.59558*width, y: 0.13233*height),
+            controlPoint2: CGPoint(x: 0.6167*width, y: 0.07377*height)
+        )
+        path.addLine(to: CGPoint(x: 0.97954*width, y: 0.07377*height))
+        path.addLine(to: CGPoint(x: 0.97954*width, y: 0.94262*height))
+        path.addLine(to: CGPoint(x: 0.02046*width, y: 0.94262*height))
+        path.addLine(to: CGPoint(x: 0.02046*width, y: 0.07377*height))
         path.close()
         return path
     }
     
     static func makeButton() -> UIButton {
-        let btn = UIButton()
-        btn.setTitle("", for: .normal)
-        btn.backgroundColor = .tabBarButtonColor
-        btn.layer.cornerRadius = 22
-        btn.layer.shadowColor = UIColor.black.cgColor
-        btn.layer.shadowOpacity = 0.2
-        btn.layer.shadowOffset = CGSize(width: 4, height: 4)
-        btn.setBackgroundImage(.tabbarPlusIcon, for: .normal)
-        return btn
+        let button = UIButton()
+        button.setTitle("", for: .normal)
+        button.backgroundColor = .tabBarTintColor
+        button.layer.cornerRadius = 22
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 4, height: 4)
+        button.setBackgroundImage(.tabbarPlusIcon, for: .normal)
+        return button
     }
 }
