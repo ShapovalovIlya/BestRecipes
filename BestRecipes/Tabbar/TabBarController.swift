@@ -116,13 +116,12 @@ private extension TabBarController {
     
     static func makeButton() -> UIButton {
         let button = UIButton()
-        button.setTitle("", for: .normal)
+        button.setImage(.tabbarPlusIcon, for: .normal)
         button.backgroundColor = .tabBarTintColor
         button.layer.cornerRadius = 22
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.2
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.setBackgroundImage(.tabbarPlusIcon, for: .normal)
         return button
     }
 }
