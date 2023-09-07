@@ -9,6 +9,10 @@ import UIKit
 
 protocol HomeRouterProtocol {
     var navigationController: UINavigationController { get }
+    
+    func showDetail(recipe: Recipe)
+    func showAllTrending(recipes: [Recipe])
+    func showAllRecent(recipes: [Recipe])
 }
 
 final class HomeRouter: HomeRouterProtocol {
@@ -46,12 +50,21 @@ final class HomeRouter: HomeRouterProtocol {
         navigationController.viewControllers = [homeViewController]
         navigationController.tabBarItem = .init(
             title: nil,
-            image: UIImage(systemName: "house"),
+            image: .homeTab,
             tag: 0
         )
+        navigationController.tabBarItem.selectedImage = .homeTabSelected
     }
     
-    func showDetail() {
+    func showDetail(recipe: Recipe) {
+        
+    }
+    
+    func showAllTrending(recipes: [Recipe] = []) {
+        
+    }
+    
+    func showAllRecent(recipes: [Recipe] = []) {
         
     }
     

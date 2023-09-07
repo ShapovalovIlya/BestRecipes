@@ -20,10 +20,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBar = assembly.makeTabbar()
         let homeRouter = assembly.makeHomeRouter()
         let favoritesRouter = assembly.makeFavoritesRouter()
+        let bellRouter = assembly.makeBellRouter()
+        let profileRouter = assembly.makeProfileRouter()
         
         tabBar.navigationControllers(
             homeRouter.navigationController,
-            favoritesRouter.navigationController
+            favoritesRouter.navigationController,
+            bellRouter.navigationController,
+            profileRouter.navigationController
         )
         
         window?.rootViewController = tabBar

@@ -12,6 +12,8 @@ protocol RootAssembly {
     func makeHomeRouter() -> HomeRouterProtocol
     func makeFavoritesRouter() -> FavoritesRouterProtocol
     func makeTabbar() -> TabBarController
+    func makeBellRouter() -> BellRouter
+    func makeProfileRouter() -> ProfileRouterProtocol
 }
 
 protocol FavoritesAssembly {
@@ -63,6 +65,27 @@ final class Assembly: AssemblyProtocol {
         let tabbar = TabBarController()
         
         return tabbar
+    }
+    
+    func makeBellRouter() -> BellRouter {
+        let navigationController = UINavigationController()
+        let router = BellRouter(
+            navigationController: navigationController,
+            apiClient: apiClient
+        )
+        router.setupInitial()
+        return router
+    }
+    
+    func makeProfileRouter() -> ProfileRouterProtocol {
+        let navigationController = UINavigationController()
+        let router = ProfileRouter(
+            navigationController: navigationController,
+            apiClient: apiClient,
+            assembly: self
+        )
+        router.setupInitial()
+        return router
     }
     
 }

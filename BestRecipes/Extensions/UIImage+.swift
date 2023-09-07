@@ -8,9 +8,16 @@
 import UIKit
 
 extension UIImage {
-    static let tabbarPlusIcon: UIImage? = UIImage(named: "icons8-plus")
-    static let onboardingBackgroundImage: UIImage? = UIImage(named: "onboarding")
-    static let onboardingBackgroundImage1: UIImage? = UIImage(named: "onboarding1")
-    static let onboardingBackgroundImage2: UIImage? = UIImage(named: "onboarding2")
-    static let onboardingBackgroundImage3: UIImage? = UIImage(named: "onboarding3")
+    static let tabbarPlusIcon: UIImage? = .init(named: "icons8-plus")
+    static let onboardingBackgroundImage: UIImage? = .init(named: "onboarding")
+    static let onboardingBackgroundImage1: UIImage? = .init(named: "onboarding1")
+    static let onboardingBackgroundImage2: UIImage? = .init(named: "onboarding2")
+    static let onboardingBackgroundImage3: UIImage? = .init(named: "onboarding3")
+    static let homeTab: UIImage? = .init(named: "home")
+    static let homeTabSelected: UIImage? = .init(named: "home_selected")
+    static let bellTab: UIImage? = .init(named: "bell")
+    static let bookmarkTab: UIImage? = .init(named: "bookmark")
+    static let bookmarkTabSelected: UIImage? = .init(named: "bookmark_selected")
+    static let profileTab: UIImage? = .init(named: "profile")
+    static let profileTabSelected: UIImage? = .init(named: "profile_selected")
 }

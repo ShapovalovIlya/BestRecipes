@@ -371,6 +371,6 @@ class OnboardingViewController: UIViewController {
     }
     
     @objc func didTapCloseScreen() {
-        print("close screen")
+        dismiss(animated: true)
     }
 }
