@@ -42,7 +42,7 @@ import Foundation
 /// Модель рецепта
 struct Recipe: Decodable, Hashable {
     /// Уникальный id рецепта
-    let id: String
+    let id: Int
     
     /// Заголовок рецепта
     let title: String
