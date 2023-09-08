@@ -110,24 +110,21 @@ final class FrameThreeCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         
         super .init(frame: frame)
-        self.contentView.addViews(views:
-                                    foodImage,
-                                  stackVertical,
-                                  lableFirst,
-                                  downViewForContent
-        )
-        self.contentView.addViewInStack(
-            stack:
-                stackVertical,
-            views:
-                foodImage,
+        self.contentView.addSubviews(
+            foodImage,
+            stackVertical,
             lableFirst,
             downViewForContent
         )
         
-        downViewForContent.addViews(
-            views:
-                lableSecondTime,
+        stackVertical.addArrangedSubviews(
+            foodImage,
+        lableFirst,
+        downViewForContent
+        )
+        
+        downViewForContent.addSubviews(
+            lableSecondTime,
             lableThirdTime,
             bookMarkButton
         )

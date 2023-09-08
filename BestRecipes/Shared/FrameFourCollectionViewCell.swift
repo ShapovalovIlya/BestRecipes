@@ -84,19 +84,19 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
             height: Drawing.mainView.size.height)
         )
         setSettings()
-        self.contentView.addViews(
-            views:
+        self.contentView.addSubviews(
                 stackHorisontal,
             foodImage,
             lableFirst,
             lableSecond
         )
-        addViewInStack(
-            stack: stackHorisontal,
-            views: foodImage,
+        
+        stackHorisontal.addArrangedSubviews(
+            foodImage,
             lableFirst,
             lableSecond
         )
+        
     }
     
     required init?(coder: NSCoder) {
