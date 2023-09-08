@@ -9,22 +9,27 @@ import UIKit
 import OSLog
 
 final class DetailViewController: UIViewController {
+    enum Section: Int, CaseIterable {
+        case title
+        case summary
+        case ingredients
+    }
+    
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: DetailViewController.self)
-    )
+    private let presenter: DetailPresenterProtocol
     private let detailView: DetailViewProtocol
     private lazy var dataSource = makeDataSource()
     
-    let list = ProductList()
-    
     // MARK: - init(_:)
-    init(detailView: DetailViewProtocol) {
+    init(
+        presenter: DetailPresenterProtocol,
+        detailView: DetailViewProtocol
+    ) {
+        self.presenter = presenter
         self.detailView = detailView
         super.init(nibName: nil, bundle: nil)
         
-        logger.debug("Initialized")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     @available(*, unavailable)
@@ -34,14 +39,14 @@ final class DetailViewController: UIViewController {
     
     //MARK: - deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     //  MARK: - Life Cycle
     override func loadView() {
         self.view = detailView
         
-        logger.debug("Load view")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
     override func viewDidLoad() {
@@ -50,47 +55,74 @@ final class DetailViewController: UIViewController {
         dataSource.supplementaryViewProvider = makeHeaderRegistration().headerProvider
         detailView.collectionView.dataSource = dataSource
         
-        productListDidLoad(list)
+        presenter.viewDidLoad()
+        recipeDidLoad(Recipe.sample)
         
-        logger.debug("View did load")
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        presenter.viewDidDisappear()
+        Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
     
 }
 
+extension DetailViewController: DetailPresenterDelegate {
+    func recipeDidLoad(_ recipe: Recipe) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(
+            [Item.title(recipe)],
+            toSection: .title
+        )
+        snapshot.appendItems(
+            [Item.summary(recipe.summary)],
+            toSection: .summary
+        )
+
+        snapshot.appendItems(
+            recipe.extendedIngredients?.map(Item.ingredient) ?? .init(),
+            toSection: .ingredients
+        )
+     
+        dataSource.apply(snapshot)
+    }
+}
+
 private extension DetailViewController {
-    enum Section: Int, CaseIterable {
-        case main
-        case additional
-        case all
+    
+    enum Item: Hashable {
+        case title(Recipe)
+        case summary(String?)
+        case ingredient(Ingredient)
     }
     
     //MARK: - Typealias
-    typealias Cell = NumberCell
     typealias Header = TitleSupplementaryView
-    typealias CellRegistration = UICollectionView.CellRegistration<Cell, Product>
+    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, Item>
     typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<Header>
     
     //MARK: - Private methods
-    func productListDidLoad(_ list: ProductList) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Product>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(list.featured, toSection: .main)
-        snapshot.appendItems(list.onSale, toSection: .additional)
-        snapshot.appendItems(list.all, toSection: .all)
-        
-        dataSource.apply(snapshot)
-    }
-    
-    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Product> {
+    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         UICollectionViewDiffableDataSource(
             collectionView: detailView.collectionView,
             cellProvider: makeCellRegistration().cellProvider
         )
     }
     
+//    func makeTitleRegistration() -> UICollectionView.CellRegistration {
+//        
+//    }
+//    
+//    func makeSummaryRegistration() -> UICollectionView.CellRegistration {
+//        
+//    }
+    
     func makeCellRegistration() -> CellRegistration {
-        CellRegistration { cell, indexPath, product in
-            cell.configure(with: product)
+        CellRegistration { cell, indexPath, item in
             cell.backgroundColor = .systemPink
         }
     }
@@ -100,13 +132,13 @@ private extension DetailViewController {
             let tutorialCollection = ["How to cook", "Instructions", "Ingredients"]
             
             switch Section(rawValue: indexPath.section) {
-            case .main:
+            case .title:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
-            case .additional:
+            case .summary:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 
-            case .all:
+            case .ingredients:
                 supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                 supplementaryView.numberLabel.text = "\(tutorialCollection.count) items"
                 
@@ -120,11 +152,11 @@ private extension DetailViewController {
 
 private extension UICollectionView.CellRegistration {
     var cellProvider: (UICollectionView, IndexPath, Item) -> Cell {
-        return { collectionView, indexPath, product in
+        return { collectionView, indexPath, item in
             collectionView.dequeueConfiguredReusableCell(
                 using: self,
                 for: indexPath,
-                item: product
+                item: item
             )
         }
     }
@@ -141,24 +173,24 @@ private extension UICollectionView.SupplementaryRegistration<TitleSupplementaryV
     }
 }
 
-//  MARK: - Show Canvas
-import SwiftUI
-
-struct ContentViewController: UIViewControllerRepresentable {
-    
-    typealias UIViewControllerType = DetailViewController
-    
-    func makeUIViewController(context: Context) -> UIViewControllerType {
-        return DetailViewController(detailView: DetailView())
-    }
-    
-    func updateUIViewController(_ uiViewController: DetailViewController, context: Context) {}
-}
-
-struct ContentViewController_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentViewController()
-            .edgesIgnoringSafeArea(.all)
-            .colorScheme(.light) // or .dark
-    }
-}
+////  MARK: - Show Canvas
+//import SwiftUI
+//
+//struct ContentViewController: UIViewControllerRepresentable {
+//    
+//    typealias UIViewControllerType = DetailViewController
+//    
+//    func makeUIViewController(context: Context) -> UIViewControllerType {
+//        return DetailViewController(detailView: DetailView())
+//    }
+//    
+//    func updateUIViewController(_ uiViewController: DetailViewController, context: Context) {}
+//}
+//
+//struct ContentViewController_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentViewController()
+//            .edgesIgnoringSafeArea(.all)
+//            .colorScheme(.light) // or .dark
+//    }
+//}

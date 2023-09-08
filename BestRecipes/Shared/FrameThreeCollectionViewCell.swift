@@ -175,7 +175,8 @@ final class FrameThreeCollectionViewCell: UICollectionViewCell {
             bookMarkButton.widthAnchor.constraint(equalTo: bookMarkButton.heightAnchor),
             bookMarkButton.trailingAnchor.constraint(equalTo: downViewForContent.trailingAnchor),
             bookMarkButton.bottomAnchor.constraint(equalTo: downViewForContent.bottomAnchor)
-        ])}
+        ])
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
