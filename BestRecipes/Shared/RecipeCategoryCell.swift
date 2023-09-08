@@ -120,7 +120,7 @@ private extension RecipeCategoryCell {
             timeLabel.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
             timeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.spacing),
             
-            timeTextLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,constant: 10),
+            timeTextLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,constant: Drawing.spacing),
             timeTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
             
             bookmarkButton.centerYAnchor.constraint(equalTo: timeTextLabel.centerYAnchor),

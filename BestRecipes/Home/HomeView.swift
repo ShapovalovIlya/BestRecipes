@@ -111,14 +111,14 @@ private extension HomeView {
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
- //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -136,14 +136,14 @@ private extension HomeView {
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
- //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
@@ -157,18 +157,18 @@ private extension HomeView {
     
     static func makeRecentLayoutSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.25),
+            widthDimension: .fractionalWidth(0.35),
             heightDimension: .fractionalHeight(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: .groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
- //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(

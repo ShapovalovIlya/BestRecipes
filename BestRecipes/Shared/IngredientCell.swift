@@ -82,7 +82,7 @@ private extension IngredientCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
@@ -92,6 +92,7 @@ private extension IngredientCell {
             foodImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             foodImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             foodImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            foodImage.widthAnchor.constraint(equalTo: foodImage.heightAnchor),
             
             nameLabel.leftAnchor.constraint(equalTo: foodImage.rightAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: foodImage.centerXAnchor),
@@ -100,10 +101,4 @@ private extension IngredientCell {
             massLabel.centerXAnchor.constraint(equalTo: foodImage.centerXAnchor)
         ])
     }
-}
-
-import SwiftUI
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, xrOS 1.0, *)
-#Preview {
-    IngredientCell()
 }

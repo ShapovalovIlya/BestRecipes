@@ -74,9 +74,9 @@ final class RecentRecipeCell: UICollectionViewCell {
 private extension RecentRecipeCell {
     static func makeImageView() -> UIImageView {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 12
-        view.clipsToBounds = true
+        view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -87,21 +87,16 @@ private extension RecentRecipeCell {
             recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             recipeImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             recipeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            recipeImage.heightAnchor.constraint(equalToConstant: Drawing.imageHeight),
+            recipeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65),
             // recipeTitle
-            recipeTitle.topAnchor.constraint(
-                equalTo: recipeImage.bottomAnchor,
-                constant: Drawing.spacing
-            ),
+            recipeTitle.topAnchor.constraint(equalTo: recipeImage.bottomAnchor,constant: Drawing.spacing),
             recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             
-            creatorTitle.topAnchor.constraint(
-                equalTo: recipeTitle.bottomAnchor,
-                constant: Drawing.spacing
-            ),
+            creatorTitle.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
             creatorTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            creatorTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+            creatorTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            creatorTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
