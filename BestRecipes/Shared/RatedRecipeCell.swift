@@ -36,9 +36,9 @@ final class RatedRecipeCell: UICollectionViewCell {
     }
     
     //MARK: - Public methods
-    func configure(with recipe: Product) {
-        textLabel.text = recipe.name
-        textLabel.textColor = .black
-    }
+//    func configure(with recipe: Product) {
+//        textLabel.text = recipe.name
+//        textLabel.textColor = .black
+//    }
     
 }

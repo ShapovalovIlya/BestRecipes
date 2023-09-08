@@ -10,10 +10,6 @@ import OSLog
 
 final class HomeViewController: UIViewController {
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: HomeViewController.self)
-    )
     private let homeView: HomeViewProtocol
     private let presenter: HomePresenterProtocol
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
@@ -30,10 +26,7 @@ final class HomeViewController: UIViewController {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.dataSource = self.makeDataSource()
-        
-        logger.debug("Initialized")
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     @available(*, unavailable)
@@ -43,95 +36,63 @@ final class HomeViewController: UIViewController {
     
     //MARK: - Deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     //MARK: - Life Cycle
     override func loadView() {
         self.view = homeView
         homeView.frame = self.view.bounds
-        logger.debug("View loaded")
+        
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        dataSource = self.makeDataSource()
+        dataSource?.supplementaryViewProvider = makeHeaderRegistration().headerProvider
+        homeView.searchBar.delegate = self
+        
         presenter.viewDidLoad()
-        logger.debug("View did load")
-        self.homeView.searchBar.delegate = self
         
-        let recipesArray = Recipe.sample
-        recipesDidLoad(recipesArray)
-        
-        
-        
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         presenter.viewDidDisappear()
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
 }
 
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
-    func recipesDidLoad(_ recipes: [Product]) {
+    func recipesDidLoad(_ recipes: RecipesList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(
-            recipes.map(Item.recipe),
-            toSection: .creators
-        )
-        snapshot.appendItems(
-            recipes.map(Item.category),
-            toSection: .popular
-        )
+//        snapshot.appendSections(Section.allCases)
+//        snapshot.appendItems(
+//            recipes.map(Item.recipe),
+//            toSection: .creators
+//        )
+//        snapshot.appendItems(
+//            recipes.map(Item.category),
+//            toSection: .popular
+//        )
         
-        snapshot.appendItems(
-            recipes.map(Item.recipe),
-            toSection: .creators
-        )
-        snapshot.appendItems(
-            recipes.map(Item.recipe),
-            toSection: .trending
-        )
+//        snapshot.appendItems(
+//            recipes.map(Item.recipe),
+//            toSection: .creators
+//        )
+//        snapshot.appendItems(
+//            recipes.map(Item.recipe),
+//            toSection: .trending
+//        )
         
         dataSource?.apply(snapshot)
-        dataSource?.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) in
-            if let titleSupplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: TitleSupplementaryView.reuseIdentifier, for: indexPath) as? TitleSupplementaryView {
-                
-                let tutorialCollection = ["Trending now", "Popular category", "Recent recipe", "Creators"]
-                switch Section(rawValue: indexPath.section) {
-                    
-                case .trending:
-                    titleSupplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    titleSupplementaryView.seeAllButton.titleLabel?.text = "See all ->"
-                    return titleSupplementaryView
-                case .popular:
-                    titleSupplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    return titleSupplementaryView
-                    
-                case .recent:
-                    titleSupplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    titleSupplementaryView.seeAllButton.titleLabel?.text = "See all ->"
-                    return titleSupplementaryView
-                case .creators:
-                    titleSupplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    titleSupplementaryView.seeAllButton.titleLabel?.text = "See all ->"
-                    return titleSupplementaryView
-                    
-                case nil:
-                    return nil
-                    
-                }
-            } else {
-                return nil
-            }
-        }
-        
     }
 }
 
@@ -142,12 +103,10 @@ extension HomeViewController: UICollectionViewDelegate {
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        presenter.searchTextDidChange(searchText)
+ //       presenter.searchTextDidChange(searchText)
         
     }
 }
-
-//var numberOfSections =
 
 extension HomeViewController {
     //MARK: - Section
@@ -159,18 +118,16 @@ extension HomeViewController {
     }
     
     enum Item: Hashable {
-        case recipe(Product)
-        case creators(Creators)
-        case category(Product)
+        case recipe(Recipe)
+        
+        
     }
     
     //MARK: - Private methods
-    
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        
         let cellRegistration = makeRecipeCellRegistration()
         let categoryRegistration = makeCategoryCellRegistration()
-        let creatorsRegistration = makeCreatorsCellRegistration()
+ //       let creatorsRegistration = makeCreatorsCellRegistration()
         
         return UICollectionViewDiffableDataSource(collectionView: homeView.collectionView) { collectionView, indexPath, item in
             switch item {
@@ -181,123 +138,52 @@ extension HomeViewController {
                     item: recipe
                 )
                 
-            case .category(let category):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: categoryRegistration,
-                    for: indexPath,
-                    item: category
-                )
-                
-            case .creators(let creators):
-                return collectionView.dequeueConfiguredReusableCell(
-                    using: creatorsRegistration,
-                    for: indexPath,
-                    item: creators
-                )
-                
-            }
+//            case .category(let category):
+//                return collectionView.dequeueConfiguredReusableCell(
+//                    using: categoryRegistration,
+//                    for: indexPath,
+//                    item: category
+//                )
+//                
+//            case .creators(let creators):
+//                return collectionView.dequeueConfiguredReusableCell(
+//                    using: creatorsRegistration,
+//                    for: indexPath,
+//                    item: creators
+//                )
+//                
+           }
             
         }
         
     }
 }
-
-
-struct Product: Hashable {
-    let name: String
-    let imageName: String
-}
-
-
-struct Cat: Hashable {
-    let name: String
-    let imageName: String
-}
-struct ProductList: Hashable {
-    
-    let trending = [
-        Product(name: "itemOne", imageName: "sun.haze"),
-        Product(name: "itemTwo", imageName: "sun.haze"),
-        Product(name: "itemThree", imageName: "sun.haze"),
-        Product(name: "itemFour", imageName: "sun.haze"),
-        Product(name: "itemFive", imageName: "sun.haze"),
-        Product(name: "itemSix", imageName: "sun.haze")
-    ]
-    
-    let popular = [
-        Product(name: "1", imageName: "moon"),
-        Product(name: "2", imageName: "moon"),
-        Product(name: "3", imageName: "moon"),
-        Product(name: "4", imageName: "moon")
-    ]
-    
-    let recent = [
-        Product(name: "one", imageName: "dollarsign.circle.fill"),
-        Product(name: "two", imageName: "dollarsign.circle.fill"),
-        Product(name: "three", imageName: "dollarsign.circle.fill"),
-        Product(name: "four", imageName: "dollarsign.circle.fill"),
-        Product(name: "five", imageName: "dollarsign.circle.fill"),
-        Product(name: "six", imageName: "dollarsign.circle.fill"),
-        Product(name: "seven", imageName: "dollarsign.circle.fill"),
-        Product(name: "eight", imageName: "dollarsign.circle.fill")
-    ]
-    
-    let creators = [
-        Product(name: "Eldar", imageName: "dollarsign.circle.fill"),
-        Product(name: "Leo", imageName: "dollarsign.circle.fill"),
-        Product(name: "Max", imageName: "dollarsign.circle.fill"),
-        
-    ]
-}
-
-
-
-
-
 
 private extension HomeViewController {
-    typealias RecipeCell = RatedRecipeCell
-    typealias Category = CategoryCell
-    //        typealias Creators = CreatorsCell
-    
-    //      typealias CellRegistration = UICollectionView.CellRegistration<Cell, Product>
-    
-    
-    func makeRecipeCellRegistration() -> UICollectionView.CellRegistration<RecipeCell, Product> {
+    func makeRecipeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewCell, Recipe> {
         .init { cell, indexPath, recipe in
-            cell.configure(with: recipe)
             cell.backgroundColor = .red
-            
-            
         }
-        
     }
     
-    
-    func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<CategoryCell, Product> {
+    func makeCategoryCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewCell, Recipe> {
         .init { cell, indexPath, category in
-            cell.configure(with: category)
             cell.backgroundColor = .green
-            
-            
         }
     }
     
+//    func makeCreatorsCellRegistration() -> UICollectionView.CellRegistration<RatedRecipeCell, Creators> {
+//        .init { cell, indexPath, recipe in
+//            //        cell.configure(with: recipe)
+//            cell.backgroundColor = .cyan
+//        }
+//    }
     
-    func makeCreatorsCellRegistration() -> UICollectionView.CellRegistration<RatedRecipeCell, Creators> {
-        .init { cell, indexPath, recipe in
-            //        cell.configure(with: recipe)
-            cell.backgroundColor = .cyan
-        }
-    }
-    
-    func makeHeaderRegistraition() -> UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-        .init(
-            elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
+    func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
+        .init(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
                 let tutorialCollection = ["Trending now", "Popular category", "Recent recipe", "Creators"]
                 switch Section(rawValue: indexPath.section) {
                 case .trending:
-                    
                     supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
                     
                 case .popular:
@@ -315,11 +201,16 @@ private extension HomeViewController {
             }
     }
     
-    
-    
-    
-    
-    
+}
+
+extension UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
+    var headerProvider: (UICollectionView, String, IndexPath) -> TitleSupplementaryView {
+        { collectionView, kind, indexPath in
+            collectionView.dequeueConfiguredReusableSupplementary(
+                using: self,
+                for: indexPath)
+        }
+    }
 }
 
 
