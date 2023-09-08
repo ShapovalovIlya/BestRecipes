@@ -10,21 +10,9 @@ import Kingfisher
 
 final class TrendingRecipeCell: UICollectionViewCell {
     //MARK: - Private properties
-    private struct Drawing {
-        static let recipeImageHeight: CGFloat = 180
-        static let creatorImageHeight: CGFloat = 32
-        static let verticalSpacing: CGFloat = 10
-        static let burgerButtonHeight: CGFloat = 20
-        static let bookmarkButtonHeight: CGFloat = 32
-    }
-    
-    private let stackVertical: UIStackView = makeStack(
-        axis: .vertical,
-        spacing: Drawing.verticalSpacing
-    )
     private let stackTitle: UIStackView = makeStack(
         axis: .horizontal,
-        distribution: .equalCentering
+        distribution: .fillProportionally
     )
     private let recipeImageView: UIImageView = makeImageView()
     private let titleLabel: UILabel = makeLabel(
@@ -33,7 +21,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
     )
     private let stackCreator = makeStack(
         axis: .horizontal,
-        distribution: .equalCentering
+        distribution: .fillProportionally
     )
     private let creatorImage: UIImageView = makeImageView()
     private let burgerButton = makeButtonBurger()
@@ -42,59 +30,16 @@ final class TrendingRecipeCell: UICollectionViewCell {
         color: .creatorLabelColor
     )
     private let buttonBookmark = makeButtonBookmark()
-    private let ratingButton = RaitingButton(
-        buttonSize: CGSize(
-            width: 58,
-            height: 28
-        ),
-        buttonRadius: 8,
-        buttonColor: "303030",
-        buttonAlfa: 0.7,
-        buttonImage: "star.fill",
-        buttonImageSize: CGSize(
-            width: 12,
-            height: 12
-        ),
-        buttonImageOriginX: 8,
-        buttonFont: UIFont(
-            name: "Arial-BoldMT",
-            size: 16
-        )!,
-        buttonTextColor: "FFFFFF",
-        buttonLableSize: CGSize(
-            width: 24,
-            height: 20
-        ),
-        buttonLableOriginX: 27,
-        buttonText: "4,5",
-        buttonImageColor: "181818"
-    )
-    
-    private let raiting = makeRatingButton()
-//    private lazy var raiting = TrendingRecipeCell.makeButtonRaiting(
-//        parameters:
-//            ratingButton
-//    )
+    private let ratingButton = makeRatingButton()
    
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = .white
         contentView.addSubviews(
-              stackVertical,
-              recipeImageView,
-              stackTitle,
-              titleLabel,
-              burgerButton,
-              stackCreator,
-              creatorImage,
-              creatorLabel,
-              buttonBookmark,
-              raiting
-        )
-        
-        stackVertical.addArrangedSubviews(
             recipeImageView,
+            ratingButton,
+            buttonBookmark,
             stackTitle,
             stackCreator
         )
@@ -121,9 +66,10 @@ final class TrendingRecipeCell: UICollectionViewCell {
         setupTest()
         setupConstraints()
         
-        raiting.setTitle("4.5", for: .normal)
-        creatorImage.layer.cornerRadius = Drawing.creatorImageHeight / 2
-        buttonBookmark.layer.cornerRadius = Drawing.bookmarkButtonHeight / 2
+        ratingButton.setTitle("4.5", for: .normal)
+        
+        creatorImage.layer.cornerRadius = creatorImage.frame.height / 2
+        buttonBookmark.layer.cornerRadius = buttonBookmark.frame.height / 2
     }
     
     //MARK: - Public methods
@@ -143,43 +89,29 @@ final class TrendingRecipeCell: UICollectionViewCell {
     //MARK: - private funcs
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            stackVertical.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackVertical.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackVertical.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackVertical.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            recipeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            recipeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            recipeImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            recipeImageView.heightAnchor.constraint(equalToConstant: 240),
             
-            recipeImageView.leadingAnchor.constraint(equalTo: stackVertical.leadingAnchor),
-            recipeImageView.topAnchor.constraint(equalTo: stackVertical.topAnchor),
-            recipeImageView.trailingAnchor.constraint(equalTo: stackVertical.trailingAnchor),
-            recipeImageView.heightAnchor.constraint(equalToConstant: Drawing.recipeImageHeight),
+            ratingButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            ratingButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             
-            stackTitle.leadingAnchor.constraint(equalTo: stackVertical.leadingAnchor),
-            stackTitle.trailingAnchor.constraint(equalTo: stackVertical.trailingAnchor),
+            buttonBookmark.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            buttonBookmark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
             
-            burgerButton.heightAnchor.constraint(equalToConstant: Drawing.burgerButtonHeight),
-            burgerButton.trailingAnchor.constraint(equalTo: stackTitle.trailingAnchor),
-            
-            stackCreator.leadingAnchor.constraint(equalTo: stackVertical.leadingAnchor),
-            stackCreator.heightAnchor.constraint(equalToConstant: Drawing.creatorImageHeight),
-            stackCreator.trailingAnchor.constraint(equalTo: stackVertical.trailingAnchor, constant: -10),
-            
-            creatorImage.heightAnchor.constraint(equalTo: creatorImage.widthAnchor),
-            creatorLabel.leadingAnchor.constraint(equalTo: creatorImage.trailingAnchor, constant: 10),
-            
-            buttonBookmark.topAnchor.constraint(equalTo: stackVertical.topAnchor, constant: 8),
-            buttonBookmark.trailingAnchor.constraint(equalTo: stackVertical.trailingAnchor, constant: -8),
-            buttonBookmark.heightAnchor.constraint(equalTo: buttonBookmark.widthAnchor),
-            buttonBookmark.heightAnchor.constraint(equalToConstant: Drawing.bookmarkButtonHeight),
-            
-            raiting.leadingAnchor.constraint(equalTo: stackVertical.leadingAnchor, constant: 10),
-            raiting.topAnchor.constraint(equalTo: stackVertical.topAnchor, constant: 10),
-            raiting.widthAnchor.constraint(equalToConstant: ratingButton.buttonSize.width),
-            raiting.heightAnchor.constraint(equalToConstant: ratingButton.buttonSize.height)
+            stackTitle.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor),
+            stackTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                  
+            stackCreator.topAnchor.constraint(equalTo: stackTitle.bottomAnchor),
+            stackCreator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackCreator.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 }
 
-private extension TrendingRecipeCell{
+private extension TrendingRecipeCell {
     static func makeStack(
         axis: NSLayoutConstraint.Axis,
         spacing: CGFloat = 0,
@@ -205,17 +137,18 @@ private extension TrendingRecipeCell{
         label.font = font
         label.textColor = color
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
+        label.minimumScaleFactor = 0.7
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }
     
     static func makeImageView() -> UIImageView {
-        let mediaImageView = UIImageView()
-        mediaImageView.layer.cornerRadius = 8
-        mediaImageView.clipsToBounds = true
-        mediaImageView.translatesAutoresizingMaskIntoConstraints = false
-        return mediaImageView
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }
     
     static func makeButtonBurger() -> UIButton {
@@ -234,61 +167,17 @@ private extension TrendingRecipeCell{
     }
     
     static func makeRatingButton() -> UIButton {
-        var configuration = UIButton.Configuration.plain()
+        var configuration = UIButton.Configuration.gray()
         configuration.image = .starImage
         configuration.imagePlacement = .leading
-        configuration.background.backgroundColor = .ratingButtonBackgroundColor
-        
-        
-        return UIButton(configuration: configuration)
+        configuration.baseBackgroundColor = .lightGray
+        configuration.imagePadding = 5
+        let button = UIButton(configuration: configuration)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }
     
-    static func makeButtonRaiting(parameters: RaitingButton) -> UIButton {
-        
-        let ratingButton = UIButton(type: .custom)
-        ratingButton.frame.size = parameters.buttonSize
-        ratingButton.backgroundColor = UIColor(hex: parameters.buttonColor)
-        ratingButton.alpha = parameters.buttonAlfa
-        ratingButton.layer.cornerRadius = parameters.buttonRadius
-        let image = UIImage(systemName: parameters.buttonImage)
-        let imageView = UIImageView()
-        imageView.frame.size = parameters.buttonImageSize
-        imageView.frame.origin = .init(x: parameters.buttonImageOriginX, y: ((parameters.buttonSize.height-parameters.buttonImageSize.height)/2))
-        imageView.image = image
-        ratingButton.addSubview(imageView)
-        let textFont = parameters.buttonFont
-        let lableView = UILabel()
-        lableView.font = textFont
-        lableView.textColor = UIColor(hex: parameters.buttonTextColor, alpha: 1)
-        lableView.adjustsFontSizeToFitWidth = true
-        lableView.minimumScaleFactor = 0.5
-        lableView.text = parameters.buttonText
-        lableView.frame.size = parameters.buttonLableSize
-        lableView.frame.origin = .init(
-            x: parameters.buttonLableOriginX,
-            y: ((parameters.buttonSize.height-lableView.frame.size.height)/2))
-        ratingButton.addSubview(lableView)
-        ratingButton.tintColor = UIColor(hex: parameters.buttonImageColor)
-        ratingButton.translatesAutoresizingMaskIntoConstraints = false
-            return ratingButton
-        }
-    
-}
-
-private struct RaitingButton {
-    var buttonSize: CGSize
-    var buttonRadius: CGFloat
-    var buttonColor: String
-    var buttonAlfa: CGFloat
-    var buttonImage: String
-    var buttonImageSize: CGSize
-    var buttonImageOriginX: CGFloat
-    var buttonFont: UIFont
-    var buttonTextColor: String
-    var buttonLableSize: CGSize
-    var buttonLableOriginX: CGFloat
-    var buttonText: String
-    var buttonImageColor: String
 }
 
 import SwiftUI

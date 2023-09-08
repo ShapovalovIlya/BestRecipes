@@ -23,8 +23,9 @@ final class HomeView: UIView, HomeViewProtocol {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        addSubview(collectionView)
+   //     addSubview(collectionView)
         //
+        frameOne.translatesAutoresizingMaskIntoConstraints = false
         addSubview(frameOne)
     }
     
