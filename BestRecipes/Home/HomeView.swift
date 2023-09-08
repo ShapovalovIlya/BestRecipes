@@ -17,7 +17,7 @@ final class HomeView: UIView, HomeViewProtocol {
     //MARK: - Public properties
     let collectionView: UICollectionView = makeCollection()
     //
-    let frameOne: FrameOneCollectionViewCell = FrameOneCollectionViewCell.init()
+    let frameOne: TrendingRecipeCell = TrendingRecipeCell.init()
     
     //MARK: - init(_:)
     override init(frame: CGRect) {

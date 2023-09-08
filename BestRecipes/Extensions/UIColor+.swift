@@ -12,6 +12,8 @@ extension UIColor {
     static let tabBarTintColor: UIColor? = .init(hex: "#E23E3E", alpha: 1)
     static let getStartedButtonColor: UIColor? = .init(named: "onboardingColor")
     static let onboardingLabelAdditionalColor: UIColor? = .init(named: "onboardingLabelAdditional")
+    static let titleTextColor: UIColor? = .init(hex: "181818")
+    static let creatorLabelColor: UIColor? = .init(hex: "919191")
     
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
