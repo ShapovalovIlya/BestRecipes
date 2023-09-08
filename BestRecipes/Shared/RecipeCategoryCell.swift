@@ -25,20 +25,20 @@ final class RecipeCategoryCell: UICollectionViewCell {
     
     //MARK: - Private properties
     private let categoryImage: UIImageView = makeImageView()
-    private let recipeTitle: UILabel = makeLabel(
+    private let recipeTitle: UILabel = .makeLabel(
         font: .titleFont,
         color: .titleTextColor,
         numberOfLines: 2
     )
-    private let timeLabel: UILabel = makeLabel(
+    private let timeLabel: UILabel = .makeLabel(
         font: .subtitleFont,
         color: .subtitleColor
     )
-    private let timeTextLabel: UILabel = makeLabel(
+    private let timeTextLabel: UILabel = .makeLabel(
         font: .titleFont,
         color: .titleTextColor
     )
-    private let bookmarkButton = makeButtonBookmark()
+    private let bookmarkButton: UIButton = makeButtonBookmark()
     private let bottomContainer: UIStackView = makeBottomStack()
     
     //MARK: - init(_:)
@@ -98,19 +98,6 @@ private extension RecipeCategoryCell {
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
-    }
-    
-    static func makeLabel(
-        font: UIFont?,
-        color: UIColor?,
-        numberOfLines: Int = 1
-    ) -> UILabel {
-        let label = UILabel()
-        label.font = font
-        label.textColor = color
-        label.numberOfLines = numberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }
     
     static func makeButtonBookmark() -> UIButton {

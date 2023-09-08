@@ -31,12 +31,12 @@ final class RecentRecipeCell: UICollectionViewCell {
     }
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
-    private let recipeTitle: UILabel = makeLabel(
+    private let recipeTitle: UILabel = .makeLabel(
         font: .titleFont,
         color: .titleTextColor,
         numberOfLines: 2
     )
-    private let creatorTitle: UILabel = makeLabel(
+    private let creatorTitle: UILabel = .makeLabel(
         font: .subtitleFont,
         color: .subtitleColor
     )
@@ -96,19 +96,6 @@ private extension RecentRecipeCell {
         view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
-    }
-    
-    static func makeLabel(
-        font: UIFont?,
-        color: UIColor?,
-        numberOfLines: Int = 1
-    ) -> UILabel {
-        let label = UILabel()
-        label.font = font
-        label.textColor = color
-        label.numberOfLines = numberOfLines
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }
     
     func setupConstraints() {

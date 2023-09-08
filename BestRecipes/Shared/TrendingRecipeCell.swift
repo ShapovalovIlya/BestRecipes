@@ -15,7 +15,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         distribution: .fillProportionally
     )
     private let recipeImageView: UIImageView = makeImageView()
-    private let titleLabel: UILabel = makeLabel(
+    private let titleLabel: UILabel = .makeLabel(
         font: .titleFont,
         color: .titleTextColor
     )
@@ -25,7 +25,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
     )
     private let creatorImage: UIImageView = makeImageView()
     private let burgerButton = makeButtonBurger()
-    private let creatorLabel = makeLabel(
+    private let creatorLabel: UILabel = .makeLabel(
         font: .subtitleFont,
         color: .subtitleColor
     )
@@ -134,21 +134,6 @@ private extension TrendingRecipeCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.spacing = spacing
         return stack
-    }
-    
-    static func makeLabel(
-        font: UIFont?,
-        color: UIColor?,
-        numberOfLines: Int = 1
-    ) -> UILabel {
-        let label = UILabel()
-        label.numberOfLines = numberOfLines
-        label.font = font
-        label.textColor = color
-        label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.7
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
     }
     
     static func makeImageView() -> UIImageView {
