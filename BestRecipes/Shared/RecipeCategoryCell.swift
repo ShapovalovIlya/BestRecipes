@@ -7,15 +7,6 @@
 
 import UIKit
 
-struct TextParameters {
-    var text: String
-    var colorHex: String
-    var textName: String
-    var textSize: CGFloat
-    var lines: Int
-    var lableBox: BoundBox
-}
-
 final class RecipeCategoryCell: UICollectionViewCell {
     private struct Drawing {
         static let imageOffset: CGFloat = 22

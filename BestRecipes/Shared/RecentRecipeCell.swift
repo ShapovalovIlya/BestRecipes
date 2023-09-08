@@ -8,24 +8,6 @@
 import UIKit
 import Kingfisher
 
-struct ImageDrawing {
-    var imageName:String
-    var imageSize: CGSize
-    var radiusImage: CGFloat
-}
-
-struct StackDrawing {
-    var offset: BoundBox
-    var spacing: CGFloat
-}
-
-struct BoundBox {
-    var leading: CGFloat
-    var trailing: CGFloat
-    var top: CGFloat
-    var bottom: CGFloat
-}
-
 final class RecentRecipeCell: UICollectionViewCell {
     private struct Drawing {
         static let imageHeight: CGFloat = 124
