@@ -14,6 +14,7 @@ extension UIColor {
     static let onboardingLabelAdditionalColor: UIColor? = .init(named: "onboardingLabelAdditional")
     static let titleTextColor: UIColor? = .init(hex: "181818")
     static let creatorLabelColor: UIColor? = .init(hex: "919191")
+    static let ratingButtonBackgroundColor: UIColor? = .init(hex: "#303030", alpha: 0.3)
     
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

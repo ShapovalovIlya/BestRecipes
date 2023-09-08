@@ -21,4 +21,5 @@ extension UIImage {
     static let profileTab: UIImage? = .init(named: "profile")
     static let profileTabSelected: UIImage? = .init(named: "profile_selected")
     static let burgerButtonImage: UIImage? = .init(named: "burgerBtn.png")
+    static let starImage: UIImage? = .init(named: "Star")
 }

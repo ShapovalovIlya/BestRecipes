@@ -15,6 +15,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         static let creatorImageHeight: CGFloat = 32
         static let verticalSpacing: CGFloat = 10
         static let burgerButtonHeight: CGFloat = 20
+        static let bookmarkButtonHeight: CGFloat = 32
     }
     
     private let stackVertical: UIStackView = makeStack(
@@ -40,12 +41,8 @@ final class TrendingRecipeCell: UICollectionViewCell {
         font: .creatorTitleFont,
         color: .creatorLabelColor
     )
-    private let fistButtonSize = CGSize(
-        width: 32,
-        height: 32
-    )
     private let buttonBookmark = makeButtonBookmark()
-    private let raitingButton = RaitingButton(
+    private let ratingButton = RaitingButton(
         buttonSize: CGSize(
             width: 58,
             height: 28
@@ -72,10 +69,12 @@ final class TrendingRecipeCell: UICollectionViewCell {
         buttonText: "4,5",
         buttonImageColor: "181818"
     )
-    private lazy var raiting = TrendingRecipeCell.makeButtonRaiting(
-        parameters:
-            raitingButton
-    )
+    
+    private let raiting = makeRatingButton()
+//    private lazy var raiting = TrendingRecipeCell.makeButtonRaiting(
+//        parameters:
+//            ratingButton
+//    )
    
     //MARK: - init(_:)
     override init(frame: CGRect) {
@@ -122,7 +121,9 @@ final class TrendingRecipeCell: UICollectionViewCell {
         setupTest()
         setupConstraints()
         
-        creatorImage.layer.cornerRadius = creatorImage.frame.height / 2
+        raiting.setTitle("4.5", for: .normal)
+        creatorImage.layer.cornerRadius = Drawing.creatorImageHeight / 2
+        buttonBookmark.layer.cornerRadius = Drawing.bookmarkButtonHeight / 2
     }
     
     //MARK: - Public methods
@@ -131,7 +132,6 @@ final class TrendingRecipeCell: UICollectionViewCell {
         titleLabel.text = recipe.title
         creatorLabel.text = recipe.sourceName
     }
-    
     
     private func setupTest() {
         recipeImageView.image = UIImage(named: "test_img")
@@ -169,14 +169,14 @@ final class TrendingRecipeCell: UICollectionViewCell {
             buttonBookmark.topAnchor.constraint(equalTo: stackVertical.topAnchor, constant: 8),
             buttonBookmark.trailingAnchor.constraint(equalTo: stackVertical.trailingAnchor, constant: -8),
             buttonBookmark.heightAnchor.constraint(equalTo: buttonBookmark.widthAnchor),
-            buttonBookmark.heightAnchor.constraint(equalToConstant: fistButtonSize.height),
+            buttonBookmark.heightAnchor.constraint(equalToConstant: Drawing.bookmarkButtonHeight),
             
             raiting.leadingAnchor.constraint(equalTo: stackVertical.leadingAnchor, constant: 10),
             raiting.topAnchor.constraint(equalTo: stackVertical.topAnchor, constant: 10),
-            raiting.widthAnchor.constraint(equalToConstant: raitingButton.buttonSize.width),
-            raiting.heightAnchor.constraint(equalToConstant: raitingButton.buttonSize.height)
-        ])}
-
+            raiting.widthAnchor.constraint(equalToConstant: ratingButton.buttonSize.width),
+            raiting.heightAnchor.constraint(equalToConstant: ratingButton.buttonSize.height)
+        ])
+    }
 }
 
 private extension TrendingRecipeCell{
@@ -200,14 +200,14 @@ private extension TrendingRecipeCell{
         color: UIColor?,
         numberOfLines: Int = 1
     ) -> UILabel {
-        let lableView = UILabel()
-        lableView.numberOfLines = numberOfLines
-        lableView.font = font
-        lableView.textColor = color
-        lableView.adjustsFontSizeToFitWidth = true
-        lableView.minimumScaleFactor = 0.5
-        lableView.translatesAutoresizingMaskIntoConstraints = false
-        return lableView
+        let label = UILabel()
+        label.numberOfLines = numberOfLines
+        label.font = font
+        label.textColor = color
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
     
     static func makeImageView() -> UIImageView {
@@ -219,41 +219,33 @@ private extension TrendingRecipeCell{
     }
     
     static func makeButtonBurger() -> UIButton {
-        var btnConf = UIButton.Configuration.plain()
-        btnConf.image = .burgerButtonImage
-        let buttonTitleView = UIButton(configuration: btnConf)
-        buttonTitleView.imageView?.contentMode = .scaleAspectFit
-        buttonTitleView.contentMode = .scaleAspectFill
-        buttonTitleView.backgroundColor = .white
-        buttonTitleView.frame.size = .init(width: 20, height: 20)
-        buttonTitleView.imageView?.frame = buttonTitleView.frame
-        buttonTitleView.translatesAutoresizingMaskIntoConstraints = false
-        return buttonTitleView
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = .burgerButtonImage
+        let button = UIButton(configuration: configuration)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }
     static func makeButtonBookmark() -> UIButton {
-        let buttonBookmarkView = UIButton(type: .custom)
-        buttonBookmarkView.frame.size = .init(
-            width: 32,
-            height: 32
-        )
-        buttonBookmarkView.backgroundColor = .white
-        buttonBookmarkView.layer.cornerRadius = buttonBookmarkView.frame.height/2
-        let imageView = UIImageView()
-        imageView.frame.size = CGSize(
-            width: 21.33,
-            height: 21.33
-        )
-        imageView.image = .bookmarkImage
-        buttonBookmarkView.addSubview(imageView)
-        imageView.contentMode = .center
-        imageView.contentMode = .scaleAspectFit
-        imageView.center = buttonBookmarkView.center
-        buttonBookmarkView.translatesAutoresizingMaskIntoConstraints = false
-        return buttonBookmarkView
+        let button = UIButton()
+        button.setImage(.bookmarkImage, for: .normal)
+        button.backgroundColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }
+    
+    static func makeRatingButton() -> UIButton {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = .starImage
+        configuration.imagePlacement = .leading
+        configuration.background.backgroundColor = .ratingButtonBackgroundColor
+        
+        
+        return UIButton(configuration: configuration)
     }
     
     static func makeButtonRaiting(parameters: RaitingButton) -> UIButton {
-            let ratingButton = UIButton(type: .custom)
+        
+        let ratingButton = UIButton(type: .custom)
         ratingButton.frame.size = parameters.buttonSize
         ratingButton.backgroundColor = UIColor(hex: parameters.buttonColor)
         ratingButton.alpha = parameters.buttonAlfa
@@ -272,7 +264,9 @@ private extension TrendingRecipeCell{
         lableView.minimumScaleFactor = 0.5
         lableView.text = parameters.buttonText
         lableView.frame.size = parameters.buttonLableSize
-        lableView.frame.origin = .init(x: parameters.buttonLableOriginX, y: ((parameters.buttonSize.height-lableView.frame.size.height)/2))
+        lableView.frame.origin = .init(
+            x: parameters.buttonLableOriginX,
+            y: ((parameters.buttonSize.height-lableView.frame.size.height)/2))
         ratingButton.addSubview(lableView)
         ratingButton.tintColor = UIColor(hex: parameters.buttonImageColor)
         ratingButton.translatesAutoresizingMaskIntoConstraints = false
