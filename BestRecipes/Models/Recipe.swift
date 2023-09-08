@@ -59,6 +59,8 @@ struct Recipe: Decodable, Hashable {
     /// Список ингредиентов в рецепте
     let extendedIngredients: [Ingredient]?
     
+    let readyInMinutes: Int
+    
 }
 
 extension Recipe {
@@ -68,6 +70,7 @@ extension Recipe {
         sourceName: "Full Belly Sisters",
         image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
         summary: "Some long text",
-        extendedIngredients: Ingredient.sample
+        extendedIngredients: Ingredient.sample, 
+        readyInMinutes: 45
     )
 }
