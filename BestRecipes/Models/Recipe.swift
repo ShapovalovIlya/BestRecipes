@@ -41,10 +41,7 @@ import Foundation
 
 /// Модель рецепта
 struct Recipe: Decodable, Hashable {
-    /// Уникальный id рецепта
     let id: String
-    
-    /// Заголовок рецепта
     let title: String
     
     /// title автора
@@ -59,15 +56,17 @@ struct Recipe: Decodable, Hashable {
     /// Список ингредиентов в рецепте
     let extendedIngredients: [Ingredient]?
     
+    let readyInMinutes: Int
 }
 
 extension Recipe {
     static let sample: Recipe = .init(
-        id: "id",
+        id: UUID().uuidString,
         title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
         sourceName: "Full Belly Sisters",
         image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
         summary: "Some long text",
-        extendedIngredients: Ingredient.sample
+        extendedIngredients: Ingredient.sample, 
+        readyInMinutes: 45
     )
 }

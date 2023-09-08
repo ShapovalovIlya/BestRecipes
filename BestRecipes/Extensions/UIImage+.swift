@@ -16,8 +16,10 @@ extension UIImage {
     static let homeTab: UIImage? = .init(named: "home")
     static let homeTabSelected: UIImage? = .init(named: "home_selected")
     static let bellTab: UIImage? = .init(named: "bell")
-    static let bookmarkTab: UIImage? = .init(named: "bookmark")
+    static let bookmarkImage: UIImage? = .init(named: "bookmark")
     static let bookmarkTabSelected: UIImage? = .init(named: "bookmark_selected")
     static let profileTab: UIImage? = .init(named: "profile")
     static let profileTabSelected: UIImage? = .init(named: "profile_selected")
+    static let burgerButtonImage: UIImage? = .init(named: "burgerBtn.png")
+    static let starImage: UIImage? = .init(named: "Star")
 }

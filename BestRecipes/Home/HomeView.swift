@@ -10,25 +10,35 @@ import UIKit
 protocol HomeViewProtocol: UIView {
     var collectionView: UICollectionView { get }
     var searchBar: UISearchBar { get }
-    
-    
 }
 
 final class HomeView: UIView, HomeViewProtocol, UISearchTextFieldDelegate {
+    private struct Drawing {
+        static let contentOffset: CGFloat = 10
+        static let searchBarHeight: CGFloat = 44
+    }
+    
+    //MARK: - Private properties
+    let titleLabel: UILabel = .makeLabel(
+        font: .boldSystemFont(ofSize: 28),
+        color: .black,
+        numberOfLines: 2
+    )
     
     //MARK: - Public properties
     let collectionView: UICollectionView = makeCollection()
-    let label: UILabel = makeLabel()
-    let searchBar: UISearchBar = makesearchBar()
+    let searchBar: UISearchBar = makeSearchBar()
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .white
-        addSubview(collectionView)
-        addSubview(label)
-        addSubview(searchBar)
+        addSubviews(
+            titleLabel,
+            searchBar,
+            collectionView
+        )
     }
     
     @available(*, unavailable)
@@ -37,220 +47,160 @@ final class HomeView: UIView, HomeViewProtocol, UISearchTextFieldDelegate {
     }
     
     //MARK: - Lifecycle
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        titleLabel.text = "Get amazing recipes for cooking"
         setupConstraints()
-        
-        
     }
     
     
     //MARK: - Public methods
     
     
-    
 }
 
 private extension HomeView {
+    //MARK: - Section
+    enum Section: Int, CaseIterable {
+        case trending
+        case category
+        case recent
+    }
+    
+    //MARK: - Private methods
+    static func makeSearchBar() -> UISearchBar {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.placeholder = "Search recipes"
+        searchBar.spellCheckingType = .yes
+        return searchBar
+    }
     
     static func makeCollection() -> UICollectionView {
-        
         let collection = UICollectionView(
             frame: .zero,
             collectionViewLayout: makeCollectionViewLayout()
         )
-        collection.register(RatedRecipeCell.self, forCellWithReuseIdentifier: RatedRecipeCell.cellId)
-        collection.register(TitleSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.backgroundColor = .white
-        
         return collection
     }
     
-    static func makeCollectionLayout() -> UICollectionViewLayout {
-        
-        let layout = UICollectionViewCompositionalLayout {
-            (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
-            )
-            
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            
-            item.contentInsets = NSDirectionalEdgeInsets(
-                top: 10,
-                leading: 10,
-                bottom: 10,
-                trailing: 10
-            )
-            
-            let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.85),
-                heightDimension: .fractionalHeight(0.4)
-            )
-            
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: groupSize,
-                subitem: item,
-                count: 1
-            )
-            
-            
-            
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .continuous
-            // to create spaces between sections
-            section.contentInsets = NSDirectionalEdgeInsets(
-                top: 10,
-                leading: 10,
-                bottom: 10,
-                trailing: 10
-            )
-            
-            
-            
-            return section
-        }
-        
-        return layout
-        
-    }
-    
-    
-    enum Section: Int, CaseIterable {
-            case trending
-            case popular
-            case recent
-            case creators
-        }
-    
     static func makeCollectionViewLayout() -> UICollectionViewLayout {
-        UICollectionViewCompositionalLayout {
-            [self] sectionIndex, environment in
-            
-            
+        UICollectionViewCompositionalLayout { sectionIndex, environment in
             switch Section(rawValue: sectionIndex) {
-            case .trending, .popular, .creators, .recent:
-                return self.makeGridLayoutSection()
+            case .trending:
+                return makeTrendingLayoutSection()
+                
+            case .category:
+                return makeCategoryLayoutSection()
+                
+            case .recent:
+                return makeRecentLayoutSection()
+                
             case nil:
                 return nil
             }
         }
     }
     
-    
-    
-    
-   static func makeGridLayoutSection() -> NSCollectionLayoutSection {
-        // Each item will take up half of the width of the group
-        // that contains it, as well as the entire available height:
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
+    static func makeTrendingLayoutSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.7),
             heightDimension: .fractionalHeight(1)
-        ))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-       
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
-        //Each group will then take up the entire available
-        //width, and set its height to half of that width, to
-        //make each item square-shaped:
-       
-       
-       
-       let groupSize = NSCollectionLayoutSize(
-           widthDimension: .fractionalWidth(1),
-           heightDimension: .fractionalHeight(0.4)
-       )
-       
-       let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-       
-//       let group = NSCollectionLayoutGroup.horizontal(
-//           layoutSize: groupSize,
-//           subitem: item,
-//           count: 1
-//       )
-       
-       
-//        let group = NSCollectionLayoutGroup.horizontal(
-//            layoutSize: NSCollectionLayoutSize(
-//                widthDimension: .fractionalWidth(1),
-//                heightDimension: .fractionalWidth(0.5)
-//            ),
-//            subitem: item,
-//            count: 1
-//        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .groupSize,
+            subitems: [item]
+        )
         let section = NSCollectionLayoutSection(group: group)
-           section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
-       section.orthogonalScrollingBehavior = .continuous
-
-//           let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
-//           let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .topLeading)
-//           section.boundarySupplementaryItems = [sectionHeader]
-           return section
+ //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
     }
     
-    
-    
-    static func makeLabel() -> UILabel {
+    static func makeCategoryLayoutSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.4),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Get amazing recipes for cooking"
-        label.font = .boldSystemFont(ofSize: 28)
-        label.numberOfLines = 0
-        label.backgroundColor = .white
-        label.textAlignment = .left
-        return label
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .groupSize,
+            subitems: [item]
+        )
+        let section = NSCollectionLayoutSection(group: group)
+ //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
     }
     
-    
-    static func makesearchBar() -> UISearchBar {
+    static func makeRecentLayoutSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.25),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
-        let searchBar = UISearchBar()
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        searchBar.placeholder = "Search recipes"
-        searchBar.spellCheckingType = .yes
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: .groupSize,
+            subitems: [item]
+        )
+        let section = NSCollectionLayoutSection(group: group)
+ //       section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
         
-        
-        return searchBar
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
     }
-    
     
     func setupConstraints() {
-        
         NSLayoutConstraint.activate([
-            
             // Label constraint
-            label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            label.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            label.heightAnchor.constraint(equalToConstant: 68),
-            
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            titleLabel.leftAnchor.constraint(
+                equalTo: safeAreaLayoutGuide.leftAnchor,
+                constant: Drawing.contentOffset
+            ),
+            titleLabel.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 68),
             // searchBar constraint
-            searchBar.topAnchor.constraint(equalTo: label.bottomAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            searchBar.heightAnchor.constraint(equalToConstant: 64),
-            
+            searchBar.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            searchBar.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
+            searchBar.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            searchBar.heightAnchor.constraint(equalToConstant: Drawing.searchBarHeight),
             // collectionView constraint
             collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            collectionView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
-            
-            
         ])
-        
-        
-        
     }
-    
-    
-    
-    
 }
 

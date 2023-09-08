@@ -9,7 +9,12 @@ import Foundation
 
 struct RecipesList {
     var trending: [Recipe]
-    var popular: [Recipe]
+    var category: [Recipe]
     var recent: [Recipe]
-    var creators: [Recipe]
+    
+    static let sample = Self(
+        trending: [.sample],
+        category: [.sample],
+        recent:[.sample]
+    )
 }
