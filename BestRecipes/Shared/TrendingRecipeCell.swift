@@ -26,8 +26,8 @@ final class TrendingRecipeCell: UICollectionViewCell {
     private let creatorImage: UIImageView = makeImageView()
     private let burgerButton = makeButtonBurger()
     private let creatorLabel = makeLabel(
-        font: .creatorTitleFont,
-        color: .creatorLabelColor
+        font: .subtitleFont,
+        color: .subtitleColor
     )
     private let buttonBookmark = makeButtonBookmark()
     private let ratingButton = makeRatingButton()

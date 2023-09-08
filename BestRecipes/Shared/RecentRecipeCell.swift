@@ -37,8 +37,8 @@ final class RecentRecipeCell: UICollectionViewCell {
         numberOfLines: 2
     )
     private let creatorTitle: UILabel = makeLabel(
-        font: .creatorTitleFont,
-        color: .creatorLabelColor
+        font: .subtitleFont,
+        color: .subtitleColor
     )
     
     //MARK: - init(_:)
