@@ -29,26 +29,23 @@ final class RecipeCategoryCell: UICollectionViewCell {
         font: .titleFont,
         color: .titleTextColor
     )
-    private let bookmarkButton: UIButton = makeButtonBookmark()
-    private let bottomContainer: UIStackView = makeBottomStack()
+    private let bookmarkButton: UIButton = .makeButtonBookmark()
+    private let grayBackground: UIView = makeBackground()
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super .init(frame: frame)
         contentView.clipsToBounds = true
         timeLabel.text = "Time"
-        bottomContainer.addArrangedSubviews(
-            timeTextLabel,
-            bookmarkButton
-        )
         
         contentView.addSubviews(
+            grayBackground,
             categoryImage,
             recipeTitle,
             timeLabel,
-            bottomContainer
+            timeTextLabel,
+            bookmarkButton
         )
-        
     }
     
     required init?(coder: NSCoder) {
@@ -59,8 +56,9 @@ final class RecipeCategoryCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        categoryImage.layer.cornerRadius = categoryImage.frame.height * 0.5
         setupConstraints()
+        categoryImage.layer.cornerRadius = categoryImage.frame.height * 0.5
+        bookmarkButton.layer.cornerRadius = bookmarkButton.frame.height * 0.5
     }
     
     override func prepareForReuse() {
@@ -90,77 +88,45 @@ private extension RecipeCategoryCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
         imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
     
-    static func makeButtonBookmark() -> UIButton {
-        let button = UIButton()
-        button.setImage(.bookmarkImage, for: .normal)
-        button.tintColor = .lightGray
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }
-    
-    static func makeBottomStack() -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        return stack
+    static func makeBackground() -> UIView {
+        let background = UIView()
+        background.backgroundColor = .categoryBackground
+        background.layer.cornerRadius = 8
+        background.translatesAutoresizingMaskIntoConstraints = false
+        return background
     }
    
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            categoryImage.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
-                constant: 2
-            ),
-            categoryImage.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.imageOffset
-            ),
-            categoryImage.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.imageOffset
-            ),
-            recipeTitle.topAnchor.constraint(
-                equalTo: categoryImage.bottomAnchor,
-                constant: Drawing.spacing
-            ),
-            recipeTitle.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.contentOffset
-            ),
-            recipeTitle.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.contentOffset
-            ),
-            timeLabel.topAnchor.constraint(
-                equalTo: recipeTitle.bottomAnchor,
-                constant: Drawing.spacing
-            ),
-            timeLabel.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.spacing
-            ),
-            bottomContainer.topAnchor.constraint(
-                equalTo: timeLabel.bottomAnchor,
-                constant: Drawing.spacing
-            ),
-            bottomContainer.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.contentOffset
-            ),
-            bottomContainer.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.contentOffset
-            )
+            grayBackground.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            grayBackground.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            grayBackground.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            grayBackground.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.75),
+            
+            categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            categoryImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.imageOffset),
+            categoryImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.imageOffset),
+            categoryImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.47),
+            
+            recipeTitle.topAnchor.constraint(equalTo: categoryImage.bottomAnchor, constant: Drawing.spacing),
+            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
+            recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
+            
+            timeLabel.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
+            timeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.spacing),
+            
+            timeTextLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor,constant: 10),
+            timeTextLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
+            
+            bookmarkButton.centerYAnchor.constraint(equalTo: timeTextLabel.centerYAnchor),
+            bookmarkButton.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
+            bookmarkButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.15),
+            bookmarkButton.widthAnchor.constraint(equalTo: bookmarkButton.heightAnchor)
         ])
     }
-}
-
-import SwiftUI
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, xrOS 1.0, *)
-#Preview {
-    RecipeCategoryCell()
 }
