@@ -9,6 +9,11 @@ import UIKit
 import Kingfisher
 
 final class TrendingRecipeCell: UICollectionViewCell {
+    private struct Drawing {
+        static let ratingOffset: CGFloat = 10
+        static let bookmarkOffset: CGFloat = 8
+    }
+    
     //MARK: - Private properties
     private let stackTitle: UIStackView = makeStack(
         axis: .horizontal,
@@ -98,23 +103,35 @@ final class TrendingRecipeCell: UICollectionViewCell {
     //MARK: - private funcs
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            recipeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            recipeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            recipeImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            recipeImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             recipeImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             recipeImageView.heightAnchor.constraint(equalToConstant: 240),
             
-            ratingButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            ratingButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            ratingButton.leftAnchor.constraint(
+                equalTo: leftAnchor,
+                constant: Drawing.ratingOffset
+            ),
+            ratingButton.topAnchor.constraint(
+                equalTo: topAnchor,
+                constant: Drawing.ratingOffset
+            ),
             
-            buttonBookmark.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-            buttonBookmark.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            buttonBookmark.topAnchor.constraint(
+                equalTo: contentView.topAnchor, 
+                constant: Drawing.bookmarkOffset
+            ),
+            buttonBookmark.rightAnchor.constraint(
+                equalTo: contentView.rightAnchor,
+                constant: -Drawing.bookmarkOffset
+            ),
             
             stackTitle.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor),
-            stackTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            stackTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
                   
             stackCreator.topAnchor.constraint(equalTo: stackTitle.bottomAnchor),
-            stackCreator.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackCreator.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             stackCreator.heightAnchor.constraint(equalToConstant: 32)
         ])
     }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 struct ImageDrawing {
     var imageName:String
@@ -28,6 +29,7 @@ struct BoundBox {
 final class RecentRecipeCell: UICollectionViewCell {
     private struct Drawing {
         static let imageHeight: CGFloat = 124
+        static let spacing: CGFloat = 10
     }
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
@@ -102,17 +104,23 @@ private extension RecentRecipeCell {
         NSLayoutConstraint.activate([
             // recipeImage
             recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            recipeImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            recipeImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            recipeImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            recipeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             recipeImage.heightAnchor.constraint(equalToConstant: Drawing.imageHeight),
             // recipeTitle
-            recipeTitle.topAnchor.constraint(equalTo: recipeImage.bottomAnchor, constant: 10),
-            recipeTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            recipeTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            recipeTitle.topAnchor.constraint(
+                equalTo: recipeImage.bottomAnchor,
+                constant: Drawing.spacing
+            ),
+            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             
-            creatorTitle.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: 10),
-            creatorTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            creatorTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            creatorTitle.topAnchor.constraint(
+                equalTo: recipeTitle.bottomAnchor,
+                constant: Drawing.spacing
+            ),
+            creatorTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            creatorTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
     }
 }
