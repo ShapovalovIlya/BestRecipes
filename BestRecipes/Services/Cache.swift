@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 final class Cache<Key: Hashable, Value> {
     //MARK: - Private properties
@@ -30,14 +31,17 @@ final class Cache<Key: Hashable, Value> {
             expirationDate: date
         )
         wrapped.setObject(entry, forKey: WrappedKey(key))
+        Logger.system.debug("Set new cache for key: \(String(describing: key))")
     }
     
     func value(forKey key: Key) -> Value? {
         guard let entry = wrapped.object(forKey: WrappedKey(key)) else {
+            Logger.system.debug("No value for key: \(String(describing: key))")
             return nil
         }
         guard dateProvider() < entry.expirationDate else {
             removeValue(forKey: key)
+            Logger.system.debug("Value for key: \(String(describing: key)) expired.")
             return nil
         }
         return entry.value
@@ -45,6 +49,7 @@ final class Cache<Key: Hashable, Value> {
     
     func removeValue(forKey key: Key) {
         wrapped.removeObject(forKey: WrappedKey(key))
+        Logger.system.debug("Remover value for key: \(String(describing: key))")
     }
     
     //MARK: - Subscript
