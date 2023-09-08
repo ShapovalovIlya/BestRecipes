@@ -1,5 +1,5 @@
 //
-//  FrameFourCollectionViewCell.swift
+//  IngredientCell.swift
 //  BestRecipes
 //
 //  Created by Dmitriy Eliseev on 06.09.2023.
@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class FrameFourCollectionViewCell: UICollectionViewCell {
+final class IngredientCell: UICollectionViewCell {
     
+//    private let ingredientImage: UIImageView = makeImageView()
     //MARK: - static let
     static let stackParameters = StackDrawing(
         offset:
@@ -28,7 +29,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
         ) ?? .gray
     )
     private let scaleLables = ScaleFactorLables.init(lableFirst: 0.55, lableSecond: 0.11)
-    private let stackHorisontal = FrameFourCollectionViewCell.makeStack(
+    private let stackHorisontal = IngredientCell.makeStack(
         stackBoundBox: stackParameters
     )
     private let foodImageParameters = ImageDrawing(
@@ -39,7 +40,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
         ),
         radiusImage: 8
     )
-    private lazy var foodImage: UIImageView = FrameFourCollectionViewCell.makeImageFood(
+    private lazy var foodImage: UIImageView = IngredientCell.makeImageFood(
         parameters: foodImageParameters
     )
     private let firstLable = TextParameters(
@@ -55,7 +56,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
             bottom: 0
         )
     )
-    private lazy var lableFirst: UILabel = FrameFourCollectionViewCell.makeLable(
+    private lazy var lableFirst: UILabel = IngredientCell.makeLable(
         params: firstLable
     )
     private let secondLable = TextParameters(
@@ -71,7 +72,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
             bottom: 0
         )
     )
-    private lazy var lableSecond: UILabel = FrameFourCollectionViewCell.makeLable(
+    private lazy var lableSecond: UILabel = IngredientCell.makeLable(
         params: secondLable
     )
     
@@ -125,7 +126,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
             stackHorisontal.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
             foodImage.widthAnchor.constraint(equalToConstant: foodImageParameters.imageSize.width),
             foodImage.heightAnchor.constraint(equalToConstant: foodImageParameters.imageSize.height),
-            foodImage.leadingAnchor.constraint(equalTo: stackHorisontal.leadingAnchor, constant: FrameFourCollectionViewCell.stackParameters.offset.leading),
+            foodImage.leadingAnchor.constraint(equalTo: stackHorisontal.leadingAnchor, constant: IngredientCell.stackParameters.offset.leading),
             lableFirst.widthAnchor.constraint(equalToConstant: self.contentView.frame.width*scaleLables.lableFirst),
             lableSecond.widthAnchor.constraint(equalToConstant: self.contentView.frame.width*scaleLables.lableSecond)
         ])
@@ -133,7 +134,7 @@ final class FrameFourCollectionViewCell: UICollectionViewCell {
 }
 
 //MARK: - Public extensions
-extension FrameFourCollectionViewCell {
+extension IngredientCell {
     private enum Drawing{
         case mainView
         var origin: CGPoint{
@@ -152,7 +153,7 @@ extension FrameFourCollectionViewCell {
     }
 }
 
-private extension FrameFourCollectionViewCell{
+private extension IngredientCell {
     static func makeStack(stackBoundBox: StackDrawing) -> UIStackView {
         let stackHorizontalView = UIStackView()
         stackHorizontalView.axis = .horizontal
@@ -196,4 +197,3 @@ private struct initDataCollectionViewCell{
     var cornerRadius: CGFloat
     var color: UIColor
 }
-

@@ -15,6 +15,7 @@ extension UIColor {
     static let titleTextColor: UIColor? = .init(hex: "181818")
     static let subtitleColor: UIColor? = .init(hex: "919191")
     static let ratingButtonBackgroundColor: UIColor? = .init(hex: "#303030", alpha: 0.3)
+    static let ingredientCellBackground: UIColor? = .init(hex: "f1f1f1")
     
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
