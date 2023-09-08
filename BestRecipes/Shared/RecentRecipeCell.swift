@@ -31,73 +31,28 @@ final class RecentRecipeCell: UICollectionViewCell {
     }
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
-    
-    private let scaleData = ScaleFactorData(
-        stackTrailing: 0.95,
-        lableFirstHeigth: 0.19,
-        lableSecondHeigth: 0.066,
-        stackSpacing: 0.019
+    private let recipeTitle: UILabel = makeLabel(
+        font: .titleFont,
+        color: .titleTextColor,
+        numberOfLines: 2
     )
-    private let stackParameters = StackDrawing(
-        offset:
-            BoundBox(
-                leading: 5,
-                trailing: -5,
-                top: 5,
-                bottom: -5),
-        spacing: 0
+    private let creatorTitle: UILabel = makeLabel(
+        font: .creatorTitleFont,
+        color: .creatorLabelColor
     )
-    private let stackVertical = makeStackVertical()
-    private let stackVerticalInfo = RecentRecipeCell.makeStackInfoVertical()
-    private let foodImageParameters = ImageDrawing(
-        imageName: "foodPhoto",
-        imageSize: CGSize(
-            width: 124,
-            height: 124
-        ),
-        radiusImage: 12
-    )
-    private lazy var foodImage: UIImageView = RecentRecipeCell.makeImageFood(
-        parameters: foodImageParameters
-    )
-    private let textFirstInfoLable = TextParameters(
-        text: "Kelewele Ghanian Recipe",
-        colorHex: "181818",
-        textName: "Arial-BoldMT",
-        textSize: 16,
-        lines: 2,
-        lableBox: BoundBox(
-            leading: 0,
-            trailing: 0,
-            top: 0,
-            bottom: 0
-        )
-    )
-    private lazy var lableFirstInfo: UILabel = RecentRecipeCell.makeLable(
-        params: textFirstInfoLable
-    )
-    private let textSecondInfoLable = TextParameters(
-        text: "By Zeelicious Foods",
-        colorHex: "919191",
-        textName: "ArialMT",
-        textSize: 12,
-        lines: 1,
-        lableBox: BoundBox(
-            leading: 0,
-            trailing: 0,
-            top: 0,
-            bottom: 0
-        )
-    )
-    private lazy var lableSecondInfo: UILabel = RecentRecipeCell.makeLable(params: textSecondInfoLable)
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
-        super .init(frame: frame)
+        super.init(frame: frame)
         
+        contentView.clipsToBounds = true
+        contentView.addSubviews(
+            recipeImage,
+            recipeTitle,
+            creatorTitle
+        )
     }
     
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -106,97 +61,73 @@ final class RecentRecipeCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        contentView.addSubviews(
-            recipeImage
-        )
-        
+        setupTest()
         setupConstraints()
     }
-    //MARK: - Private methods
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            recipeImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            recipeImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            recipeImage.heightAnchor.constraint(equalToConstant: Drawing.imageHeight),
-        ])
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        recipeImage.image = nil
+        recipeTitle.text = nil
+        creatorTitle.text = nil
     }
     
+    //MARK: - Public methods
+    func configure(with recipe: Recipe) {
+        recipeImage.kf.setImage(with: URL(string: recipe.image))
+        recipeTitle.text = recipe.title
+        creatorTitle.text = recipe.sourceName
+    }
 }
 
 //MARK: - Private extensions
 private extension RecentRecipeCell {
+    func setupTest() {
+        recipeImage.image = UIImage(named: "foodPhoto")
+        recipeTitle.text = "Kelewele Ghanian Recipe"
+        creatorTitle.text = "By Zeelicious Foods"
+    }
+    
     static func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
+        view.layer.cornerRadius = 12
+        view.clipsToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
     
-    static func makeStackVertical() -> UIStackView {
-        let stackVerticalView = UIStackView()
-        stackVerticalView.axis = .vertical
-        stackVerticalView.backgroundColor = .clear
-        stackVerticalView.translatesAutoresizingMaskIntoConstraints = false
-        return stackVerticalView
+    static func makeLabel(
+        font: UIFont?,
+        color: UIColor?,
+        numberOfLines: Int = 1
+    ) -> UILabel {
+        let label = UILabel()
+        label.font = font
+        label.textColor = color
+        label.numberOfLines = numberOfLines
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }
     
-    static func makeStackInfoVertical() -> UIStackView {
-        let stackInfoVerticalView = UIStackView()
-        stackInfoVerticalView.axis = .vertical
-        stackInfoVerticalView.backgroundColor = .clear
-        stackInfoVerticalView.translatesAutoresizingMaskIntoConstraints = false
-        return stackInfoVerticalView
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            // recipeImage
+            recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
+            recipeImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            recipeImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            recipeImage.heightAnchor.constraint(equalToConstant: Drawing.imageHeight),
+            // recipeTitle
+            recipeTitle.topAnchor.constraint(equalTo: recipeImage.bottomAnchor, constant: 10),
+            recipeTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            recipeTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            creatorTitle.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: 10),
+            creatorTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            creatorTitle.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
-    
-    static func makeImageFood(parameters: ImageDrawing) -> UIImageView {
-        let foodImageView = UIImageView()
-        foodImageView.frame.size = parameters.imageSize
-        foodImageView.image = UIImage(named: parameters.imageName)
-        foodImageView.layer.cornerRadius = parameters.radiusImage
-        foodImageView.clipsToBounds = true
-        foodImageView.translatesAutoresizingMaskIntoConstraints = false
-        return foodImageView
-    }
-    
-    static func makeSecondInfoLable(text: String) -> UILabel {
-        let lableView = UILabel()
-        lableView.adjustsFontSizeToFitWidth = true
-        lableView.text = text
-        lableView.translatesAutoresizingMaskIntoConstraints = false
-        return lableView
-    }
-    
-//    static func makeFirstInfoLable(text: String) -> UILabel {
-//        let lableView = UILabel()
-//        lableView.numberOfLines = 2//нужно ли выносить?
-//        lableView.lineBreakMode = .byClipping
-//        lableView.minimumScaleFactor = 1//нужно ли выносить?
-//        lableView.adjustsFontSizeToFitWidth = true
-//        lableView.text = text
-//        lableView.translatesAutoresizingMaskIntoConstraints = false
-//        return lableView
-//    }
-    static func makeLable(params: TextParameters) -> UILabel {
-        let lableView = UILabel()
-        lableView.numberOfLines = params.lines
-        let textFont = UIFont(name: params.textName, size: params.textSize)
-        lableView.font = textFont
-        lableView.textColor = UIColor(hex: params.colorHex, alpha: 1)
-        lableView.adjustsFontSizeToFitWidth = true
-        lableView.minimumScaleFactor = 0.5
-        lableView.text = params.text
-        lableView.translatesAutoresizingMaskIntoConstraints = false
-        return lableView
-    }
-}
-
-//MARK: - private structure
-private struct ScaleFactorData {
-    var stackTrailing: CGFloat
-    var lableFirstHeigth: CGFloat
-    var lableSecondHeigth: CGFloat
-    var stackSpacing: CGFloat
 }
 
 import SwiftUI

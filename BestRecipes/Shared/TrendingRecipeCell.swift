@@ -72,6 +72,15 @@ final class TrendingRecipeCell: UICollectionViewCell {
         buttonBookmark.layer.cornerRadius = buttonBookmark.frame.height / 2
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        creatorImage.image = nil
+        recipeImageView.image = nil
+        titleLabel.text = nil
+        creatorLabel.text = nil
+    }
+    
     //MARK: - Public methods
     func configure(with recipe: Recipe) {
         recipeImageView.kf.setImage(with: URL(string: recipe.image))
