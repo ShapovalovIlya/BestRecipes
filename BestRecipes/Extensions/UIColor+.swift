@@ -5,10 +5,19 @@
 //  Created by Максим Нурутдинов on 27.08.2023.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
+    static let tabBarButtonColor: UIColor? = .init(hex: "#fe989b", alpha: 1)
+    static let tabBarTintColor: UIColor? = .init(hex: "#E23E3E", alpha: 1)
+    static let getStartedButtonColor: UIColor? = .init(named: "onboardingColor")
+    static let onboardingLabelAdditionalColor: UIColor? = .init(named: "onboardingLabelAdditional")
+    static let titleTextColor: UIColor? = .init(hex: "181818")
+    static let subtitleColor: UIColor? = .init(hex: "919191")
+    static let ratingButtonBackgroundColor: UIColor? = .init(hex: "#303030", alpha: 0.3)
+    static let ingredientCellBackground: UIColor? = .init(hex: "f1f1f1")
+    static let categoryBackground: UIColor? = .init(hex: "#F1F1F1")
+    
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if (pureString.hasPrefix("#")) {
