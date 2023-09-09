@@ -1,5 +1,5 @@
 //
-//  LoadView.swift
+//  LoadingView.swift
 //  BestRecipes
 //
 //  Created by Леонид Турко on 09.09.2023.
@@ -13,10 +13,15 @@ final class LoadingView: UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     setup()
+    activityIndicator.startAnimating()
   }
   
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+  
+  deinit {
+    activityIndicator.stopAnimating()
   }
 }
 

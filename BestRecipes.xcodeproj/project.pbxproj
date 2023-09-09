@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		682E5AFD2AACF59600F584AF /* LoadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682E5AFC2AACF59600F584AF /* LoadView.swift */; };
+		682E5AFD2AACF59600F584AF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682E5AFC2AACF59600F584AF /* LoadingView.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
@@ -58,7 +58,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		682E5AFC2AACF59600F584AF /* LoadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadView.swift; sourceTree = "<group>"; };
+		682E5AFC2AACF59600F584AF /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -124,7 +124,7 @@
 		682E5AFB2AACF57B00F584AF /* LoadView */ = {
 			isa = PBXGroup;
 			children = (
-				682E5AFC2AACF59600F584AF /* LoadView.swift */,
+				682E5AFC2AACF59600F584AF /* LoadingView.swift */,
 			);
 			path = LoadView;
 			sourceTree = "<group>";
@@ -401,7 +401,7 @@
 				86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */,
 				865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
-				682E5AFD2AACF59600F584AF /* LoadView.swift in Sources */,
+				682E5AFD2AACF59600F584AF /* LoadingView.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
 				865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */,
