@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 struct Repository {
     private let apiClient: ApiClient
@@ -13,20 +14,22 @@ struct Repository {
     
     //MARK: - init(_:)
     init() {
-        apiClient = .init(.shared)
+        apiClient = .init(session: .shared)
         cache = .init()
     }
     
     //MARK: - Public methods
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
-        if let value = cache.value(forKey: endpoint.url.absoluteString) {
+        if let value = await cache.value(forKey: endpoint.url.absoluteString) {
+            Logger.system.debug("Repository: load content of \(endpoint.url) from cache")
             guard let content = value as? T else {
                 throw MachError(.failure)
             }
             return content
         } else {
+            Logger.system.debug("Repository: load content of \(endpoint.url) from API")
             let content: T = try await apiClient.request(endpoint)
-            cache.insert(content, forKey: endpoint.url.absoluteString)
+            await cache.insert(content, forKey: endpoint.url.absoluteString)
             return content
         }
     }

@@ -21,7 +21,7 @@ protocol FavoritesAssembly {
 }
 
 protocol HomeAssembly {
-    
+    func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController
 }
 
 protocol ProfileAssembly {
@@ -40,22 +40,41 @@ final class Assembly: AssemblyProtocol {
         Logger.system.debug("Assembly: \(#function)")
     }
     
+    //MARK: - Home module
     func makeHomeRouter() -> HomeRouterProtocol {
         let navigationController = UINavigationController()
+        navigationController.tabBarItem = .init(title: nil, image: .homeTab, tag: 0)
+        navigationController.tabBarItem.selectedImage = .homeTabSelected
         let router = HomeRouter(
             navigationController: navigationController, 
-            assembly: self,
-            recipeRequest: repository.request
+            assembly: self
         )
         router.setupInitial()
         return router
     }
     
+    func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController {
+        let presenter = HomePresenter(
+            router: router,
+            recipeRequest: repository.request
+        )
+        let view = HomeView()
+        let viewController = HomeViewController(
+            homeView: view,
+            presenter: presenter
+        )
+        presenter.delegate = viewController
+        
+        return viewController
+    }
+    
+    //MARK: - Favorite module
     func makeFavoritesRouter() -> FavoritesRouterProtocol {
         let navigationController = UINavigationController()
+        navigationController.tabBarItem = .init(title: nil, image: .bookmarkImage, tag: 1)
+        navigationController.tabBarItem.selectedImage = .bookmarkTabSelected
         let router = FavoritesRouter(
             navigationController: navigationController,
-            apiClient: apiClient,
             assembly: self
         )
         router.setupInitial()
@@ -68,25 +87,31 @@ final class Assembly: AssemblyProtocol {
         return tabbar
     }
     
+    //MARK: - Bell module
     func makeBellRouter() -> BellRouter {
         let navigationController = UINavigationController()
+        navigationController.tabBarItem = .init(title: nil, image: .bellTab, tag: 2)
         let router = BellRouter(
             navigationController: navigationController,
-            apiClient: apiClient
-        )
-        router.setupInitial()
-        return router
-    }
-    
-    func makeProfileRouter() -> ProfileRouterProtocol {
-        let navigationController = UINavigationController()
-        let router = ProfileRouter(
-            navigationController: navigationController,
-            apiClient: apiClient,
             assembly: self
         )
         router.setupInitial()
         return router
     }
+    
+    //MARK: - Profile module
+    func makeProfileRouter() -> ProfileRouterProtocol {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = .init(title: nil, image: .profileTab, tag: 3)
+        navigationController.tabBarItem.selectedImage = .profileTabSelected
+        let router = ProfileRouter(
+            navigationController: navigationController,
+            assembly: self
+        )
+        router.setupInitial()
+        return router
+    }
+    
+    //MARK: - Detail module
     
 }

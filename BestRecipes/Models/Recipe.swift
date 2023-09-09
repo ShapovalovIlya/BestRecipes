@@ -59,12 +59,15 @@ struct Recipe: Decodable, Hashable {
     /// Список ингредиентов в рецепте
     let extendedIngredients: [Ingredient]?
     
+    let readyInMinutes: Int
+    
     static let sample = Self(
         id: UUID().uuidString,
         title: "title",
         sourceName: "source name",
         image: "image.com",
         summary: "summary",
-        extendedIngredients: Ingredient.sample
+        extendedIngredients: Ingredient.sample, 
+        readyInMinutes: 45
     )
 }

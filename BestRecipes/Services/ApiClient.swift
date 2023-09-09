@@ -10,14 +10,14 @@ import Foundation
 struct ApiClient {
     private let session: URLSession
     
-    init(_ session: URLSession = .shared) {
+    init(session: URLSession = .shared) {
         self.session = session
     }
     
     //MARK: - Public methods
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
         var request = URLRequest(url: endpoint.url)
-        request.httpMethod = "GET"
+        request.httpMethod = endpoint.method.rawValue
         let (data, urlResponse) = try await session.data(for: request)
         try check(urlResponse)
         
@@ -31,7 +31,7 @@ private extension ApiClient {
     func check(_ urlResponse: URLResponse) throws {
         guard
             let httpResponse = urlResponse as? HTTPURLResponse,
-            (200...300).contains(httpResponse.statusCode)
+            (200...299).contains(httpResponse.statusCode)
         else {
             throw URLError(.badServerResponse)
         }

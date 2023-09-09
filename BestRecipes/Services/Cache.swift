@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-final class Cache<Key: Hashable, Value> {
+actor Cache<Key: Hashable, Value> {
     //MARK: - Private properties
     private let wrapped = NSCache<WrappedKey, Entry>()
     private let dateProvider: () -> Date

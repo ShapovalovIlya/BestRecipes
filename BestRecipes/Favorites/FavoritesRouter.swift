@@ -15,20 +15,21 @@ final class FavoritesRouter: FavoritesRouterProtocol {
     let navigationController: UINavigationController
     
     //MARK: - Private properties
+    private let assembly: FavoritesAssembly
     
     //MARK: - init(_:)
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        assembly: FavoritesAssembly
+    ) {
         self.navigationController = navigationController
+        self.assembly = assembly
     }
     
     //MARK: - Public methods
     func setupInitial() {
         
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "bookmark"),
-            tag: 1
-        )
+        
     }
     
 }

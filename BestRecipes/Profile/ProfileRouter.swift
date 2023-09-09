@@ -13,7 +13,6 @@ protocol ProfileRouterProtocol: AnyObject {
 
 final class ProfileRouter: ProfileRouterProtocol {
     //MARK: - Private properties
-    private let apiClient: ApiClient
     private let assembly: ProfileAssembly
     
     //MARK: - Public properties
@@ -22,11 +21,9 @@ final class ProfileRouter: ProfileRouterProtocol {
     //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        apiClient: ApiClient,
         assembly: ProfileAssembly
     ) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
         self.assembly = assembly
     }
     
@@ -34,11 +31,5 @@ final class ProfileRouter: ProfileRouterProtocol {
     func setupInitial() {
         let profileViewController = ProfileViewController()
         navigationController.viewControllers = [profileViewController]
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: .profileTab,
-            tag: 3
-        )
-        navigationController.tabBarItem.selectedImage = .profileTabSelected
     }
 }

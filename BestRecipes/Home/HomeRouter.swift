@@ -16,38 +16,20 @@ final class HomeRouter: HomeRouterProtocol {
     
     //MARK: - Private properties
     private let assembly: HomeAssembly
-    private let recipeRequest: HomePresenter.RecipesRequest
     
     //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        assembly: HomeAssembly,
-        recipeRequest: @escaping HomePresenter.RecipesRequest
+        assembly: HomeAssembly
     ) {
         self.navigationController = navigationController
         self.assembly = assembly
-        self.recipeRequest = recipeRequest
     }
     
     //MARK: - Public methods
     func setupInitial() {
-        let homeView = HomeView()
-        let presenter = HomePresenter(
-            router: self, 
-            recipeRequest: recipeRequest
-        )
-        let homeViewController = HomeViewController(
-            homeView: homeView,
-            presenter: presenter
-        )
-        presenter.delegate = homeViewController
-        
-        navigationController.viewControllers = [homeViewController]
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "house"),
-            tag: 0
-        )
+        let viewController = assembly.makeHomeViewController(router: self)
+        navigationController.viewControllers = [viewController]
     }
     
     func showDetail() {
