@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		680FC5C62AAA26FE003EFE31 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680FC5C52AAA26FE003EFE31 /* DiscoverViewController.swift */; };
+		681F3CED2AAB6E8800FC6C1E /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681F3CEC2AAB6E8800FC6C1E /* DiscoverView.swift */; };
+		681F3CEF2AAB6F3600FC6C1E /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681F3CEE2AAB6F3600FC6C1E /* DiscoverCell.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
@@ -48,6 +51,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		680FC5C52AAA26FE003EFE31 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		681F3CEC2AAB6E8800FC6C1E /* DiscoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		681F3CEE2AAB6F3600FC6C1E /* DiscoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +107,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		680FC5C42AAA26E3003EFE31 /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				680FC5C52AAA26FE003EFE31 /* DiscoverViewController.swift */,
+				681F3CEE2AAB6F3600FC6C1E /* DiscoverCell.swift */,
+				681F3CEC2AAB6E8800FC6C1E /* DiscoverView.swift */,
+			);
+			path = Discover;
+			sourceTree = "<group>";
+		};
 		865DA7322AA87BB2009CA2EA /* Bell */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +167,7 @@
 		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				680FC5C42AAA26E3003EFE31 /* Discover */,
 				865DA7532AA96B70009CA2EA /* Profile */,
 				865DA7372AA87CC9009CA2EA /* Detail */,
 				865DA7322AA87BB2009CA2EA /* Bell */,
@@ -352,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				869C6E6B2A9B3B0700F4861F /* TabBarController.swift in Sources */,
+				681F3CEF2AAB6F3600FC6C1E /* DiscoverCell.swift in Sources */,
 				865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
@@ -360,6 +378,7 @@
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
+				680FC5C62AAA26FE003EFE31 /* DiscoverViewController.swift in Sources */,
 				865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */,
 				865DA74D2AA89B82009CA2EA /* UIView+.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
@@ -373,6 +392,7 @@
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */,
 				865DA7562AA96B71009CA2EA /* ProfileRouter.swift in Sources */,
+				681F3CED2AAB6E8800FC6C1E /* DiscoverView.swift in Sources */,
 				865DA7472AA886FD009CA2EA /* UIImage+.swift in Sources */,
 				865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */,
 				865DA7572AA96B71009CA2EA /* ProfileViewController.swift in Sources */,
