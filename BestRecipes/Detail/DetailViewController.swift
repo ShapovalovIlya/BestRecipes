@@ -101,9 +101,8 @@ private extension DetailViewController {
     }
     
     //MARK: - Typealias
-    typealias Header = TitleSupplementaryView
     typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, Item>
-    typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<Header>
+    typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<HeaderView>
     
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
@@ -128,19 +127,19 @@ private extension DetailViewController {
     }
     
     func makeHeaderRegistration() -> HeaderRegistration {
-        .init(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
-            let tutorialCollection = ["How to cook", "Instructions", "Ingredients"]
+        .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
+            let tutorialSection = ["How to cook", "Instructions", "Ingredients"]
+            let title = tutorialSection[indexPath.section]
             
             switch Section(rawValue: indexPath.section) {
             case .title:
-                supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
+                header.configure(title: title)
                 
             case .summary:
-                supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
+                header.configure(title: title)
                 
             case .ingredients:
-                supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                supplementaryView.numberLabel.text = "\(tutorialCollection.count) items"
+                header.configure(title: title)
                 
             case nil:
                 break
@@ -150,7 +149,7 @@ private extension DetailViewController {
     
 }
 
-private extension UICollectionView.CellRegistration {
+extension UICollectionView.CellRegistration {
     var cellProvider: (UICollectionView, IndexPath, Item) -> Cell {
         return { collectionView, indexPath, item in
             collectionView.dequeueConfiguredReusableCell(
@@ -162,16 +161,16 @@ private extension UICollectionView.CellRegistration {
     }
 }
 
-private extension UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-    var headerProvider: (UICollectionView, String, IndexPath) -> TitleSupplementaryView {
-        return { collectionView, kind, indexPath in
-            collectionView.dequeueConfiguredReusableSupplementary(
-                using: self,
-                for: indexPath
-            )
-        }
-    }
-}
+//private extension UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
+//    var headerProvider: (UICollectionView, String, IndexPath) -> TitleSupplementaryView {
+//        return { collectionView, kind, indexPath in
+//            collectionView.dequeueConfiguredReusableSupplementary(
+//                using: self,
+//                for: indexPath
+//            )
+//        }
+//    }
+//}
 
 ////  MARK: - Show Canvas
 //import SwiftUI

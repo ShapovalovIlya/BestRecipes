@@ -9,10 +9,6 @@ import UIKit
 import Kingfisher
 
 final class RecentRecipeCell: UICollectionViewCell {
-    private struct Drawing {
-        static let imageHeight: CGFloat = 124
-        static let spacing: CGFloat = 10
-    }
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
     private let recipeTitle: UILabel = .makeLabel(
@@ -45,7 +41,6 @@ final class RecentRecipeCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        setupTest()
         setupConstraints()
     }
 
@@ -63,21 +58,26 @@ final class RecentRecipeCell: UICollectionViewCell {
         recipeTitle.text = recipe.title
         creatorTitle.text = recipe.sourceName
     }
-}
-
-//MARK: - Private extensions
-private extension RecentRecipeCell {
+    
     func setupTest() {
         recipeImage.image = UIImage(named: "foodPhoto")
         recipeTitle.text = "Kelewele Ghanian Recipe"
         creatorTitle.text = "By Zeelicious Foods"
     }
+}
+
+//MARK: - Private extensions
+private extension RecentRecipeCell {
+    private struct Drawing {
+        static let imageHeight: CGFloat = 124
+        static let spacing: CGFloat = 10
+    }
     
     static func makeImageView() -> UIImageView {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleAspectFill
         view.layer.cornerRadius = 12
-        view.clipsToBounds = true
+        view.layer.masksToBounds = true
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }
@@ -88,27 +88,16 @@ private extension RecentRecipeCell {
             recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor),
             recipeImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             recipeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            recipeImage.heightAnchor.constraint(equalToConstant: Drawing.imageHeight),
+            recipeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.65),
             // recipeTitle
-            recipeTitle.topAnchor.constraint(
-                equalTo: recipeImage.bottomAnchor,
-                constant: Drawing.spacing
-            ),
+            recipeTitle.topAnchor.constraint(equalTo: recipeImage.bottomAnchor,constant: Drawing.spacing),
             recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             
-            creatorTitle.topAnchor.constraint(
-                equalTo: recipeTitle.bottomAnchor,
-                constant: Drawing.spacing
-            ),
+            creatorTitle.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
             creatorTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            creatorTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+            creatorTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            creatorTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-}
-
-import SwiftUI
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, xrOS 1.0, *)
-#Preview {
-    RecentRecipeCell()
 }
