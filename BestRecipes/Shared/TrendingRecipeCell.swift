@@ -9,24 +9,13 @@ import UIKit
 import Kingfisher
 
 final class TrendingRecipeCell: UICollectionViewCell {
-    private struct Drawing {
-        static let ratingOffset: CGFloat = 10
-        static let bookmarkOffset: CGFloat = 8
-    }
+    let buttonBookmark: UIButton = .makeButtonBookmark()
     
     //MARK: - Private properties
-    private let stackTitle: UIStackView = makeStack(
-        axis: .horizontal,
-        distribution: .fillProportionally
-    )
     private let recipeImageView: UIImageView = makeImageView()
-    private let titleLabel: UILabel = .makeLabel(
+    private let recipeTitle: UILabel = .makeLabel(
         font: .titleFont,
         color: .titleTextColor
-    )
-    private let stackCreator = makeStack(
-        axis: .horizontal,
-        distribution: .fillProportionally
     )
     private let creatorImage: UIImageView = makeImageView()
     private let burgerButton = makeButtonBurger()
@@ -34,30 +23,23 @@ final class TrendingRecipeCell: UICollectionViewCell {
         font: .subtitleFont,
         color: .subtitleColor
     )
-    private let buttonBookmark = makeButtonBookmark()
-    private let ratingButton = makeRatingButton()
+    private let ratingButton: UIButton = makeRatingButton()
    
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super .init(frame: frame)
         backgroundColor = .white
+        contentView.clipsToBounds = true
         contentView.addSubviews(
             recipeImageView,
             ratingButton,
             buttonBookmark,
-            stackTitle,
-            stackCreator
-        )
-        
-        stackTitle.addArrangedSubviews(
-            titleLabel,
-            burgerButton
-        )
-        
-        stackCreator.addArrangedSubviews(
+            recipeTitle,
+            burgerButton,
             creatorImage,
             creatorLabel
         )
+        
     }
     
     @available(*, unavailable)
@@ -68,11 +50,9 @@ final class TrendingRecipeCell: UICollectionViewCell {
     //MARK: - Life Cycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupTest()
+        
         setupConstraints()
-        
-        ratingButton.setTitle("4.5", for: .normal)
-        
+        layoutIfNeeded()
         creatorImage.layer.cornerRadius = creatorImage.frame.height / 2
         buttonBookmark.layer.cornerRadius = buttonBookmark.frame.height / 2
     }
@@ -82,97 +62,85 @@ final class TrendingRecipeCell: UICollectionViewCell {
         
         creatorImage.image = nil
         recipeImageView.image = nil
-        titleLabel.text = nil
+        recipeTitle.text = nil
         creatorLabel.text = nil
     }
     
     //MARK: - Public methods
     func configure(with recipe: Recipe) {
         recipeImageView.kf.setImage(with: URL(string: recipe.image))
-        titleLabel.text = recipe.title
+        recipeTitle.text = recipe.title
         creatorLabel.text = recipe.sourceName
     }
     
-    private func setupTest() {
+    func setupTest() {
         recipeImageView.image = UIImage(named: "test_img")
         creatorImage.image = UIImage(named: "creator")
-        titleLabel.text = "How to sharwama at home"
+        recipeTitle.text = "How to sharwama at home"
         creatorLabel.text = "By Zeelicious foods"
+        ratingButton.setTitle("4.5", for: .normal)
     }
     
-    //MARK: - private funcs
-    private func setupConstraints() {
-        NSLayoutConstraint.activate([
-            recipeImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            recipeImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            recipeImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            recipeImageView.heightAnchor.constraint(equalToConstant: 240),
-            
-            ratingButton.leftAnchor.constraint(
-                equalTo: leftAnchor,
-                constant: Drawing.ratingOffset
-            ),
-            ratingButton.topAnchor.constraint(
-                equalTo: topAnchor,
-                constant: Drawing.ratingOffset
-            ),
-            
-            buttonBookmark.topAnchor.constraint(
-                equalTo: contentView.topAnchor, 
-                constant: Drawing.bookmarkOffset
-            ),
-            buttonBookmark.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.bookmarkOffset
-            ),
-            
-            stackTitle.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor),
-            stackTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            stackTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-                  
-            stackCreator.topAnchor.constraint(equalTo: stackTitle.bottomAnchor),
-            stackCreator.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            stackCreator.heightAnchor.constraint(equalToConstant: 32)
-        ])
-    }
 }
 
 private extension TrendingRecipeCell {
-    static func makeStack(
-        axis: NSLayoutConstraint.Axis,
-        spacing: CGFloat = 0,
-        distribution: UIStackView.Distribution = .fill
-    ) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = axis
-        stack.alignment = .center
-        stack.backgroundColor = .white
-        stack.distribution = distribution
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = spacing
-        return stack
+    struct Drawing {
+        static let ratingOffset: CGFloat = 10
+        static let bookmarkOffset: CGFloat = 8
+        static let spacing: CGFloat = 10
+        static let buttonMultiplier: CGFloat = 0.15
+        static let contentMultiplier: CGFloat = 0.1
+        static let imageMultiplier: CGFloat = 0.65
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            recipeImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            recipeImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            recipeImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            recipeImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.imageMultiplier),
+            
+            ratingButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.ratingOffset),
+            ratingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Drawing.ratingOffset),
+            ratingButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.buttonMultiplier),
+    
+            buttonBookmark.topAnchor.constraint(equalTo: contentView.topAnchor,constant: Drawing.bookmarkOffset),
+            buttonBookmark.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.bookmarkOffset),
+            buttonBookmark.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.buttonMultiplier),
+            buttonBookmark.widthAnchor.constraint(equalTo: buttonBookmark.heightAnchor),
+            
+            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            recipeTitle.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: Drawing.spacing),
+            recipeTitle.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.contentMultiplier),
+            
+            burgerButton.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: Drawing.spacing),
+            burgerButton.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            burgerButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.contentMultiplier),
+            
+            creatorImage.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
+            creatorImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            creatorImage.widthAnchor.constraint(equalTo: creatorImage.heightAnchor),
+            creatorImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            
+            creatorLabel.centerYAnchor.constraint(equalTo: creatorImage.centerYAnchor),
+            creatorLabel.leftAnchor.constraint(equalTo: creatorImage.rightAnchor, constant: Drawing.spacing),
+            creatorLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
+        ])
     }
     
     static func makeImageView() -> UIImageView {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }
     
     static func makeButtonBurger() -> UIButton {
-        var configuration = UIButton.Configuration.plain()
-        configuration.image = .burgerButtonImage
-        let button = UIButton(configuration: configuration)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }
-    static func makeButtonBookmark() -> UIButton {
         let button = UIButton()
-        button.setImage(.bookmarkImage, for: .normal)
-        button.backgroundColor = .white
+        button.setImage(.burgerButtonImage, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
@@ -189,10 +157,4 @@ private extension TrendingRecipeCell {
         return button
     }
     
-}
-
-import SwiftUI
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, xrOS 1.0, *)
-#Preview {
-    TrendingRecipeCell()
 }
