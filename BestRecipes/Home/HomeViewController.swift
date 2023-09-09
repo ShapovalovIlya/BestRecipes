@@ -190,6 +190,10 @@ private extension HomeViewController {
                 
             case .recent:
                 header.configure(title: title)
+                header.addButton(
+                    target: self,
+                    action: #selector(self.seeAllTrandingButtonTap)
+                )
                 
             default:
                 break

@@ -8,12 +8,6 @@
 import UIKit
 
 final class RecipeCell: UICollectionViewCell {
-    private struct Drawing {
-        static let ratingOffset: CGFloat = 8
-        static let contentOffset: CGFloat = 15
-        static let spacing: CGFloat = 10
-    }
-    
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
     private let ratingButton: UIButton = makeRatingButton()
@@ -68,6 +62,12 @@ final class RecipeCell: UICollectionViewCell {
 }
 
 private extension RecipeCell {
+    private struct Drawing {
+        static let ratingOffset: CGFloat = 8
+        static let contentOffset: CGFloat = 15
+        static let spacing: CGFloat = 10
+    }
+    
     //MARK: - Private methods
     func combineSubtitle(for recipe: Recipe) -> String {
         [
@@ -107,46 +107,16 @@ private extension RecipeCell {
             recipeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             recipeImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            ratingButton.topAnchor.constraint(
-                equalTo: contentView.topAnchor,
-                constant: Drawing.ratingOffset
-            ),
-            ratingButton.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.ratingOffset
-            ),
+            ratingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Drawing.ratingOffset),
+            ratingButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.ratingOffset),
             
-            recipeTitle.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.contentOffset
-            ),
-            recipeTitle.topAnchor.constraint(
-                equalTo: contentView.centerYAnchor,
-                constant: Drawing.spacing
-            ),
-            recipeTitle.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.contentOffset
-            ),
+            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
+            recipeTitle.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: Drawing.spacing),
+            recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
             
-            recipeDescription.leftAnchor.constraint(
-                equalTo: contentView.leftAnchor,
-                constant: Drawing.contentOffset
-            ),
-            recipeDescription.topAnchor.constraint(
-                equalTo: recipeTitle.bottomAnchor,
-                constant: Drawing.spacing
-            ),
-            recipeDescription.rightAnchor.constraint(
-                equalTo: contentView.rightAnchor,
-                constant: -Drawing.contentOffset)
-            
+            recipeDescription.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
+            recipeDescription.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
+            recipeDescription.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset)
         ])
     }
-}
-
-import SwiftUI
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, xrOS 1.0, *)
-#Preview {
-    RecipeCell()
 }

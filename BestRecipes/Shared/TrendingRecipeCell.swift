@@ -9,6 +9,8 @@ import UIKit
 import Kingfisher
 
 final class TrendingRecipeCell: UICollectionViewCell {
+    let buttonBookmark: UIButton = .makeButtonBookmark()
+    
     //MARK: - Private properties
     private let recipeImageView: UIImageView = makeImageView()
     private let recipeTitle: UILabel = .makeLabel(
@@ -21,7 +23,6 @@ final class TrendingRecipeCell: UICollectionViewCell {
         font: .subtitleFont,
         color: .subtitleColor
     )
-    private let buttonBookmark: UIButton = .makeButtonBookmark()
     private let ratingButton: UIButton = makeRatingButton()
    
     //MARK: - init(_:)
@@ -49,8 +50,9 @@ final class TrendingRecipeCell: UICollectionViewCell {
     //MARK: - Life Cycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        setupConstraints()
         
+        setupConstraints()
+        layoutIfNeeded()
         creatorImage.layer.cornerRadius = creatorImage.frame.height / 2
         buttonBookmark.layer.cornerRadius = buttonBookmark.frame.height / 2
     }
@@ -124,22 +126,6 @@ private extension TrendingRecipeCell {
             creatorLabel.leftAnchor.constraint(equalTo: creatorImage.rightAnchor, constant: Drawing.spacing),
             creatorLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor)
         ])
-    }
-    
-    static func makeStack(
-        axis: NSLayoutConstraint.Axis,
-        spacing: CGFloat = 0,
-        distribution: UIStackView.Distribution = .fill
-    ) -> UIStackView {
-        let stack = UIStackView()
-        stack.axis = axis
-        stack.alignment = .center
-        stack.backgroundColor = .white
-        stack.distribution = distribution
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.spacing = spacing
-        stack.clipsToBounds = true
-        return stack
     }
     
     static func makeImageView() -> UIImageView {

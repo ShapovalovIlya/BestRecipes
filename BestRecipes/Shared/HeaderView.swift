@@ -8,10 +8,7 @@
 import UIKit
 
 final class HeaderView: UICollectionReusableView {
-    private struct Drawing {
-        static let offset: CGFloat = 10
-    }
-    
+    //MARK: - Private properties
     private let titleLabel: UILabel = .makeLabel(
         font: .titleFont,
         color: .black
@@ -65,6 +62,10 @@ final class HeaderView: UICollectionReusableView {
 }
 
 private extension HeaderView {
+    private struct Drawing {
+        static let offset: CGFloat = 10
+    }
+    
     //MARK: - Private methods
     func makeButton() -> UIButton {
         var configuration = UIButton.Configuration.plain()

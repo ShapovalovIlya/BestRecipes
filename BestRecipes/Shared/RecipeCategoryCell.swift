@@ -8,11 +8,7 @@
 import UIKit
 
 final class RecipeCategoryCell: UICollectionViewCell {
-    private struct Drawing {
-        static let imageOffset: CGFloat = 22
-        static let contentOffset: CGFloat = 12
-        static let spacing: CGFloat = 10
-    }
+    let bookmarkButton: UIButton = .makeButtonBookmark()
     
     //MARK: - Private properties
     private let categoryImage: UIImageView = makeImageView()
@@ -26,10 +22,10 @@ final class RecipeCategoryCell: UICollectionViewCell {
         color: .subtitleColor
     )
     private let timeTextLabel: UILabel = .makeLabel(
-        font: .titleFont,
+        font: .subtitleFont,
         color: .titleTextColor
     )
-    private let bookmarkButton: UIButton = .makeButtonBookmark()
+    
     private let grayBackground: UIView = makeBackground()
     
     //MARK: - init(_:)
@@ -57,6 +53,7 @@ final class RecipeCategoryCell: UICollectionViewCell {
         super.layoutSubviews()
         
         setupConstraints()
+        layoutIfNeeded()
         categoryImage.layer.cornerRadius = categoryImage.frame.height * 0.5
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.height * 0.5
     }
@@ -83,6 +80,11 @@ final class RecipeCategoryCell: UICollectionViewCell {
 
 //MARK: - Private methods
 private extension RecipeCategoryCell {
+    private struct Drawing {
+        static let imageOffset: CGFloat = 22
+        static let contentOffset: CGFloat = 12
+        static let spacing: CGFloat = 10
+    }
     
     static func makeImageView() -> UIImageView {
         let imageView = UIImageView()

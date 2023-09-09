@@ -9,10 +9,6 @@ import UIKit
 import Kingfisher
 
 final class RecentRecipeCell: UICollectionViewCell {
-    private struct Drawing {
-        static let imageHeight: CGFloat = 124
-        static let spacing: CGFloat = 10
-    }
     //MARK: - Private properties
     private let recipeImage: UIImageView = makeImageView()
     private let recipeTitle: UILabel = .makeLabel(
@@ -72,6 +68,11 @@ final class RecentRecipeCell: UICollectionViewCell {
 
 //MARK: - Private extensions
 private extension RecentRecipeCell {
+    private struct Drawing {
+        static let imageHeight: CGFloat = 124
+        static let spacing: CGFloat = 10
+    }
+    
     static func makeImageView() -> UIImageView {
         let view = UIImageView()
         view.contentMode = .scaleAspectFill
