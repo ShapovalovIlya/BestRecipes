@@ -74,6 +74,12 @@ private extension HomeView {
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.placeholder = "Search recipes"
         searchBar.spellCheckingType = .yes
+        searchBar.barTintColor = .white
+        searchBar.setBackgroundImage(
+            .init(),
+            for: .any,
+            barMetrics: .default
+        )
         return searchBar
     }
     

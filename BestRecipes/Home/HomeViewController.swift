@@ -63,7 +63,11 @@ final class HomeViewController: UIViewController {
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
-    @objc func seeAllTrandingButtonTap() {
+    @objc func seeAllTrendingButtonTap() {
+        print(#function)
+    }
+    
+    @objc func seeAllRecentButtonTap() {
         print(#function)
     }
     
@@ -71,6 +75,14 @@ final class HomeViewController: UIViewController {
 
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
+    func showLoading() {
+        
+    }
+    
+    func dismissLoading() {
+        
+    }
+    
     func recipesDidLoad(_ recipes: RecipesList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
@@ -94,12 +106,14 @@ extension HomeViewController: HomePresenterDelegate {
 
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        presenter.didSelectReceipt(at: indexPath)
+    }
 }
 
 extension HomeViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
- //       presenter.searchTextDidChange(searchText)
         
     }
 }
@@ -117,7 +131,9 @@ extension HomeViewController {
         case category(Recipe)
         case recent(Recipe)
     }
-    
+}
+
+private extension HomeViewController {
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let trendingCellRegistration = makeTrendingRecipeCellRegistration()
@@ -149,11 +165,7 @@ extension HomeViewController {
             }
         }
     }
-        
-}
-
-
-private extension HomeViewController {
+    
     func makeTrendingRecipeCellRegistration() -> UICollectionView.CellRegistration<TrendingRecipeCell, Recipe> {
         .init { cell, indexPath, recipe in
             cell.setupTest()
@@ -182,7 +194,7 @@ private extension HomeViewController {
                 header.configure(title: title)
                 header.addButton(
                     target: self,
-                    action: #selector(self.seeAllTrandingButtonTap)
+                    action: #selector(self.seeAllTrendingButtonTap)
                 )
                 
             case .category:
@@ -192,7 +204,7 @@ private extension HomeViewController {
                 header.configure(title: title)
                 header.addButton(
                     target: self,
-                    action: #selector(self.seeAllTrandingButtonTap)
+                    action: #selector(self.seeAllRecentButtonTap)
                 )
                 
             default:
