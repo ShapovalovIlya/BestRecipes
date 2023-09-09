@@ -7,8 +7,12 @@
 
 import UIKit
 
-final class BellRouter {
-    private let navigationController: UINavigationController
+protocol BellRouterProtocol {
+    var navigationController: UINavigationController { get }
+}
+
+final class BellRouter: BellRouterProtocol {
+    let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController

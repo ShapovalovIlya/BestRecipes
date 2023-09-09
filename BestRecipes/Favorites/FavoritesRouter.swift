@@ -7,9 +7,14 @@
 
 import UIKit
 
-final class FavoritesRouter {
+protocol FavoritesRouterProtocol {
+    var navigationController: UINavigationController { get }
+}
+
+final class FavoritesRouter: FavoritesRouterProtocol {
+    let navigationController: UINavigationController
+    
     //MARK: - Private properties
-    private let navigationController: UINavigationController
     
     //MARK: - init(_:)
     init(navigationController: UINavigationController) {

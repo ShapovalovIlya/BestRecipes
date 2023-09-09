@@ -19,14 +19,14 @@ protocol DetailPresenterDelegate: AnyObject {
 
 final class DetailPresenter: DetailPresenterProtocol {
     //MARK: - Private properties
-    private let apiClient: ApiClientProtocol
+    
     
     //MARK: - Public properties
     weak var delegate: DetailPresenterDelegate?
     
     //MARK: - init(_:)
-    init(apiClient: ApiClientProtocol) {
-        self.apiClient = apiClient
+    init() {
+        
         
         Logger.system.debug("DetailPresenter: \(#function)")
     }

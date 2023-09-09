@@ -8,25 +8,33 @@
 import UIKit
 
 protocol HomeRouterProtocol {
-    
+    var navigationController: UINavigationController { get }
 }
 
 final class HomeRouter: HomeRouterProtocol {
+    let navigationController: UINavigationController
+    
     //MARK: - Private properties
-    private let navigationController: UINavigationController
+    private let assembly: HomeAssembly
+    private let recipeRequest: HomePresenter.RecipesRequest
     
     //MARK: - init(_:)
     init(
-        navigationController: UINavigationController
+        navigationController: UINavigationController,
+        assembly: HomeAssembly,
+        recipeRequest: @escaping HomePresenter.RecipesRequest
     ) {
         self.navigationController = navigationController
+        self.assembly = assembly
+        self.recipeRequest = recipeRequest
     }
     
     //MARK: - Public methods
     func setupInitial() {
         let homeView = HomeView()
         let presenter = HomePresenter(
-            router: self
+            router: self, 
+            recipeRequest: recipeRequest
         )
         let homeViewController = HomeViewController(
             homeView: homeView,

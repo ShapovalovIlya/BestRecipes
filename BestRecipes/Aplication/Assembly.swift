@@ -32,19 +32,20 @@ typealias AssemblyProtocol = RootAssembly & HomeAssembly & FavoritesAssembly & P
 
 final class Assembly: AssemblyProtocol {
     //MARK: - Private properties
-    private let apiClient = ApiClient()
+    private let repository: Repository
     
     //MARK: - init(_:)
     init() {
+        repository = .init()
         Logger.system.debug("Assembly: \(#function)")
     }
     
     func makeHomeRouter() -> HomeRouterProtocol {
         let navigationController = UINavigationController()
         let router = HomeRouter(
-            navigationController: navigationController,
-            apiClient: apiClient,
-            assembly: self
+            navigationController: navigationController, 
+            assembly: self,
+            recipeRequest: repository.request
         )
         router.setupInitial()
         return router

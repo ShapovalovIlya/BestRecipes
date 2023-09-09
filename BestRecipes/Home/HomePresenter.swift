@@ -12,36 +12,40 @@ import OSLog
 protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidDisappear()
+    func didSelectReceipt(at indexPath: IndexPath)
 }
 
 //MARK: - HomePresenterDelegate
 protocol HomePresenterDelegate: AnyObject {
     func recipesDidLoad(_ recipes: RecipesList)
+    func showLoading()
+    func dismissLoading()
 }
 
 final class HomePresenter: HomePresenterProtocol {
+    typealias RecipesRequest = (Endpoint) async throws -> RecipeResponse
+    
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: HomePresenter.self)
-    )
     private let router: HomeRouterProtocol
+    private let recipeRequest: RecipesRequest
     
     //MARK: - Public properties
     weak var delegate: HomePresenterDelegate?
     
     //MARK: - init(_:)
     init(
-        router: HomeRouterProtocol
+        router: HomeRouterProtocol,
+        recipeRequest: @escaping RecipesRequest
     ) {
         self.router = router
+        self.recipeRequest = recipeRequest
         
-        logger.debug("Initialized")
+        Logger.system.debug("HomePresenter: \(#function)")
     }
     
     //MARK: - Deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.system.debug("HomePresenter: \(#function)")
     }
     
     //MARK: - Public methods
@@ -53,9 +57,11 @@ final class HomePresenter: HomePresenterProtocol {
         
     }
     
-    func detailButtonTap() {
-//        router.showDetail(recipe: <#T##Recipe#>)
+    func didSelectReceipt(at indexPath: IndexPath) {
+        
     }
+    
+    
 }
 
 private extension HomePresenter {
