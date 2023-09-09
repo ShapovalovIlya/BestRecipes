@@ -109,9 +109,9 @@ private extension RecipeCategoryCell {
             grayBackground.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.75),
             
             categoryImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-            categoryImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.imageOffset),
-            categoryImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.imageOffset),
+            categoryImage.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             categoryImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.47),
+            categoryImage.widthAnchor.constraint(equalTo: categoryImage.heightAnchor),
             
             recipeTitle.topAnchor.constraint(equalTo: categoryImage.bottomAnchor, constant: Drawing.spacing),
             recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),

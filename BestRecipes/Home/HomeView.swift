@@ -113,8 +113,12 @@ private extension HomeView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(0.4)
+        )
         let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .groupSize,
+            layoutSize: groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
@@ -138,8 +142,12 @@ private extension HomeView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(0.37)
+        )
         let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .groupSize,
+            layoutSize: groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
@@ -163,8 +171,12 @@ private extension HomeView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(0.25)
+        )
         let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: .groupSize,
+            layoutSize: groupSize,
             subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
