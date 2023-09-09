@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43F541342AAC9D9900D61935 /* LoadingScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F541332AAC9D9900D61935 /* LoadingScreenView.swift */; };
+		682E5B002AACFFCB00F584AF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682E5AFF2AACFFCB00F584AF /* LoadingView.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
@@ -60,7 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43F541332AAC9D9900D61935 /* LoadingScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenView.swift; sourceTree = "<group>"; };
+		682E5AFF2AACFFCB00F584AF /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		682E5AFE2AACFFCB00F584AF /* LoadView */ = {
+			isa = PBXGroup;
+			children = (
+				682E5AFF2AACFFCB00F584AF /* LoadingView.swift */,
+			);
+			path = LoadView;
+			sourceTree = "<group>";
+		};
 		865DA7322AA87BB2009CA2EA /* Bell */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +182,7 @@
 		869C6E502A9B390800F4861F /* BestRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				682E5AFE2AACFFCB00F584AF /* LoadView */,
 				865DA7532AA96B70009CA2EA /* Profile */,
 				865DA7372AA87CC9009CA2EA /* Detail */,
 				865DA7322AA87BB2009CA2EA /* Bell */,
@@ -283,7 +292,6 @@
 				865DA7802AAB3192009CA2EA /* RecipeCategoryCell.swift */,
 				865DA7822AAB3192009CA2EA /* RecentRecipeCell.swift */,
 				866FB8852AAB8E7D005CAD0D /* RecipeCell.swift */,
-				43F541332AAC9D9900D61935 /* LoadingScreenView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -388,11 +396,11 @@
 				865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
-				43F541342AAC9D9900D61935 /* LoadingScreenView.swift in Sources */,
 				865DA7592AA97823009CA2EA /* Cache.swift in Sources */,
 				865DA7862AAB3193009CA2EA /* RecentRecipeCell.swift in Sources */,
 				86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */,
 				865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */,
+				682E5B002AACFFCB00F584AF /* LoadingView.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
