@@ -9,10 +9,9 @@ import UIKit
 
 final class BellRouter {
     private let navigationController: UINavigationController
-    private let apiClient: ApiClientProtocol
-    init(navigationController: UINavigationController, apiClient: ApiClientProtocol) {
+    
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
     }
     
     func setupInitial() {

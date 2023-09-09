@@ -10,15 +10,10 @@ import UIKit
 final class FavoritesRouter {
     //MARK: - Private properties
     private let navigationController: UINavigationController
-    private let apiClient: ApiClientProtocol
     
     //MARK: - init(_:)
-    init(
-        navigationController: UINavigationController,
-        apiClient: ApiClientProtocol
-    ) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
     }
     
     //MARK: - Public methods

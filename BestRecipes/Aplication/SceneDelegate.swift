@@ -24,28 +24,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let customTabBarController = MyCustomTabBarController()
         
-        let homeRouter = HomeRouter(
-            navigationController: homeNavigation,
-            apiClient: apiClient
-        )
+        let homeRouter = HomeRouter(navigationController: homeNavigation)
         homeRouter.setupInitial()
 
-        let favoritsRouter = FavoritesRouter(
-            navigationController: favoritesNavigation,
-            apiClient: apiClient
-        )
+        let favoritsRouter = FavoritesRouter(navigationController: favoritesNavigation)
         favoritsRouter.setupInitial()
         
-        let bellRouter = BellRouter(
-            navigationController: bellNavigation,
-            apiClient: apiClient
-        )
+        let bellRouter = BellRouter(navigationController: bellNavigation)
         bellRouter.setupInitial()
         
-        let profileRouter = FavoritesRouter(
-            navigationController: profileNavigation,
-            apiClient: apiClient
-        )
+        let profileRouter = FavoritesRouter(navigationController: profileNavigation)
         profileRouter.setupInitial()
 
         customTabBarController.navigationControllers(

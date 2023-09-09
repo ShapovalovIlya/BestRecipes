@@ -26,17 +26,14 @@ final class HomePresenter: HomePresenterProtocol {
         category: String(describing: HomePresenter.self)
     )
     private let router: HomeRouterProtocol
-    private let apiClient: ApiClientProtocol
     
     //MARK: - Public properties
     weak var delegate: HomePresenterDelegate?
     
     //MARK: - init(_:)
     init(
-        apiClient: ApiClientProtocol,
         router: HomeRouterProtocol
     ) {
-        self.apiClient = apiClient
         self.router = router
         
         logger.debug("Initialized")

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		43F541302AAA351100D61935 /* AutocopleteResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F5412F2AAA351100D61935 /* AutocopleteResponse.swift */; };
-		43F541322AAA370900D61935 /* DetailRecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F541312AAA370900D61935 /* DetailRecipeResponse.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
@@ -46,8 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		43F5412F2AAA351100D61935 /* AutocopleteResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocopleteResponse.swift; sourceTree = "<group>"; };
-		43F541312AAA370900D61935 /* DetailRecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRecipeResponse.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
@@ -247,8 +243,6 @@
 				8629679C2AA090E5000254B3 /* RecipesList.swift */,
 				86B3D0412AA534FA009BF738 /* MealType.swift */,
 				86B3D0432AA541BE009BF738 /* RecipeResponse.swift */,
-				43F5412F2AAA351100D61935 /* AutocopleteResponse.swift */,
-				43F541312AAA370900D61935 /* DetailRecipeResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -349,7 +343,6 @@
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				869C6E802A9B68BA00F4861F /* RatedRecipeCell.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
-				43F541302AAA351100D61935 /* AutocopleteResponse.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				865DA7412AA87CC9009CA2EA /* Product.swift in Sources */,
@@ -368,7 +361,6 @@
 				869C6E7E2A9B684800F4861F /* FavoritesViewController.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 				865DA7432AA87CC9009CA2EA /* TitleSupplementaryView.swift in Sources */,
-				43F541322AAA370900D61935 /* DetailRecipeResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

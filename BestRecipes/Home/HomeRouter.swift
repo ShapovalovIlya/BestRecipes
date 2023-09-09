@@ -14,22 +14,18 @@ protocol HomeRouterProtocol {
 final class HomeRouter: HomeRouterProtocol {
     //MARK: - Private properties
     private let navigationController: UINavigationController
-    private let apiClient: ApiClientProtocol
     
     //MARK: - init(_:)
     init(
-        navigationController: UINavigationController,
-        apiClient: ApiClientProtocol
+        navigationController: UINavigationController
     ) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
     }
     
     //MARK: - Public methods
     func setupInitial() {
         let homeView = HomeView()
         let presenter = HomePresenter(
-            apiClient: apiClient,
             router: self
         )
         let homeViewController = HomeViewController(
