@@ -13,7 +13,7 @@
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
 		865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7392AA87CC9009CA2EA /* DetailViewController.swift */; };
-		865DA7432AA87CC9009CA2EA /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */; };
+		865DA7432AA87CC9009CA2EA /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA73D2AA87CC9009CA2EA /* HeaderView.swift */; };
 		865DA7452AA884A6009CA2EA /* OSLog+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7442AA884A6009CA2EA /* OSLog+.swift */; };
 		865DA7472AA886FD009CA2EA /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7462AA886FD009CA2EA /* UIImage+.swift */; };
 		865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7482AA888A7009CA2EA /* Assembly.swift */; };
@@ -65,7 +65,7 @@
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		865DA7392AA87CC9009CA2EA /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		865DA73D2AA87CC9009CA2EA /* HeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		865DA7442AA884A6009CA2EA /* OSLog+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+.swift"; sourceTree = "<group>"; };
 		865DA7462AA886FD009CA2EA /* UIImage+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+.swift"; sourceTree = "<group>"; };
 		865DA7482AA888A7009CA2EA /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
@@ -137,7 +137,6 @@
 			children = (
 				865DA7382AA87CC9009CA2EA /* DetailView.swift */,
 				865DA7392AA87CC9009CA2EA /* DetailViewController.swift */,
-				865DA73D2AA87CC9009CA2EA /* TitleSupplementaryView.swift */,
 				865DA7502AA8F543009CA2EA /* DetailPresenter.swift */,
 			);
 			path = Detail;
@@ -276,6 +275,7 @@
 		869C6E742A9B4ED000F4861F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				865DA73D2AA87CC9009CA2EA /* HeaderView.swift */,
 				866FB8892AABA10E005CAD0D /* IngredientCell.swift */,
 				865DA7812AAB3192009CA2EA /* TrendingRecipeCell.swift */,
 				865DA7802AAB3192009CA2EA /* RecipeCategoryCell.swift */,
@@ -420,7 +420,7 @@
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
 				865DA7512AA8F543009CA2EA /* DetailPresenter.swift in Sources */,
 				866FB8882AAB9923005CAD0D /* UILabel+.swift in Sources */,
-				865DA7432AA87CC9009CA2EA /* TitleSupplementaryView.swift in Sources */,
+				865DA7432AA87CC9009CA2EA /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

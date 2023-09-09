@@ -7,8 +7,8 @@
 
 import UIKit
 
-extension UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-    var headerProvider: (UICollectionView, String, IndexPath) -> TitleSupplementaryView {
+extension UICollectionView.SupplementaryRegistration<HeaderView> {
+    var headerProvider: (UICollectionView, String, IndexPath) -> HeaderView {
         { collectionView, kind, indexPath in
             collectionView.dequeueConfiguredReusableSupplementary(
                 using: self,

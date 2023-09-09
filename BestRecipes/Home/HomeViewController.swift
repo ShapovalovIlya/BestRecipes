@@ -63,6 +63,10 @@ final class HomeViewController: UIViewController {
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
+    @objc func seeAllTrandingButtonTap() {
+        print(#function)
+    }
+    
 }
 
 //MARK: - HomePresenterDelegate
@@ -168,23 +172,29 @@ private extension HomeViewController {
         }
     }
     
-    func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-        .init(elementKind: UICollectionView.elementKindSectionHeader) { supplementaryView, elementKind, indexPath in
-                let tutorialCollection = ["Trending now", "Popular category", "Recent recipe", "Creators"]
-                switch Section(rawValue: indexPath.section) {
-                case .trending:
-                    supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    
-                case .category:
-                    supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    
-                case .recent:
-                    supplementaryView.textLabel.text = tutorialCollection[indexPath.section]
-                    
-                default:
-                    break
-                }
+    func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<HeaderView> {
+        .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
+            let titles = ["Trending now", "Popular category", "Recent recipe", "Creators"]
+            let title = titles[indexPath.section]
+            
+            switch Section(rawValue: indexPath.section) {
+            case .trending:
+                header.configure(title: title)
+                header.addButton(
+                    target: self,
+                    action: #selector(self.seeAllTrandingButtonTap)
+                )
+                
+            case .category:
+                header.configure(title: title)
+                
+            case .recent:
+                header.configure(title: title)
+                
+            default:
+                break
             }
+        }
     }
     
 }
