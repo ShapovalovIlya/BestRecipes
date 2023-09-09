@@ -8,37 +8,24 @@
 import UIKit
 
 protocol HomeRouterProtocol {
-    var navigationController: UINavigationController { get }
     
-    func showDetail(recipe: Recipe)
-    func showAllTrending(recipes: [Recipe])
-    func showAllRecent(recipes: [Recipe])
 }
 
 final class HomeRouter: HomeRouterProtocol {
     //MARK: - Private properties
-    private let apiClient: ApiClientProtocol
-    private let assembly: HomeAssembly
-    
-    //MARK: - Public
-    let navigationController: UINavigationController
+    private let navigationController: UINavigationController
     
     //MARK: - init(_:)
     init(
-        navigationController: UINavigationController,
-        apiClient: ApiClientProtocol,
-        assembly: HomeAssembly
+        navigationController: UINavigationController
     ) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
-        self.assembly = assembly
     }
     
     //MARK: - Public methods
     func setupInitial() {
         let homeView = HomeView()
         let presenter = HomePresenter(
-            apiClient: apiClient,
             router: self
         )
         let homeViewController = HomeViewController(
@@ -50,21 +37,12 @@ final class HomeRouter: HomeRouterProtocol {
         navigationController.viewControllers = [homeViewController]
         navigationController.tabBarItem = .init(
             title: nil,
-            image: .homeTab,
+            image: UIImage(systemName: "house"),
             tag: 0
         )
-        navigationController.tabBarItem.selectedImage = .homeTabSelected
     }
     
-    func showDetail(recipe: Recipe) {
-        
-    }
-    
-    func showAllTrending(recipes: [Recipe] = []) {
-        
-    }
-    
-    func showAllRecent(recipes: [Recipe] = []) {
+    func showDetail() {
         
     }
     

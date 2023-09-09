@@ -7,27 +7,13 @@
 
 import UIKit
 
-protocol FavoritesRouterProtocol {
-    var navigationController: UINavigationController { get }
-}
-
-final class FavoritesRouter: FavoritesRouterProtocol {
+final class FavoritesRouter {
     //MARK: - Private properties
-    private let apiClient: ApiClientProtocol
-    private let assembly: FavoritesAssembly
-    
-    //MARK: - Public properties
-    let navigationController: UINavigationController
+    private let navigationController: UINavigationController
     
     //MARK: - init(_:)
-    init(
-        navigationController: UINavigationController,
-        apiClient: ApiClientProtocol,
-        assembly: FavoritesAssembly
-    ) {
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
-        self.assembly = assembly
     }
     
     //MARK: - Public methods

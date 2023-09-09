@@ -15,23 +15,37 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let assembly: RootAssembly = Assembly()
+        let apiClient = ApiClient()
         
-        let tabBar = assembly.makeTabbar()
-        let homeRouter = assembly.makeHomeRouter()
-        let favoritesRouter = assembly.makeFavoritesRouter()
-        let bellRouter = assembly.makeBellRouter()
-        let profileRouter = assembly.makeProfileRouter()
+        let homeNavigation = UINavigationController()
+        let favoritesNavigation = UINavigationController()
+        let bellNavigation = UINavigationController()
+        let profileNavigation = UINavigationController()
         
-        tabBar.navigationControllers(
-            homeRouter.navigationController,
-            favoritesRouter.navigationController,
-            bellRouter.navigationController,
-            profileRouter.navigationController
+        let customTabBarController = MyCustomTabBarController()
+        
+        let homeRouter = HomeRouter(navigationController: homeNavigation)
+        homeRouter.setupInitial()
+
+        let favoritsRouter = FavoritesRouter(navigationController: favoritesNavigation)
+        favoritsRouter.setupInitial()
+        
+        let bellRouter = BellRouter(navigationController: bellNavigation)
+        bellRouter.setupInitial()
+        
+        let profileRouter = FavoritesRouter(navigationController: profileNavigation)
+        profileRouter.setupInitial()
+
+        customTabBarController.navigationControllers(
+            homeNavigation,
+            favoritesNavigation,
+            bellNavigation,
+            profileNavigation
         )
         
-        window?.rootViewController = tabBar
+        window?.rootViewController = customTabBarController
         window?.makeKeyAndVisible()
+        
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
