@@ -28,6 +28,7 @@ final class HomePresenter: HomePresenterProtocol {
     //MARK: - Private properties
     private let router: HomeRouterProtocol
     private let recipeRequest: RecipesRequest
+    private var recipeList = RecipesList()
     
     //MARK: - Public properties
     weak var delegate: HomePresenterDelegate?
@@ -50,7 +51,15 @@ final class HomePresenter: HomePresenterProtocol {
     
     //MARK: - Public methods
     func viewDidLoad() {
-        
+        self.delegate?.showLoading()
+        Task {
+            do {
+                self.recipeList = try await getRecipeList()
+                self.delegate?.recipesDidLoad(recipeList)
+            } catch {
+                self.delegate?.dismissLoading()
+            }
+        }
     }
     
     func viewDidDisappear() {
@@ -66,4 +75,20 @@ final class HomePresenter: HomePresenterProtocol {
 
 private extension HomePresenter {
     //MARK: - Private methods
+    func getRecipeList() async throws -> RecipesList {
+        try await withThrowingTaskGroup(
+            of: RecipeResponse.self,
+            returning: RecipesList.self
+        ) { group in
+            let trendingRecipes = try await recipeRequest(.getRecipes(sortedBy: .popularity))
+            let categoryRecipes = try await recipeRequest(.getRecipes(ofType: .breakfast))
+            let recentRecipes = try await recipeRequest(.getRecipes(sortedBy: .time))
+            
+            return try await group.reduce(into: RecipesList()) { partialResult, response in
+                partialResult.trending = trendingRecipes.results
+                partialResult.categoryRecipes = categoryRecipes.results
+                partialResult.recent = recentRecipes.results
+            }
+        }
+    }
 }

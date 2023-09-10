@@ -9,29 +9,34 @@ import Foundation
 
 struct RecipesList {
     var trending: [Recipe]
-    var category: [Recipe]
+    var selectedCategory: MealType
+    var categoryRecipes: [Recipe]
     var recent: [Recipe]
     
     //MARK: - init(_:)
     init(
         trending: [Recipe],
+        selectedCategory: MealType,
         category: [Recipe],
         recent: [Recipe]
     ) {
         self.trending = trending
-        self.category = category
+        self.selectedCategory = selectedCategory
+        self.categoryRecipes = category
         self.recent = recent
     }
     
     init() {
         trending = .init()
-        category = .init()
+        selectedCategory = .breakfast
+        categoryRecipes = .init()
         recent = .init()
     }
     
     //MARK: - Sample
     static let sample = Self(
-        trending: [.sample],
+        trending: [.sample], 
+        selectedCategory: .breakfast,
         category: [.sample],
         recent:[.sample]
     )

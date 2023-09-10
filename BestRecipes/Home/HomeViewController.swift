@@ -51,7 +51,7 @@ final class HomeViewController: UIViewController {
         dataSource?.supplementaryViewProvider = makeHeaderRegistration().headerProvider
         homeView.searchBar.delegate = self
         
-        presenter.viewDidLoad()
+  //      presenter.viewDidLoad()
         recipesDidLoad(.sample)
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
@@ -76,11 +76,11 @@ final class HomeViewController: UIViewController {
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
     func showLoading() {
-        
+        homeView.isLoading(true)
     }
     
     func dismissLoading() {
-        
+        homeView.isLoading(false)
     }
     
     func recipesDidLoad(_ recipes: RecipesList) {
@@ -92,7 +92,7 @@ extension HomeViewController: HomePresenterDelegate {
             toSection: .trending
         )
         snapshot.appendItems(
-            recipes.category.map(Item.category),
+            recipes.categoryRecipes.map(Item.category),
             toSection: .category
         )
         snapshot.appendItems(
@@ -101,6 +101,7 @@ extension HomeViewController: HomePresenterDelegate {
         )
         
         dataSource?.apply(snapshot)
+        homeView.isLoading(true)
     }
 }
 
