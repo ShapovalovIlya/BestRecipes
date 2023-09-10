@@ -22,6 +22,7 @@ protocol FavoritesAssembly {
 
 protocol HomeAssembly {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController
+    func makeDetailViewController(recipe: Recipe) -> DetailViewController
 }
 
 protocol ProfileAssembly {
@@ -113,5 +114,14 @@ final class Assembly: AssemblyProtocol {
     }
     
     //MARK: - Detail module
-    
+    func makeDetailViewController(recipe: Recipe) -> DetailViewController {
+        let presenter = DetailPresenter()
+        let view = DetailView()
+        let viewController = DetailViewController(
+            presenter: presenter,
+            detailView: view
+        )
+        presenter.delegate = viewController
+        return viewController
+    }
 }

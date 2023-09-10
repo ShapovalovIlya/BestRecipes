@@ -54,7 +54,7 @@ final class HomePresenter: HomePresenterProtocol {
         self.delegate?.showLoading()
         Task {
             do {
-                self.recipeList = try await getRecipeList()
+                self.recipeList = try await getRecipeList(category: recipeList.selectedCategory)
                 self.delegate?.recipesDidLoad(recipeList)
             } catch {
                 self.delegate?.dismissLoading()
@@ -67,28 +67,68 @@ final class HomePresenter: HomePresenterProtocol {
     }
     
     func didSelectReceipt(at indexPath: IndexPath) {
+        let recipe: Recipe
         
+        switch HomeViewController.Section(rawValue: indexPath.section) {
+        case .trending:
+            recipe = recipeList.trending[indexPath.item]
+            
+        case .category:
+            recipe = recipeList.categoryRecipes[indexPath.item]
+            
+        case .recent:
+            recipe = recipeList.recent[indexPath.item]
+            
+        case .none: return
+        }
+        
+        router.showDetail(recipe: recipe)
     }
     
     
 }
 
 private extension HomePresenter {
+    enum Section {
+        case trending([Recipe])
+        case category([Recipe])
+        case recent([Recipe])
+    }
+    
     //MARK: - Private methods
-    func getRecipeList() async throws -> RecipesList {
+    func getRecipeList(category: MealType) async throws -> RecipesList {
         try await withThrowingTaskGroup(
-            of: RecipeResponse.self,
+            of: Section.self,
             returning: RecipesList.self
-        ) { group in
-            let trendingRecipes = try await recipeRequest(.getRecipes(sortedBy: .popularity))
-            let categoryRecipes = try await recipeRequest(.getRecipes(ofType: .breakfast))
-            let recentRecipes = try await recipeRequest(.getRecipes(sortedBy: .time))
-            
-            return try await group.reduce(into: RecipesList()) { partialResult, response in
-                partialResult.trending = trendingRecipes.results
-                partialResult.categoryRecipes = categoryRecipes.results
-                partialResult.recent = recentRecipes.results
+        ) { [weak self] group in
+            guard let self else {
+                return .init()
             }
+            
+            group.addTask {
+                try await Section.trending(self.recipeRequest(.getRecipes(sortedBy: .popularity)).results)
+            }
+            group.addTask {
+                try await Section.category(self.recipeRequest(.getRecipes(ofType: category)).results)
+            }
+            group.addTask {
+                try await Section.recent(self.recipeRequest(.getRecipes(sortedBy: .time)).results)
+            }
+            
+            return try await group.reduce(into: RecipesList(), recipeSortion)
+        }
+    }
+    
+    func recipeSortion(result: inout RecipesList, response: Section) {
+        switch response {
+        case let .trending(recipes):
+            result.trending = recipes
+            
+        case let .category(recipes):
+            result.categoryRecipes = recipes
+            
+        case let .recent(recipes):
+            result.recent = recipes
         }
     }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 protocol HomeRouterProtocol {
     var navigationController: UINavigationController { get }
+    
+    func showDetail(recipe: Recipe)
 }
 
 final class HomeRouter: HomeRouterProtocol {
@@ -32,8 +34,9 @@ final class HomeRouter: HomeRouterProtocol {
         navigationController.viewControllers = [viewController]
     }
     
-    func showDetail() {
-        
+    func showDetail(recipe: Recipe) {
+        let detailViewController = assembly.makeDetailViewController(recipe: recipe)
+        navigationController.pushViewController(detailViewController, animated: true)
     }
     
 }
