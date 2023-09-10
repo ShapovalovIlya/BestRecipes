@@ -9,12 +9,6 @@ import UIKit
 import OSLog
 
 final class DetailViewController: UIViewController {
-    enum Section: Int, CaseIterable {
-        case title
-        case summary
-        case ingredients
-    }
-    
     //MARK: - Private properties
     private let presenter: DetailPresenterProtocol
     private let detailView: DetailViewProtocol
@@ -92,18 +86,23 @@ extension DetailViewController: DetailPresenterDelegate {
     }
 }
 
-private extension DetailViewController {
+extension DetailViewController {
+    //MARK: - Section
+    enum Section: Int, CaseIterable {
+        case title
+        case summary
+        case ingredients
+    }
     
+    //MARK: - Item
     enum Item: Hashable {
         case title(Recipe)
         case summary(String?)
         case ingredient(Ingredient)
     }
-    
-    //MARK: - Typealias
-    typealias CellRegistration = UICollectionView.CellRegistration<UICollectionViewCell, Item>
-    typealias HeaderRegistration = UICollectionView.SupplementaryRegistration<HeaderView>
-    
+}
+
+private extension DetailViewController {
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         UICollectionViewDiffableDataSource(
@@ -120,13 +119,13 @@ private extension DetailViewController {
 //        
 //    }
     
-    func makeCellRegistration() -> CellRegistration {
-        CellRegistration { cell, indexPath, item in
+    func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewCell, Item> {
+        .init { cell, indexPath, item in
             cell.backgroundColor = .systemPink
         }
     }
     
-    func makeHeaderRegistration() -> HeaderRegistration {
+    func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<HeaderView> {
         .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
             let tutorialSection = ["How to cook", "Instructions", "Ingredients"]
             let title = tutorialSection[indexPath.section]
@@ -149,7 +148,7 @@ private extension DetailViewController {
     
 }
 
-extension UICollectionView.CellRegistration {
+extension UICollectionView.CellRegistration<UICollectionViewCell, DetailViewController.Item> {
     var cellProvider: (UICollectionView, IndexPath, Item) -> Cell {
         return { collectionView, indexPath, item in
             collectionView.dequeueConfiguredReusableCell(

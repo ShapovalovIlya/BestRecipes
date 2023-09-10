@@ -20,7 +20,7 @@ struct Repository {
     
     //MARK: - Public methods
     func request<T: Decodable>(_ endpoint: Endpoint) async throws -> T {
-        if let value = await cache.value(forKey: endpoint.url.absoluteString) {
+        if let value = cache.value(forKey: endpoint.url.absoluteString) {
             Logger.system.debug("Repository: load content of \(endpoint.url) from cache")
             guard let content = value as? T else {
                 throw MachError(.failure)
@@ -29,7 +29,7 @@ struct Repository {
         } else {
             Logger.system.debug("Repository: load content of \(endpoint.url) from API")
             let content: T = try await apiClient.request(endpoint)
-            await cache.insert(content, forKey: endpoint.url.absoluteString)
+            cache.insert(content, forKey: endpoint.url.absoluteString)
             return content
         }
     }
