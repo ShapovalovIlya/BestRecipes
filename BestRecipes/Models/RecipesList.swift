@@ -34,10 +34,10 @@ struct RecipesList {
     }
     
     //MARK: - Sample
-    static let sample = Self(
-        trending: [.sample], 
-        selectedCategory: .breakfast,
-        category: [.sample],
-        recent:[.sample]
-    )
+//    static let sample = Self(
+//        trending: [.sample], 
+//        selectedCategory: .breakfast,
+//        category: [.sample],
+//        recent:[.sample]
+//    )
 }

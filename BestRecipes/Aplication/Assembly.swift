@@ -115,7 +115,7 @@ final class Assembly: AssemblyProtocol {
     
     //MARK: - Detail module
     func makeDetailViewController(recipe: Recipe) -> DetailViewController {
-        let presenter = DetailPresenter()
+        let presenter = DetailPresenter(recipe: recipe)
         let view = DetailView()
         let viewController = DetailViewController(
             presenter: presenter,

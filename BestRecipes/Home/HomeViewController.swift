@@ -40,6 +40,7 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         self.view = homeView
         homeView.frame = self.view.bounds
+        homeView.collectionView.delegate = self
         
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
@@ -51,8 +52,8 @@ final class HomeViewController: UIViewController {
         dataSource?.supplementaryViewProvider = makeHeaderRegistration().headerProvider
         homeView.searchBar.delegate = self
         
-  //      presenter.viewDidLoad()
-        recipesDidLoad(.sample)
+        presenter.viewDidLoad()
+//        recipesDidLoad(.sample)
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
@@ -75,15 +76,15 @@ final class HomeViewController: UIViewController {
 
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
-    func showLoading() {
+    @MainActor func showLoading() {
         homeView.isLoading(true)
     }
     
-    func dismissLoading() {
+    @MainActor func dismissLoading() {
         homeView.isLoading(false)
     }
     
-    func recipesDidLoad(_ recipes: RecipesList) {
+    @MainActor func recipesDidLoad(_ recipes: RecipesList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         snapshot.appendSections(Section.allCases)
@@ -101,7 +102,7 @@ extension HomeViewController: HomePresenterDelegate {
         )
         
         dataSource?.apply(snapshot)
-        homeView.isLoading(true)
+        homeView.isLoading(false)
     }
 }
 

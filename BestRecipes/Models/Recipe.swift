@@ -42,7 +42,7 @@ import Foundation
 /// Модель рецепта
 struct Recipe: Decodable, Hashable {
     /// Уникальный id рецепта
-    let id: String
+    let id: Int
     
     /// Заголовок рецепта
     let title: String
@@ -59,15 +59,36 @@ struct Recipe: Decodable, Hashable {
     /// Список ингредиентов в рецепте
     let extendedIngredients: [Ingredient]?
     
-    let readyInMinutes: Int
+    let readyInMinutes: Int?
     
-    static let sample = Self(
-        id: UUID().uuidString,
-        title: "title",
-        sourceName: "source name",
-        image: "image.com",
-        summary: "summary",
-        extendedIngredients: Ingredient.sample, 
-        readyInMinutes: 45
-    )
+//    static let sample = Self(
+//        id: 0,
+//        title: "title",
+//        sourceName: "source name",
+//        image: "image.com",
+//        summary: "summary",
+//        extendedIngredients: Ingredient.sample, 
+//        readyInMinutes: 45
+//    )
+    
+    enum CodingKeys: CodingKey {
+        case id
+        case title
+        case sourceName
+        case image
+        case summary
+        case extendedIngredients
+        case readyInMinutes
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decode(Int.self, forKey: .id)
+        self.title = try container.decode(String.self, forKey: .title)
+        self.sourceName = try container.decodeIfPresent(String.self, forKey: .sourceName)
+        self.image = try container.decode(String.self, forKey: .image)
+        self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
+        self.extendedIngredients = try container.decodeIfPresent([Ingredient].self, forKey: .extendedIngredients)
+        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
+    }
 }

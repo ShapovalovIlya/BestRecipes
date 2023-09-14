@@ -11,17 +11,19 @@ extension UIView {
     func addSubviews(_ subviews: UIView...) {
         subviews.forEach(addSubview)
     }
-  
-  static let loadingView = LoadingView()
-  
-  func isLoading(_ isLoading: Bool) {
-    if isLoading {
-      addSubview(UIView.loadingView)
-      UIView.loadingView.frame = bounds
-    } else {
-      UIView.loadingView.removeFromSuperview()
+    
+    static let loadingView = LoadingView()
+    
+    func isLoading(_ isLoading: Bool) {
+        Task {
+            await MainActor.run {
+                if isLoading {
+                    addSubview(UIView.loadingView)
+                    UIView.loadingView.frame = bounds
+                } else {
+                    UIView.loadingView.removeFromSuperview()
+                }
+            }
+        }
     }
-  }
-  
-  
 }

@@ -74,7 +74,7 @@ private extension RecipeCell {
             recipe.extendedIngredients?.count.description ?? "0",
             "ingredients",
             "|",
-            recipe.readyInMinutes.description,
+            (recipe.readyInMinutes ?? 0).description,
             "min"
         ].joined(separator: " ")
     }

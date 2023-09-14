@@ -19,15 +19,15 @@ protocol DetailPresenterDelegate: AnyObject {
 
 final class DetailPresenter: DetailPresenterProtocol {
     //MARK: - Private properties
+    var recipe: Recipe
     
     
     //MARK: - Public properties
     weak var delegate: DetailPresenterDelegate?
     
     //MARK: - init(_:)
-    init() {
-        
-        
+    init(recipe: Recipe) {
+        self.recipe = recipe
         Logger.system.debug("DetailPresenter: \(#function)")
     }
     
@@ -37,11 +37,10 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     //MARK: - Public methods
     func viewDidLoad() {
-        Logger.system.debug("DetailPresenter: \(#function)")
+        delegate?.recipeDidLoad(recipe)
     }
     
     func viewDidDisappear() {
         Logger.system.debug("DetailPresenter: \(#function)")
     }
-    
 }
