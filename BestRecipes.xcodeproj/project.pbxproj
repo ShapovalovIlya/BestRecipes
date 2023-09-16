@@ -15,6 +15,7 @@
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		86405BAC2AB6408C00636C2B /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAB2AB6408C00636C2B /* Int+.swift */; };
 		86405BAE2AB6443900636C2B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAD2AB6443900636C2B /* CategoryCell.swift */; };
+		86405BB02AB6627900636C2B /* FavoriteRecipesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -73,6 +74,7 @@
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		86405BAB2AB6408C00636C2B /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		86405BAD2AB6443900636C2B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesManager.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				869C6E8F2A9BB14100F4861F /* Endpoint.swift */,
 				865DA7582AA97823009CA2EA /* Cache.swift */,
 				86F0DC842AAD0D26004E80C2 /* Repository.swift */,
+				86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
 				865DA7842AAB3193009CA2EA /* RecipeCategoryCell.swift in Sources */,
+				86405BB02AB6627900636C2B /* FavoriteRecipesManager.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,

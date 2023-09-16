@@ -93,7 +93,7 @@ final class Assembly: AssemblyProtocol {
   func makeFavoritesRouter() -> FavoritesRouterProtocol {
     let navigationController = UINavigationController()
     navigationController.tabBarItem = .init(title: nil, image: .bookmarkImage, tag: 1)
-    navigationController.tabBarItem.selectedImage = .bookmarkTabSelected
+    navigationController.tabBarItem.selectedImage = .bookmarkSelected
     let router = FavoritesRouter(
       navigationController: navigationController,
       assembly: self
