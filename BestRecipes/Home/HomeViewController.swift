@@ -115,7 +115,9 @@ extension HomeViewController: HomePresenterDelegate {
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        if Section(rawValue: indexPath.section) != .categoryButtons {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
         presenter.didSelectReceipt(at: indexPath)
     }
 }
@@ -191,8 +193,9 @@ private extension HomeViewController {
     }
     
     func makeCategoryButtonCellRegistration() -> UICollectionView.CellRegistration<CategoryCell, MealType> {
-        .init { cell, _, category in
+        .init { [selectedCategory = presenter.selectedCategory] cell, _, category in
             cell.configure(with: category)
+            cell.isSelected = selectedCategory == category
         }
     }
     

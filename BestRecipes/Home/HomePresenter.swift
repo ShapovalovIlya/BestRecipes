@@ -10,9 +10,12 @@ import OSLog
 
 //MARK: - HomePresenterProtocol
 protocol HomePresenterProtocol: AnyObject {
+    var selectedCategory: MealType { get }
+    
     func viewDidLoad()
     func viewDidDisappear()
     func didSelectReceipt(at indexPath: IndexPath)
+    func addToFavorite(recipe: Recipe)
 }
 
 //MARK: - HomePresenterDelegate
@@ -52,15 +55,7 @@ final class HomePresenter: HomePresenterProtocol {
     
     //MARK: - Public methods
     func viewDidLoad() {
-        self.delegate?.showLoading()
-        Task {
-            do {
-                recipeList = try await getRecipeList(category: selectedCategory)
-                delegate?.recipesDidLoad(recipeList)
-            } catch {
-                delegate?.dismissLoading()
-            }
-        }
+        performRecipeRequest()
     }
     
     func viewDidDisappear() {
@@ -76,6 +71,7 @@ final class HomePresenter: HomePresenterProtocol {
             
         case .categoryButtons:
             selectedCategory = MealType.allCases[indexPath.item]
+            performRecipeRequest()
             return
             
         case .categoryRecipes:
@@ -90,6 +86,10 @@ final class HomePresenter: HomePresenterProtocol {
         router.showDetail(recipe: recipe)
     }
     
+    func addToFavorite(recipe: Recipe) {
+        print(#function)
+    }
+    
     
 }
 
@@ -101,6 +101,23 @@ private extension HomePresenter {
     }
     
     //MARK: - Private methods
+    func performRecipeRequest() {
+        Task(priority: .userInitiated) {
+            do {
+                recipeList = try await getRecipeList(category: selectedCategory)
+                delegate?.recipesDidLoad(recipeList)
+            } catch {
+                delegate?.dismissLoading()
+            }
+        }
+    }
+    
+    func makeTaskRequest(category: MealType) -> Task<RecipesList, Error> {
+        Task(priority: .userInitiated) {
+            try await getRecipeList(category: category)
+        }
+    }
+    
     func getRecipeList(category: MealType) async throws -> RecipesList {
         try await withThrowingTaskGroup(
             of: Section.self,
