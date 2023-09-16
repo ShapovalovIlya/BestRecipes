@@ -36,10 +36,12 @@ final class TabBarController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let onboarding = OnboardingViewController()
-        onboarding.modalPresentationStyle = .automatic
-        onboarding.modalTransitionStyle = .coverVertical
-        self.present(onboarding, animated: true)
+        if !UserDefaults().bool(forKey: "isOnboarded") {
+            let onboarding = OnboardingViewController()
+            onboarding.modalPresentationStyle = .automatic
+            onboarding.modalTransitionStyle = .coverVertical
+            self.present(onboarding, animated: true)
+        }
     }
     
     //MARK: - Public methods
