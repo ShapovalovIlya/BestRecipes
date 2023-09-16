@@ -65,6 +65,10 @@ final class IngredientCell: UICollectionViewCell {
 }
 
 private extension IngredientCell {
+    struct Drawing {
+        static let offset: CGFloat = 10
+    }
+    
     //MARK: - Private methods
     func combineMassLabel(from ingredient: Ingredient) -> String {
         [
@@ -89,16 +93,16 @@ private extension IngredientCell {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            foodImage.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            foodImage.topAnchor.constraint(equalTo: contentView.topAnchor),
-            foodImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            foodImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.offset),
+            foodImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            foodImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
             foodImage.widthAnchor.constraint(equalTo: foodImage.heightAnchor),
             
-            nameLabel.leftAnchor.constraint(equalTo: foodImage.rightAnchor, constant: 10),
-            nameLabel.centerXAnchor.constraint(equalTo: foodImage.centerXAnchor),
+            nameLabel.leftAnchor.constraint(equalTo: foodImage.rightAnchor, constant: Drawing.offset),
+            nameLabel.centerYAnchor.constraint(equalTo: foodImage.centerYAnchor),
             
-            massLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            massLabel.centerXAnchor.constraint(equalTo: foodImage.centerXAnchor)
+            massLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.offset),
+            massLabel.centerYAnchor.constraint(equalTo: foodImage.centerYAnchor)
         ])
     }
 }

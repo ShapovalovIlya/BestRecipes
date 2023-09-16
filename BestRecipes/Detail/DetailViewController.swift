@@ -50,7 +50,6 @@ final class DetailViewController: UIViewController {
         detailView.collectionView.dataSource = dataSource
         
         presenter.viewDidLoad()
-//        recipeDidLoad(Recipe.sample)
         
         Logger.viewCycle.debug("DetailViewController: \(#function)")
     }
@@ -66,6 +65,8 @@ final class DetailViewController: UIViewController {
 
 extension DetailViewController: DetailPresenterDelegate {
     func recipeDidLoad(_ recipe: Recipe) {
+        detailView.titleLabel.text = recipe.title
+        
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(
@@ -73,7 +74,7 @@ extension DetailViewController: DetailPresenterDelegate {
             toSection: .title
         )
         snapshot.appendItems(
-            [Item.summary(recipe.summary)],
+            [Item.summary(recipe)],
             toSection: .summary
         )
 
@@ -97,7 +98,7 @@ extension DetailViewController {
     //MARK: - Item
     enum Item: Hashable {
         case title(Recipe)
-        case summary(String?)
+        case summary(Recipe)
         case ingredient(Ingredient)
     }
 }
@@ -105,23 +106,50 @@ extension DetailViewController {
 private extension DetailViewController {
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        UICollectionViewDiffableDataSource(
-            collectionView: detailView.collectionView,
-            cellProvider: makeCellRegistration().cellProvider
-        )
+        let ingredientRegistration = makeIngredientCellRegistration()
+        let titleRegistration = makeTitleRegistration()
+        let summaryRegistration = makeSummaryRegistration()
+        
+        return .init(collectionView: detailView.collectionView) { collectionView, indexPath, item in
+            switch item {
+            case let .title(recipe):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: titleRegistration,
+                    for: indexPath,
+                    item: recipe
+                )
+            case let .summary(text):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: summaryRegistration,
+                    for: indexPath,
+                    item: text
+                )
+                
+            case let .ingredient(ingredient):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: ingredientRegistration,
+                    for: indexPath,
+                    item: ingredient
+                )
+            }
+        }
     }
     
-//    func makeTitleRegistration() -> UICollectionView.CellRegistration {
-//        
-//    }
-//    
-//    func makeSummaryRegistration() -> UICollectionView.CellRegistration {
-//        
-//    }
+    func makeTitleRegistration() -> UICollectionView.CellRegistration<RecipeTitleCell, Recipe> {
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
+        }
+    }
     
-    func makeCellRegistration() -> UICollectionView.CellRegistration<UICollectionViewCell, Item> {
-        .init { cell, indexPath, item in
-            cell.backgroundColor = .systemPink
+    func makeSummaryRegistration() -> UICollectionView.CellRegistration<RecipeSummaryCell, Recipe> {
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
+        }
+    }
+    
+    func makeIngredientCellRegistration() -> UICollectionView.CellRegistration<IngredientCell, Ingredient> {
+        .init { cell, _, ingredient in
+     //       cell.configure(with: ingredient)
         }
     }
     
@@ -159,36 +187,3 @@ extension UICollectionView.CellRegistration<UICollectionViewCell, DetailViewCont
         }
     }
 }
-
-//private extension UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-//    var headerProvider: (UICollectionView, String, IndexPath) -> TitleSupplementaryView {
-//        return { collectionView, kind, indexPath in
-//            collectionView.dequeueConfiguredReusableSupplementary(
-//                using: self,
-//                for: indexPath
-//            )
-//        }
-//    }
-//}
-
-////  MARK: - Show Canvas
-//import SwiftUI
-//
-//struct ContentViewController: UIViewControllerRepresentable {
-//    
-//    typealias UIViewControllerType = DetailViewController
-//    
-//    func makeUIViewController(context: Context) -> UIViewControllerType {
-//        return DetailViewController(detailView: DetailView())
-//    }
-//    
-//    func updateUIViewController(_ uiViewController: DetailViewController, context: Context) {}
-//}
-//
-//struct ContentViewController_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentViewController()
-//            .edgesIgnoringSafeArea(.all)
-//            .colorScheme(.light) // or .dark
-//    }
-//}

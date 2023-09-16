@@ -9,9 +9,15 @@ import UIKit
 
 protocol DetailViewProtocol: UIView {
     var collectionView: UICollectionView { get }
+    var titleLabel: UILabel { get }
 }
 
 final class DetailView: UIView, DetailViewProtocol {
+    let titleLabel: UILabel = .makeLabel(
+        font: .titleHeading,
+        color: .black,
+        numberOfLines: 2
+    )
     let collectionView: UICollectionView = makeCollectionView()
     
     // MARK: - init
@@ -19,7 +25,10 @@ final class DetailView: UIView, DetailViewProtocol {
         super.init(frame: frame)
         
         backgroundColor = .white
-        addSubview(collectionView)
+        addSubviews(
+            titleLabel,
+            collectionView
+        )
     }
     
     @available(*, unavailable)
@@ -31,7 +40,7 @@ final class DetailView: UIView, DetailViewProtocol {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        collectionView.frame = bounds
+        setConstraints()
     }
 }
 
@@ -49,6 +58,8 @@ private extension DetailView {
             collectionViewLayout: makeCollectionViewLayout()
         )
         collectionView.backgroundColor = .white
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }
     
@@ -150,7 +161,7 @@ private extension DetailView {
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
         ))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         // Each group then contains just a single item, and fills
         // the entire available width, while defining a fixed
@@ -177,5 +188,19 @@ private extension DetailView {
         )
         section.boundarySupplementaryItems = [sectionHeader]
         return section
+    }
+    
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            titleLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 10),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            titleLabel.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: -10),
+            titleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1),
+            
+            collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            collectionView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 }

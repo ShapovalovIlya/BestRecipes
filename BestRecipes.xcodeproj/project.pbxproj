@@ -16,6 +16,8 @@
 		86405BAC2AB6408C00636C2B /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAB2AB6408C00636C2B /* Int+.swift */; };
 		86405BAE2AB6443900636C2B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAD2AB6443900636C2B /* CategoryCell.swift */; };
 		86405BB02AB6627900636C2B /* FavoriteRecipesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */; };
+		86405BB22AB66D9900636C2B /* RecipeTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BB12AB66D9900636C2B /* RecipeTitleCell.swift */; };
+		86405BB42AB6705C00636C2B /* RecipeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BB32AB6705C00636C2B /* RecipeSummaryCell.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -75,6 +77,8 @@
 		86405BAB2AB6408C00636C2B /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		86405BAD2AB6443900636C2B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesManager.swift; sourceTree = "<group>"; };
+		86405BB12AB66D9900636C2B /* RecipeTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTitleCell.swift; sourceTree = "<group>"; };
+		86405BB32AB6705C00636C2B /* RecipeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSummaryCell.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -310,6 +314,8 @@
 				865DA7802AAB3192009CA2EA /* RecipeCategoryCell.swift */,
 				865DA7822AAB3192009CA2EA /* RecentRecipeCell.swift */,
 				866FB8852AAB8E7D005CAD0D /* RecipeCell.swift */,
+				86405BB12AB66D9900636C2B /* RecipeTitleCell.swift */,
+				86405BB32AB6705C00636C2B /* RecipeSummaryCell.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -432,6 +438,7 @@
 				865DA7842AAB3193009CA2EA /* RecipeCategoryCell.swift in Sources */,
 				86405BB02AB6627900636C2B /* FavoriteRecipesManager.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
+				86405BB22AB66D9900636C2B /* RecipeTitleCell.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
@@ -454,6 +461,7 @@
 				684FCF622AB48ECF00D83CA3 /* DiscoverViewController.swift in Sources */,
 				866FB88C2AABB3BA005CAD0D /* NSCollectionLayoutSize+.swift in Sources */,
 				869C6E662A9B3A3700F4861F /* UIColor+.swift in Sources */,
+				86405BB42AB6705C00636C2B /* RecipeSummaryCell.swift in Sources */,
 				865DA7512AA8F543009CA2EA /* DetailPresenter.swift in Sources */,
 				866FB8882AAB9923005CAD0D /* UILabel+.swift in Sources */,
 				865DA7432AA87CC9009CA2EA /* HeaderView.swift in Sources */,
