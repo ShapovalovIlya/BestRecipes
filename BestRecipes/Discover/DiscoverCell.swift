@@ -48,9 +48,9 @@ class DiscoverCell: UICollectionViewCell {
     ])
   }
   
-  func configure(with recipe: Int) {
+  func configure(with recipe: Recipe) {
     //backImage.image = UIImage(systemName: recipe.imageName)
-    textLabel.text = recipe.description
+    textLabel.text = recipe.title
   }
   
   required init?(coder: NSCoder) {

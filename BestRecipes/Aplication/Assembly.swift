@@ -17,7 +17,8 @@ protocol RootAssembly {
 }
 
 protocol FavoritesAssembly {
-    
+  func makeDiscoverViewController(router: FavoritesRouterProtocol) -> DiscoverViewController
+  func makeDetailViewController(recipe: Recipe) -> DetailViewController
 }
 
 protocol HomeAssembly {
@@ -70,17 +71,37 @@ final class Assembly: AssemblyProtocol {
     }
     
     //MARK: - Favorite module
-    func makeFavoritesRouter() -> FavoritesRouterProtocol {
-        let navigationController = UINavigationController()
-        navigationController.tabBarItem = .init(title: nil, image: .bookmarkImage, tag: 1)
-        navigationController.tabBarItem.selectedImage = .bookmarkTabSelected
-        let router = FavoritesRouter(
-            navigationController: navigationController,
-            assembly: self
-        )
-        router.setupInitial()
-        return router
-    }
+  func makeDiscoverViewController(router: FavoritesRouterProtocol) -> DiscoverViewController {
+    let presenter = DiscoverPresenter(
+      router: router,
+      recipeRequest: {[.sample]}
+    )
+    
+    let view = DiscoverView()
+    
+    let viewController = DiscoverViewController(
+      discoverView: view,
+      presenter: presenter
+    )
+    
+    presenter.delegate = viewController
+    
+    return viewController
+  }
+ 
+   
+  func makeFavoritesRouter() -> FavoritesRouterProtocol {
+    let navigationController = UINavigationController()
+    navigationController.tabBarItem = .init(title: nil, image: .bookmarkImage, tag: 1)
+    navigationController.tabBarItem.selectedImage = .bookmarkTabSelected
+    let router = FavoritesRouter(
+      navigationController: navigationController,
+      assembly: self
+    )
+    router.setupInitial()
+    return router
+  }
+  
     
     func makeTabbar() -> TabBarController {
         let tabbar = TabBarController()

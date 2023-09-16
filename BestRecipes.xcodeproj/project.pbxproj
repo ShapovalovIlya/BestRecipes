@@ -11,8 +11,9 @@
 		684FCF612AB48ECF00D83CA3 /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */; };
 		684FCF622AB48ECF00D83CA3 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */; };
 		684FCF632AB48ECF00D83CA3 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */; };
+		684FCF652AB491A900D83CA3 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */; };
+		684FCF672AB494D400D83CA3 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
-		865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -59,9 +60,6 @@
 		869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869C6E9A2A9E2CE600F4861F /* Secret.swift */; };
 		86B3D0422AA534FA009BF738 /* MealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0412AA534FA009BF738 /* MealType.swift */; };
 		86B3D0442AA541BE009BF738 /* RecipeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B3D0432AA541BE009BF738 /* RecipeResponse.swift */; };
-		86F0DC812AAD0842004E80C2 /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0DC7E2AAD0842004E80C2 /* DiscoverCell.swift */; };
-		86F0DC822AAD0842004E80C2 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0DC7F2AAD0842004E80C2 /* DiscoverViewController.swift */; };
-		86F0DC832AAD0842004E80C2 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0DC802AAD0842004E80C2 /* DiscoverView.swift */; };
 		86F0DC852AAD0D26004E80C2 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F0DC842AAD0D26004E80C2 /* Repository.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,8 +68,9 @@
 		684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
+		684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
+		684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
-		865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -119,9 +118,6 @@
 		869C6E9A2A9E2CE600F4861F /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		86B3D0412AA534FA009BF738 /* MealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealType.swift; sourceTree = "<group>"; };
 		86B3D0432AA541BE009BF738 /* RecipeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeResponse.swift; sourceTree = "<group>"; };
-		86F0DC7E2AAD0842004E80C2 /* DiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
-		86F0DC7F2AAD0842004E80C2 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
-		86F0DC802AAD0842004E80C2 /* DiscoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		86F0DC842AAD0D26004E80C2 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -151,6 +147,8 @@
 				684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */,
 				684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */,
 				684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */,
+				684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */,
+				684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -205,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				684FCF5D2AB48ECE00D83CA3 /* Discover */,
-				86F0DC7D2AAD0842004E80C2 /* Favorites */,
 				682E5AFE2AACFFCB00F584AF /* LoadView */,
 				865DA7532AA96B70009CA2EA /* Profile */,
 				865DA7372AA87CC9009CA2EA /* Detail */,
@@ -325,17 +322,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		86F0DC7D2AAD0842004E80C2 /* Favorites */ = {
-			isa = PBXGroup;
-			children = (
-				865DA7302AA87B9E009CA2EA /* FavoritesRouter.swift */,
-				86F0DC7E2AAD0842004E80C2 /* DiscoverCell.swift */,
-				86F0DC7F2AAD0842004E80C2 /* DiscoverViewController.swift */,
-				86F0DC802AAD0842004E80C2 /* DiscoverView.swift */,
-			);
-			path = Favorites;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -430,21 +416,20 @@
 				682E5B002AACFFCB00F584AF /* LoadingView.swift in Sources */,
 				86F0DC852AAD0D26004E80C2 /* Repository.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
-				86F0DC812AAD0842004E80C2 /* DiscoverCell.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
 				865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */,
 				865DA74D2AA89B82009CA2EA /* UIView+.swift in Sources */,
 				869C6E782A9B67A900F4861F /* OnboardingViewController.swift in Sources */,
-				86F0DC822AAD0842004E80C2 /* DiscoverViewController.swift in Sources */,
 				869C6E542A9B390800F4861F /* SceneDelegate.swift in Sources */,
 				865DA7842AAB3193009CA2EA /* RecipeCategoryCell.swift in Sources */,
 				869C6E992A9D2B8500F4861F /* Ingredient.swift in Sources */,
-				86F0DC832AAD0842004E80C2 /* DiscoverView.swift in Sources */,
 				869C6E8A2A9B717200F4861F /* Recipe.swift in Sources */,
 				8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */,
 				869C6E872A9B6F4100F4861F /* HomeRouter.swift in Sources */,
 				869C6E972A9D2B6F00F4861F /* Amount.swift in Sources */,
+				684FCF652AB491A900D83CA3 /* DiscoverPresenter.swift in Sources */,
+				684FCF672AB494D400D83CA3 /* FavoritesRouter.swift in Sources */,
 				866FB88A2AABA10E005CAD0D /* IngredientCell.swift in Sources */,
 				869C6E852A9B694800F4861F /* HomePresenter.swift in Sources */,
 				869C6E952A9D1C2D00F4861F /* Autocomplete.swift in Sources */,
@@ -454,7 +439,6 @@
 				865DA7892AAB3F2E009CA2EA /* UIFont+.swift in Sources */,
 				684FCF632AB48ECF00D83CA3 /* DiscoverView.swift in Sources */,
 				865DA7572AA96B71009CA2EA /* ProfileViewController.swift in Sources */,
-				865DA7312AA87B9F009CA2EA /* FavoritesRouter.swift in Sources */,
 				869C6E9B2A9E2CE600F4861F /* Secret.swift in Sources */,
 				865DA7452AA884A6009CA2EA /* OSLog+.swift in Sources */,
 				869C6E902A9BB14100F4861F /* Endpoint.swift in Sources */,

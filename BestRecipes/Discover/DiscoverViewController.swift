@@ -14,10 +14,13 @@ enum Section {
 
 class DiscoverViewController: UIViewController {
   private let discoverView: DiscoverViewProtocol
+  private let presenter: DiscoverPresenterProtocol
   private lazy var dataSource = makeDataSource()
   
-  init(discoverView: DiscoverViewProtocol) {
+  
+  init(discoverView: DiscoverViewProtocol, presenter: DiscoverPresenterProtocol) {
     self.discoverView = discoverView
+    self.presenter = presenter
     super.init(nibName: nil, bundle: nil)
   }
   
@@ -31,11 +34,12 @@ class DiscoverViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    discoverView.collectionView.delegate = self
     discoverView.collectionView.dataSource = dataSource
-    productListDidLoad(Array(1...10))
+    presenter.viewDidLoad()
   }
 
-  func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Int> {
+  func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Recipe> {
     UICollectionViewDiffableDataSource(
       collectionView: discoverView.collectionView,
       cellProvider: makeCellRegistration().cellProvider
@@ -43,14 +47,29 @@ class DiscoverViewController: UIViewController {
   }
 }
 
+extension DiscoverViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    collectionView.deselectItem(at: indexPath, animated: true)
+    presenter.didSelectRecipe(at: indexPath.item)
+  }
+}
+
+extension DiscoverViewController: DiscoverPresenterDelegate {
+  func recipesDidLoad(_ recipes: [Recipe]) {
+    var snapshot = NSDiffableDataSourceSnapshot<Section, Recipe>()
+    snapshot.appendSections([.main])
+    snapshot.appendItems(recipes)
+    dataSource.apply(snapshot)
+  }
+}
+
 private extension DiscoverViewController {
-  typealias Cell = DiscoverCell
-  typealias CellRegistration = UICollectionView.CellRegistration<Cell, Int>
+  typealias Cell = TrendingRecipeCell
+  typealias CellRegistration = UICollectionView.CellRegistration<Cell, Recipe>
   
   func makeCellRegistration() -> CellRegistration {
-    CellRegistration { cell, indexPath, number in
-      cell.configure(with: number)
-      cell.backgroundColor = .green
+    CellRegistration { cell, indexPath, recipe in
+      cell.configure(with: recipe)
     }
   }
 }
@@ -67,31 +86,27 @@ private extension UICollectionView.CellRegistration {
   }
 }
 
-private extension DiscoverViewController {
-  func productListDidLoad(_ list: [Int]) {
-    var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
-    snapshot.appendSections([.main])
-    snapshot.appendItems(list)
-    dataSource.apply(snapshot)
-  }
-}
+
 
 //  MARK: - Show Canvas
-struct ContentViewController: UIViewControllerRepresentable {
-  
-  typealias UIViewControllerType = DiscoverViewController
-  
-  func makeUIViewController(context: Context) -> UIViewControllerType {
-    return DiscoverViewController(discoverView: DiscoverView())
-  }
-  
-  func updateUIViewController(_ uiViewController: DiscoverViewController, context: Context) {}
-}
-
-struct ContentViewController_Previews: PreviewProvider {
-  static var previews: some View {
-    ContentViewController()
-      .edgesIgnoringSafeArea(.all)
-      .colorScheme(.light) // or .dark
-  }
-}
+/*
+ 
+ struct ContentViewController: UIViewControllerRepresentable {
+ 
+ typealias UIViewControllerType = DiscoverViewController
+ 
+ func makeUIViewController(context: Context) -> UIViewControllerType {
+ return DiscoverViewController(discoverView: DiscoverView(), presenter: <#DiscoverPresenterProtocol#>)
+ }
+ 
+ func updateUIViewController(_ uiViewController: DiscoverViewController, context: Context) {}
+ }
+ 
+ struct ContentViewController_Previews: PreviewProvider {
+ static var previews: some View {
+ ContentViewController()
+ .edgesIgnoringSafeArea(.all)
+ .colorScheme(.light) // or .dark
+ }
+ }
+ */
