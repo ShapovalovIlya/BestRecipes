@@ -8,6 +8,7 @@
 import Foundation
 import OSLog
 
+// MARK: - DiscoverPresenterProtocol
 protocol DiscoverPresenterProtocol: AnyObject {
   func viewDidLoad()
   func willDisplayCell(at index: Int)
@@ -15,6 +16,7 @@ protocol DiscoverPresenterProtocol: AnyObject {
   func didSelectRecipe(at index: Int)
 }
 
+// MARK: - DiscoverPresenterDelegate
 protocol DiscoverPresenterDelegate: AnyObject {
   func recipesDidLoad(_ recipes: [Recipe])
 }
@@ -39,13 +41,14 @@ final class DiscoverPresenter: DiscoverPresenterProtocol {
       self.recipeRequest = recipeRequest
     }
   
+  // MARK: - Public methods
   func viewDidLoad() {
     let recipeOne = Recipe(id: "Hello", title: "One", sourceName: nil, image: "Hello", summary: nil, extendedIngredients: nil, readyInMinutes: 5)
     let recipeTwo = Recipe(id: "Hello", title: "Two", sourceName: nil, image: "Hello", summary: nil, extendedIngredients: nil, readyInMinutes: 5)
     let recipeThree = Recipe(id: "Hello", title: "Three", sourceName: nil, image: "Hello", summary: nil, extendedIngredients: nil, readyInMinutes: 5)
     
     recipes = [recipeOne, recipeTwo, recipeThree]
-    delegate?.recipesDidLoad([recipeOne, recipeTwo, recipeThree])
+    delegate?.recipesDidLoad(recipes)
   }
   
   func willDisplayCell(at index: Int) {

@@ -49,7 +49,6 @@ final class HomeView: UIView, HomeViewProtocol, UISearchTextFieldDelegate {
     //MARK: - Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         titleLabel.text = "Get amazing recipes for cooking"
         setupConstraints()
     }

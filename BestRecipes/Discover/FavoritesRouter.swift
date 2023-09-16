@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - FavoritesRouterProtocol
 protocol FavoritesRouterProtocol {
   var navigationController: UINavigationController { get }
   func showDetail(recipe: Recipe)
@@ -15,9 +16,11 @@ protocol FavoritesRouterProtocol {
 final class FavoritesRouter: FavoritesRouterProtocol {
   // MARK: Public Properties
   let navigationController: UINavigationController
+  
   // MARK: Private Properties
   private let assembly: FavoritesAssembly
   
+  // MARK: - init(_:)
   init(
     navigationController: UINavigationController,
     assembly: FavoritesAssembly
@@ -34,6 +37,6 @@ final class FavoritesRouter: FavoritesRouterProtocol {
   
   func showDetail(recipe: Recipe) {
     let detailViewController = assembly.makeDetailViewController(recipe: recipe)
-      navigationController.pushViewController(detailViewController, animated: true)
+    navigationController.pushViewController(detailViewController, animated: true)
   }
 }

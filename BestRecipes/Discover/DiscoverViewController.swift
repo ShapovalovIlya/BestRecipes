@@ -6,28 +6,33 @@
 //
 
 import UIKit
-import SwiftUI
 
 enum Section {
   case main
 }
 
 class DiscoverViewController: UIViewController {
+  // MARK: - Private properties
   private let discoverView: DiscoverViewProtocol
   private let presenter: DiscoverPresenterProtocol
   private lazy var dataSource = makeDataSource()
   
-  
-  init(discoverView: DiscoverViewProtocol, presenter: DiscoverPresenterProtocol) {
+  // MARK: - init(_:)
+  init(
+    discoverView: DiscoverViewProtocol,
+    presenter: DiscoverPresenterProtocol
+  ) {
     self.discoverView = discoverView
     self.presenter = presenter
     super.init(nibName: nil, bundle: nil)
   }
   
+  @available(*, unavailable)
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - Life Cycle
   override func loadView() {
     self.view = discoverView
   }
@@ -47,6 +52,7 @@ class DiscoverViewController: UIViewController {
   }
 }
 
+// MARK: - UICollectionViewDelegate
 extension DiscoverViewController: UICollectionViewDelegate {
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     collectionView.deselectItem(at: indexPath, animated: true)
@@ -54,6 +60,7 @@ extension DiscoverViewController: UICollectionViewDelegate {
   }
 }
 
+// MARK: - DiscoverPresenterDelegate
 extension DiscoverViewController: DiscoverPresenterDelegate {
   func recipesDidLoad(_ recipes: [Recipe]) {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Recipe>()
@@ -86,27 +93,3 @@ private extension UICollectionView.CellRegistration {
   }
 }
 
-
-
-//  MARK: - Show Canvas
-/*
- 
- struct ContentViewController: UIViewControllerRepresentable {
- 
- typealias UIViewControllerType = DiscoverViewController
- 
- func makeUIViewController(context: Context) -> UIViewControllerType {
- return DiscoverViewController(discoverView: DiscoverView(), presenter: <#DiscoverPresenterProtocol#>)
- }
- 
- func updateUIViewController(_ uiViewController: DiscoverViewController, context: Context) {}
- }
- 
- struct ContentViewController_Previews: PreviewProvider {
- static var previews: some View {
- ContentViewController()
- .edgesIgnoringSafeArea(.all)
- .colorScheme(.light) // or .dark
- }
- }
- */

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		682E5B002AACFFCB00F584AF /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682E5AFF2AACFFCB00F584AF /* LoadingView.swift */; };
-		684FCF612AB48ECF00D83CA3 /* DiscoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */; };
 		684FCF622AB48ECF00D83CA3 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */; };
 		684FCF632AB48ECF00D83CA3 /* DiscoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */; };
 		684FCF652AB491A900D83CA3 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */; };
@@ -65,7 +64,6 @@
 
 /* Begin PBXFileReference section */
 		682E5AFF2AACFFCB00F584AF /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverCell.swift; sourceTree = "<group>"; };
 		684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverView.swift; sourceTree = "<group>"; };
 		684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
@@ -144,7 +142,6 @@
 		684FCF5D2AB48ECE00D83CA3 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
-				684FCF5E2AB48ECE00D83CA3 /* DiscoverCell.swift */,
 				684FCF5F2AB48ECE00D83CA3 /* DiscoverViewController.swift */,
 				684FCF602AB48ECE00D83CA3 /* DiscoverView.swift */,
 				684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */,
@@ -405,7 +402,6 @@
 				865DA78B2AAB48C3009CA2EA /* UIStackView+.swift in Sources */,
 				866FB8902AABCE32005CAD0D /* UIButton+.swift in Sources */,
 				866FB8862AAB8E7D005CAD0D /* RecipeCell.swift in Sources */,
-				684FCF612AB48ECF00D83CA3 /* DiscoverCell.swift in Sources */,
 				865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
