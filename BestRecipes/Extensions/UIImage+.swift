@@ -21,6 +21,7 @@ extension UIImage {
     static let profileTab: UIImage? = .init(named: "profile")
     static let profileTabSelected: UIImage? = .init(named: "profile_selected")
     static let burgerButtonImage: UIImage? = .init(named: "burgerBtn.png")
-    static let starImage: UIImage? = .init(named: "Star")
+    //static let heartImage: UIImage? = .init(named: "heart")
+    static let heartImage: UIImage? = .init(systemName: "heart")
     static let rightArrow: UIImage? = .init(named: "Arrow-Right")
 }

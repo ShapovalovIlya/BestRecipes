@@ -78,7 +78,20 @@ final class TrendingRecipeCell: UICollectionViewCell {
         creatorImage.image = UIImage(named: "creator")
         recipeTitle.text = "How to sharwama at home"
         creatorLabel.text = "By Zeelicious foods"
-        ratingButton.setTitle("4.5", for: .normal)
+        ratingButton.setTitle(setCountLikes(count: 100), for: .normal)
+    }
+    
+    func setCountLikes(count: Float)->String{
+        switch count {
+        case 0...99:
+            return "\(String(format: "%.0f", count))"
+        case 100...9999:
+            return "\(String(format: "%.1f", count/1000))K"
+        case 10000... :
+            return ">10K"
+        default:
+           return "0"
+        }
     }
     
 }
@@ -149,10 +162,11 @@ private extension TrendingRecipeCell {
     
     static func makeRatingButton() -> UIButton {
         var configuration = UIButton.Configuration.gray()
-        configuration.image = .starImage
+        configuration.image = .heartImage
         configuration.imagePlacement = .leading
         configuration.baseBackgroundColor = .lightGray
         configuration.imagePadding = 5
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 12) //fix
         let button = UIButton(configuration: configuration)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
