@@ -10,7 +10,7 @@ import OSLog
 
 // MARK: - DiscoverPresenterProtocol
 protocol DiscoverPresenterProtocol: AnyObject {
-    func viewDidLoad()
+    func viewWillAppear()
     func willDisplayCell(at index: Int)
     func viewDidDisappear()
     func didSelectRecipe(at index: Int)
@@ -42,7 +42,7 @@ final class DiscoverPresenter: DiscoverPresenterProtocol {
     }
     
     // MARK: - Public methods
-    func viewDidLoad() {
+    func viewWillAppear() {
         recipes = recipeRequest()
         delegate?.recipesDidLoad(recipes)
     }

@@ -38,7 +38,12 @@ class DiscoverViewController: UIViewController {
         
         discoverView.collectionView.delegate = self
         discoverView.collectionView.dataSource = dataSource
-        presenter.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.viewWillAppear()
     }
     
 }
