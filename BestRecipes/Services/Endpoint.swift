@@ -47,7 +47,7 @@ struct Endpoint {
     }
     
     //MARK: - Public methods
-    static func getRecipeInfo(id: String) -> Self {
+    static func getRecipeInfo(id: Int) -> Self {
         .init(
             method: .GET,
             path: "/recipes/\(id)/information",

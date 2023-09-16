@@ -32,6 +32,7 @@ final class HomePresenter: HomePresenterProtocol {
     
     //MARK: - Public properties
     weak var delegate: HomePresenterDelegate?
+    private(set) var selectedCategory: MealType = .breakfast
     
     //MARK: - init(_:)
     init(
@@ -54,10 +55,10 @@ final class HomePresenter: HomePresenterProtocol {
         self.delegate?.showLoading()
         Task {
             do {
-                self.recipeList = try await getRecipeList(category: recipeList.selectedCategory)
-                self.delegate?.recipesDidLoad(recipeList)
+                recipeList = try await getRecipeList(category: selectedCategory)
+                delegate?.recipesDidLoad(recipeList)
             } catch {
-                self.delegate?.dismissLoading()
+                delegate?.dismissLoading()
             }
         }
     }

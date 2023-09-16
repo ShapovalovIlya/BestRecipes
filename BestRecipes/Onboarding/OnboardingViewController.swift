@@ -372,5 +372,6 @@ class OnboardingViewController: UIViewController {
     
     @objc func didTapCloseScreen() {
         dismiss(animated: true)
+        UserDefaults().setValue(true, forKey: "isOnboarded")
     }
 }

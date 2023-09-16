@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class RecipeCategoryCell: UICollectionViewCell {
     let bookmarkButton: UIButton = .makeButtonBookmark()
@@ -68,7 +69,9 @@ final class RecipeCategoryCell: UICollectionViewCell {
     
     //MARK: - Public methods
     func configure(with recipe: Recipe) {
-        
+        categoryImage.kf.setImage(with: URL(string: recipe.image))
+        recipeTitle.text = recipe.title
+        timeTextLabel.text = recipe.readyInMinutes?.description.appending(" Mins")
     }
     
     func setupTest() {

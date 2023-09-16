@@ -125,10 +125,12 @@ private extension TrendingRecipeCell {
             recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             recipeTitle.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: Drawing.spacing),
             recipeTitle.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.contentMultiplier),
+            recipeTitle.rightAnchor.constraint(equalTo: burgerButton.leftAnchor, constant: 5),
             
             burgerButton.topAnchor.constraint(equalTo: recipeImageView.bottomAnchor, constant: Drawing.spacing),
             burgerButton.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             burgerButton.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: Drawing.contentMultiplier),
+            burgerButton.widthAnchor.constraint(equalTo: burgerButton.heightAnchor),
             
             creatorImage.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
             creatorImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),

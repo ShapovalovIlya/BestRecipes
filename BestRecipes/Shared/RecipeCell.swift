@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class RecipeCell: UICollectionViewCell {
     //MARK: - Private properties
@@ -87,7 +88,7 @@ private extension RecipeCell {
             recipe.extendedIngredients?.count.description ?? "0",
             "ingredients",
             "|",
-            recipe.readyInMinutes.description,
+            recipe.readyInMinutes?.description ?? "0",
             "min"
         ].joined(separator: " ")
     }

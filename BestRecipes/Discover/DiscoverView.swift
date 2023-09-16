@@ -14,6 +14,7 @@ protocol DiscoverViewProtocol: UIView {
 final class DiscoverView: UIView, DiscoverViewProtocol {
   var collectionView: UICollectionView = makeCollectionView()
   
+  // MARK: - init(_:)
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(collectionView)
@@ -24,14 +25,15 @@ final class DiscoverView: UIView, DiscoverViewProtocol {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - Lifecycle
   override func layoutSubviews() {
     super.layoutSubviews()
     collectionView.frame = bounds
   }
 }
 
+// MARK: - DiscoverView
 private extension DiscoverView {
-  
   static func makeCollectionView() -> UICollectionView {
     let collectionView = UICollectionView(
       frame: .zero,

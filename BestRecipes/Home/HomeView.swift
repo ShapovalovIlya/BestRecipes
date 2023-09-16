@@ -49,7 +49,6 @@ final class HomeView: UIView, HomeViewProtocol, UISearchTextFieldDelegate {
     //MARK: - Lifecycle
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         titleLabel.text = "Get amazing recipes for cooking"
         setupConstraints()
     }
@@ -179,7 +178,7 @@ private extension HomeView {
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(0.25)
+            heightDimension: .fractionalHeight(0.27)
         )
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: groupSize,
