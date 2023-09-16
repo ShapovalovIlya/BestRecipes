@@ -61,34 +61,37 @@ struct Recipe: Decodable, Hashable {
     
     let readyInMinutes: Int?
     
-//    static let sample = Self(
-//        id: 0,
-//        title: "title",
-//        sourceName: "source name",
-//        image: "image.com",
-//        summary: "summary",
-//        extendedIngredients: Ingredient.sample, 
-//        readyInMinutes: 45
-//    )
+    let aggregateLikes: Int
     
-    enum CodingKeys: CodingKey {
-        case id
-        case title
-        case sourceName
-        case image
-        case summary
-        case extendedIngredients
-        case readyInMinutes
-    }
+    static let sample = Self(
+        id: 716429,
+        title: "Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs",
+        sourceName: "Full Belly Sisters",
+        image: "https://spoonacular.com/recipeImages/716429-556x370.jpg",
+        summary: "You can never have too many main course recipes, so give Pasta with Garlic, Scallions, Cauliflower & Breadcrumbs a try.",
+        extendedIngredients: Ingredient.sample, 
+        readyInMinutes: 45,
+        aggregateLikes: 100
+    )
     
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.sourceName = try container.decodeIfPresent(String.self, forKey: .sourceName)
-        self.image = try container.decode(String.self, forKey: .image)
-        self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
-        self.extendedIngredients = try container.decodeIfPresent([Ingredient].self, forKey: .extendedIngredients)
-        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
-    }
+//    enum CodingKeys: CodingKey {
+//        case id
+//        case title
+//        case sourceName
+//        case image
+//        case summary
+//        case extendedIngredients
+//        case readyInMinutes
+//    }
+//    
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        self.id = try container.decode(Int.self, forKey: .id)
+//        self.title = try container.decode(String.self, forKey: .title)
+//        self.sourceName = try container.decodeIfPresent(String.self, forKey: .sourceName)
+//        self.image = try container.decode(String.self, forKey: .image)
+//        self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
+//        self.extendedIngredients = try container.decodeIfPresent([Ingredient].self, forKey: .extendedIngredients)
+//        self.readyInMinutes = try container.decodeIfPresent(Int.self, forKey: .readyInMinutes)
+//    }
 }

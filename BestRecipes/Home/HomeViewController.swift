@@ -12,7 +12,7 @@ final class HomeViewController: UIViewController {
     //MARK: - Private properties
     private let homeView: HomeViewProtocol
     private let presenter: HomePresenterProtocol
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
     //MARK: - init(_:)
     init(
@@ -40,7 +40,6 @@ final class HomeViewController: UIViewController {
     override func loadView() {
         self.view = homeView
         homeView.frame = self.view.bounds
-        homeView.collectionView.delegate = self
         
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
@@ -48,12 +47,13 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = makeDataSource()
-        dataSource?.supplementaryViewProvider = makeHeaderRegistration().headerProvider
+        dataSource.supplementaryViewProvider = makeHeaderRegistration().headerProvider
+        homeView.collectionView.dataSource = dataSource
         homeView.searchBar.delegate = self
+        homeView.collectionView.delegate = self
         
         presenter.viewDidLoad()
-//        recipesDidLoad(.sample)
+
         Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
@@ -76,15 +76,15 @@ final class HomeViewController: UIViewController {
 
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
-    @MainActor func showLoading() {
+    func showLoading() {
         homeView.isLoading(true)
     }
     
-    @MainActor func dismissLoading() {
+    func dismissLoading() {
         homeView.isLoading(false)
     }
     
-    @MainActor func recipesDidLoad(_ recipes: RecipesList) {
+    func recipesDidLoad(_ recipes: RecipesList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         snapshot.appendSections(Section.allCases)
@@ -101,7 +101,7 @@ extension HomeViewController: HomePresenterDelegate {
             toSection: .recent
         )
         
-        dataSource?.apply(snapshot)
+        dataSource.apply(snapshot)
         homeView.isLoading(false)
     }
 }
@@ -169,20 +169,20 @@ private extension HomeViewController {
     }
     
     func makeTrendingRecipeCellRegistration() -> UICollectionView.CellRegistration<TrendingRecipeCell, Recipe> {
-        .init { cell, indexPath, recipe in
-            cell.setupTest()
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
         }
     }
     
     func makeCategoryRecipeCellRegistration() -> UICollectionView.CellRegistration<RecipeCategoryCell, Recipe> {
-        .init { cell, indexPath, itemIdentifier in
-            cell.setupTest()
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
         }
     }
     
     func makeRecentRecipeCellRegistration() -> UICollectionView.CellRegistration<RecentRecipeCell, Recipe> {
-        .init { cell, indexPath, itemIdentifier in
-            cell.setupTest()
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
         }
     }
     

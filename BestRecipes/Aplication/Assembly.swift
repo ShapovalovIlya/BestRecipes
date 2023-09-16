@@ -57,7 +57,7 @@ final class Assembly: AssemblyProtocol {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController {
         let presenter = HomePresenter(
             router: router,
-            recipeRequest: repository.request
+            recipeRequest: { _ in .init(offset: 1, number: 1, results: [.sample], totalResults: 1) }
         )
         let view = HomeView()
         let viewController = HomeViewController(
