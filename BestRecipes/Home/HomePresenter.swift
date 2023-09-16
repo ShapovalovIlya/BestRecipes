@@ -74,7 +74,11 @@ final class HomePresenter: HomePresenterProtocol {
         case .trending:
             recipe = recipeList.trending[indexPath.item]
             
-        case .category:
+        case .categoryButtons:
+            selectedCategory = MealType.allCases[indexPath.item]
+            return
+            
+        case .categoryRecipes:
             recipe = recipeList.categoryRecipes[indexPath.item]
             
         case .recent:

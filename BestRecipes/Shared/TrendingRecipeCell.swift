@@ -72,7 +72,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         recipeTitle.text = recipe.title
         creatorLabel.text = recipe.sourceName
         ratingButton.setTitle(
-            recipe.aggregateLikes.asFormattedString,
+            recipe.aggregateLikes.toLikesString,
             for: .normal
         )
     }
@@ -82,7 +82,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         creatorImage.image = UIImage(named: "creator")
         recipeTitle.text = "How to sharwama at home"
         creatorLabel.text = "By Zeelicious foods"
-        ratingButton.setTitle(100.asFormattedString, for: .normal)
+        ratingButton.setTitle(100.toLikesString, for: .normal)
     }
     
 }

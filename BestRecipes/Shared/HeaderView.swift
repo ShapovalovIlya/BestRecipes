@@ -69,7 +69,7 @@ private extension HeaderView {
     //MARK: - Private methods
     func makeButton() -> UIButton {
         var configuration = UIButton.Configuration.plain()
-        configuration.baseForegroundColor = .tabBarTintColor
+        configuration.baseForegroundColor = .customRed
         var container = AttributeContainer()
         container.font = .titleFont
         configuration.attributedTitle = AttributedString("See all", attributes: container)

@@ -63,7 +63,8 @@ private extension HomeView {
     //MARK: - Section
     enum Section: Int, CaseIterable {
         case trending
-        case category
+        case categoryButtons
+        case categoryRecipes
         case recent
     }
     
@@ -74,11 +75,7 @@ private extension HomeView {
         searchBar.placeholder = "Search recipes"
         searchBar.spellCheckingType = .yes
         searchBar.barTintColor = .white
-        searchBar.setBackgroundImage(
-            .init(),
-            for: .any,
-            barMetrics: .default
-        )
+        searchBar.setBackgroundImage(.init(), for: .any, barMetrics: .default)
         return searchBar
     }
     
@@ -98,7 +95,10 @@ private extension HomeView {
             case .trending:
                 return makeTrendingLayoutSection()
                 
-            case .category:
+            case .categoryButtons:
+                return makeCategoriesButtonLayoutSection()
+                
+            case .categoryRecipes:
                 return makeCategoryLayoutSection()
                 
             case .recent:
@@ -139,6 +139,35 @@ private extension HomeView {
         return section
     }
     
+    static func makeCategoriesButtonLayoutSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(0.23),
+            heightDimension: .fractionalHeight(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = .init(top: 0, leading: 5, bottom: 0, trailing: 5)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(44)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item]
+        )
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = .init(top: 10, leading: 0, bottom: 10, trailing: 0)
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: .headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
+    }
+    
     static func makeCategoryLayoutSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(0.4),
@@ -158,13 +187,6 @@ private extension HomeView {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
         section.orthogonalScrollingBehavior = .continuous
-        
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: .headerSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-        section.boundarySupplementaryItems = [sectionHeader]
         return section
     }
     
@@ -201,10 +223,7 @@ private extension HomeView {
         NSLayoutConstraint.activate([
             // Label constraint
             titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            titleLabel.leftAnchor.constraint(
-                equalTo: safeAreaLayoutGuide.leftAnchor,
-                constant: Drawing.contentOffset
-            ),
+            titleLabel.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: Drawing.contentOffset),
             titleLabel.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 68),
             // searchBar constraint

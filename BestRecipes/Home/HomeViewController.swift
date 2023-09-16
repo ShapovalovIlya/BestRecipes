@@ -92,9 +92,15 @@ extension HomeViewController: HomePresenterDelegate {
             recipes.trending.map(Item.trending),
             toSection: .trending
         )
+        
         snapshot.appendItems(
-            recipes.categoryRecipes.map(Item.category),
-            toSection: .category
+            MealType.allCases.map(Item.categoryButtons),
+            toSection: .categoryButtons
+        )
+        
+        snapshot.appendItems(
+            recipes.categoryRecipes.map(Item.categoryTitles),
+            toSection: .categoryRecipes
         )
         snapshot.appendItems(
             recipes.recent.map(Item.recent),
@@ -124,13 +130,15 @@ extension HomeViewController {
     //MARK: - Section
     enum Section: Int, CaseIterable {
         case trending
-        case category
+        case categoryButtons
+        case categoryRecipes
         case recent
     }
     
     enum Item: Hashable {
         case trending(Recipe)
-        case category(Recipe)
+        case categoryButtons(MealType)
+        case categoryTitles(Recipe)
         case recent(Recipe)
     }
 }
@@ -139,6 +147,7 @@ private extension HomeViewController {
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let trendingCellRegistration = makeTrendingRecipeCellRegistration()
+        let categoryButtonRegistration = makeCategoryButtonCellRegistration()
         let categoryCellRegistration = makeCategoryRecipeCellRegistration()
         let recentCellRegistration = makeRecentRecipeCellRegistration()
         
@@ -151,7 +160,14 @@ private extension HomeViewController {
                     item: recipe
                 )
                 
-            case let .category(recipe):
+            case let .categoryButtons(category):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: categoryButtonRegistration,
+                    for: indexPath,
+                    item: category
+                )
+                
+            case let .categoryTitles(recipe):
                 return collectionView.dequeueConfiguredReusableCell(
                     using: categoryCellRegistration,
                     for: indexPath,
@@ -171,6 +187,12 @@ private extension HomeViewController {
     func makeTrendingRecipeCellRegistration() -> UICollectionView.CellRegistration<TrendingRecipeCell, Recipe> {
         .init { cell, _, recipe in
             cell.configure(with: recipe)
+        }
+    }
+    
+    func makeCategoryButtonCellRegistration() -> UICollectionView.CellRegistration<CategoryCell, MealType> {
+        .init { cell, _, category in
+            cell.configure(with: category)
         }
     }
     
@@ -199,7 +221,7 @@ private extension HomeViewController {
                     action: #selector(self.seeAllTrendingButtonTap)
                 )
                 
-            case .category:
+            case .categoryButtons:
                 header.configure(title: title)
                 
             case .recent:

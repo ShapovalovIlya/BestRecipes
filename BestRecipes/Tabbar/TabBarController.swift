@@ -56,7 +56,7 @@ private extension TabBarController {
         tabBar.itemWidth = 40
         tabBar.itemPositioning = .centered
         tabBar.itemSpacing = 60
-        tabBar.tintColor = .tabBarTintColor
+        tabBar.tintColor = .customRed
     }
     
     func makeShapeWith(path: CGPath) -> CAShapeLayer {
@@ -119,7 +119,7 @@ private extension TabBarController {
     static func makeButton() -> UIButton {
         let button = UIButton()
         button.setImage(.tabbarPlusIcon, for: .normal)
-        button.backgroundColor = .tabBarTintColor
+        button.backgroundColor = .customRed
         button.layer.cornerRadius = 22
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.2

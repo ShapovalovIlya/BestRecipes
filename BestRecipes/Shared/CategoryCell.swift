@@ -8,26 +8,14 @@
 import UIKit
 
 final class CategoryCell: UICollectionViewCell {
-    
-    var textLabel = UILabel()
-    
-    
-    
-    //MARK: - Public methods
-    static let cellId = "CategoryCellId"
-    
-    //MARK: - Private methods
+    private let title = UILabel()
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        backgroundColor = .red
-        addSubview(textLabel)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-       
+        contentView.backgroundColor = .customRed
+        contentView.layer.cornerRadius = 10
     }
     
     @available(*, unavailable)
@@ -35,10 +23,15 @@ final class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        title.text = nil
+    }
+    
     //MARK: - Public methods
-    func configure(with recipe: Product) {
-        textLabel.text = recipe.name
-        textLabel.textColor = .black
+    func configure(with category: MealType) {
+        title.text = category.title
     }
     
 }

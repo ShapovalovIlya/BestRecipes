@@ -14,6 +14,7 @@
 		684FCF672AB494D400D83CA3 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
 		86405BAC2AB6408C00636C2B /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAB2AB6408C00636C2B /* Int+.swift */; };
+		86405BAE2AB6443900636C2B /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAD2AB6443900636C2B /* CategoryCell.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -71,6 +72,7 @@
 		684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
 		86405BAB2AB6408C00636C2B /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
+		86405BAD2AB6443900636C2B /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		869C6E742A9B4ED000F4861F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				86405BAD2AB6443900636C2B /* CategoryCell.swift */,
 				865DA73D2AA87CC9009CA2EA /* HeaderView.swift */,
 				866FB8892AABA10E005CAD0D /* IngredientCell.swift */,
 				865DA7812AAB3192009CA2EA /* TrendingRecipeCell.swift */,
@@ -416,6 +419,7 @@
 				682E5B002AACFFCB00F584AF /* LoadingView.swift in Sources */,
 				86F0DC852AAD0D26004E80C2 /* Repository.swift in Sources */,
 				869C6E522A9B390800F4861F /* AppDelegate.swift in Sources */,
+				86405BAE2AB6443900636C2B /* CategoryCell.swift in Sources */,
 				865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */,
 				869C6E7C2A9B680E00F4861F /* ApiClient.swift in Sources */,
 				865DA73F2AA87CC9009CA2EA /* DetailViewController.swift in Sources */,

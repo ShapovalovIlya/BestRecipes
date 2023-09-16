@@ -18,7 +18,7 @@ extension Double {
 }
 
 extension Int {
-    var asFormattedString: String {
+    var toLikesString: String {
         let num = abs(Double(self))
         let sign = self < 0 ? "-" : ""
 
