@@ -50,7 +50,7 @@ final class DetailViewController: UIViewController {
         detailView.collectionView.dataSource = dataSource
         
         presenter.viewDidLoad()
-        recipeDidLoad(Recipe.sample)
+//        recipeDidLoad(Recipe.sample)
         
         Logger.viewCycle.debug("DetailViewController: \(#function)")
     }

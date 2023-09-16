@@ -57,7 +57,7 @@ final class Assembly: AssemblyProtocol {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController {
         let presenter = HomePresenter(
             router: router,
-            recipeRequest: repository.request
+            recipeRequest: { _ in .sample }
         )
         let view = HomeView()
         let viewController = HomeViewController(
@@ -115,7 +115,10 @@ final class Assembly: AssemblyProtocol {
     
     //MARK: - Detail module
     func makeDetailViewController(recipe: Recipe) -> DetailViewController {
-        let presenter = DetailPresenter()
+        let presenter = DetailPresenter(
+            recipe: recipe,
+            recipeRequest: { _ in .sample }
+        )
         let view = DetailView()
         let viewController = DetailViewController(
             presenter: presenter,
