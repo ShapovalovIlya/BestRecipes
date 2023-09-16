@@ -71,6 +71,10 @@ final class TrendingRecipeCell: UICollectionViewCell {
         recipeImageView.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.title
         creatorLabel.text = recipe.sourceName
+        ratingButton.setTitle(
+            recipe.aggregateLikes.asFormattedString,
+            for: .normal
+        )
     }
     
     func setupTest() {
@@ -78,20 +82,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         creatorImage.image = UIImage(named: "creator")
         recipeTitle.text = "How to sharwama at home"
         creatorLabel.text = "By Zeelicious foods"
-        ratingButton.setTitle(setCountLikes(count: 100), for: .normal)
-    }
-    
-    func setCountLikes(count: Float)->String{
-        switch count {
-        case 0...99:
-            return "\(String(format: "%.0f", count))"
-        case 100...9999:
-            return "\(String(format: "%.1f", count/1000))K"
-        case 10000... :
-            return ">10K"
-        default:
-           return "0"
-        }
+        ratingButton.setTitle(100.asFormattedString, for: .normal)
     }
     
 }

@@ -13,6 +13,7 @@
 		684FCF652AB491A900D83CA3 /* DiscoverPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */; };
 		684FCF672AB494D400D83CA3 /* FavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */; };
 		8629679D2AA090E5000254B3 /* RecipesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8629679C2AA090E5000254B3 /* RecipesList.swift */; };
+		86405BAC2AB6408C00636C2B /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAB2AB6408C00636C2B /* Int+.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -69,6 +70,7 @@
 		684FCF642AB491A900D83CA3 /* DiscoverPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverPresenter.swift; sourceTree = "<group>"; };
 		684FCF662AB494D400D83CA3 /* FavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesRouter.swift; sourceTree = "<group>"; };
 		8629679C2AA090E5000254B3 /* RecipesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesList.swift; sourceTree = "<group>"; };
+		86405BAB2AB6408C00636C2B /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				866FB88B2AABB3BA005CAD0D /* NSCollectionLayoutSize+.swift */,
 				866FB88D2AABB666005CAD0D /* UICollectionView+.swift */,
 				866FB88F2AABCE32005CAD0D /* UIButton+.swift */,
+				86405BAB2AB6408C00636C2B /* Int+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				866FB8902AABCE32005CAD0D /* UIButton+.swift in Sources */,
 				866FB8862AAB8E7D005CAD0D /* RecipeCell.swift in Sources */,
 				865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */,
+				86405BAC2AB6408C00636C2B /* Int+.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,
 				865DA7592AA97823009CA2EA /* Cache.swift in Sources */,
