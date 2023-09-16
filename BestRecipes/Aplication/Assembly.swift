@@ -74,7 +74,7 @@ final class Assembly: AssemblyProtocol {
   func makeDiscoverViewController(router: FavoritesRouterProtocol) -> DiscoverViewController {
     let presenter = DiscoverPresenter(
       router: router,
-      recipeRequest: {[.sample]}
+      recipeRequest: { [.sample] }
     )
     
     let view = DiscoverView()
