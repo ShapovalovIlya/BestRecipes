@@ -55,9 +55,22 @@ final class RecipeCell: UICollectionViewCell {
     
     func testConfigure() {
         recipeImage.image = UIImage(named: "test_img")
-        ratingButton.setTitle("4.5", for: .normal)
+        ratingButton.setTitle(setCountLikes(count: 99), for: .normal)
         recipeTitle.text = "How to make yam & vegetable sauce at home"
         recipeDescription.text = "9 Ingredients | 25 min"
+    }
+    
+    func setCountLikes(count: Float)->String{
+        switch count {
+        case 0...99:
+            return "\(String(format: "%.0f", count))"
+        case 100...9999:
+            return "\(String(format: "%.1f", count/1000))K"
+        case 10000... :
+            return ">10K"
+        default:
+           return "0"
+        }
     }
 }
 
@@ -90,10 +103,11 @@ private extension RecipeCell {
     
     static func makeRatingButton() -> UIButton {
         var configuration = UIButton.Configuration.gray()
-        configuration.image = .starImage
+        configuration.image = .heartImage
         configuration.imagePlacement = .leading
         configuration.baseBackgroundColor = .lightGray
         configuration.imagePadding = 5
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 12) //fix
         let button = UIButton(configuration: configuration)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -10,7 +10,7 @@ import UIKit
 final class HeaderView: UICollectionReusableView {
     //MARK: - Private properties
     private let titleLabel: UILabel = .makeLabel(
-        font: .titleFont,
+        font: .titleHeading,
         color: .black
     )
     
@@ -70,11 +70,16 @@ private extension HeaderView {
     func makeButton() -> UIButton {
         var configuration = UIButton.Configuration.plain()
         configuration.baseForegroundColor = .tabBarTintColor
-        configuration.title = "See all"
+        var container = AttributeContainer()
+        container.font = .titleFont
+        configuration.attributedTitle = AttributedString("See all", attributes: container)
         configuration.image = .rightArrow
         configuration.imagePlacement = .trailing
         configuration.imagePadding = 5
         let button = UIButton(configuration: configuration)
+        
+        
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }
