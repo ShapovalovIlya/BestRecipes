@@ -44,18 +44,15 @@ class DiscoverViewController: UIViewController {
 }
 
 private extension DiscoverViewController {
-  typealias Cell = DiscoverCell
-  typealias CellRegistration = UICollectionView.CellRegistration<Cell, Int>
-  
-  func makeCellRegistration() -> CellRegistration {
-    CellRegistration { cell, indexPath, number in
+  func makeCellRegistration() -> UICollectionView.CellRegistration<DiscoverCell, Int> {
+      .init { cell, indexPath, number in
       cell.configure(with: number)
       cell.backgroundColor = .green
     }
   }
 }
 
-private extension UICollectionView.CellRegistration {
+extension UICollectionView.CellRegistration<DiscoverCell, Int> {
   var cellProvider: (UICollectionView, IndexPath, Item) -> Cell {
     return { collectionView, indexPath, product in
       collectionView.dequeueConfiguredReusableCell(

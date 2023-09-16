@@ -15,35 +15,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let apiClient = ApiClient()
-        
-        let homeNavigation = UINavigationController()
-        let favoritesNavigation = UINavigationController()
-        let bellNavigation = UINavigationController()
-        let profileNavigation = UINavigationController()
-        
-        let customTabBarController = MyCustomTabBarController()
-        
-        let homeRouter = HomeRouter(navigationController: homeNavigation)
-        homeRouter.setupInitial()
+        let assembly = Assembly()
+        let tabbar: TabBarController = assembly.makeTabbar()
+        let homeRouter: HomeRouterProtocol = assembly.makeHomeRouter()
+        let favoritesRouter: FavoritesRouterProtocol = assembly.makeFavoritesRouter()
+        let bellRouter: BellRouterProtocol = assembly.makeBellRouter()
+        let profileRouter: ProfileRouterProtocol = assembly.makeProfileRouter()
 
-        let favoritsRouter = FavoritesRouter(navigationController: favoritesNavigation)
-        favoritsRouter.setupInitial()
-        
-        let bellRouter = BellRouter(navigationController: bellNavigation)
-        bellRouter.setupInitial()
-        
-        let profileRouter = FavoritesRouter(navigationController: profileNavigation)
-        profileRouter.setupInitial()
-
-        customTabBarController.navigationControllers(
-            homeNavigation,
-            favoritesNavigation,
-            bellNavigation,
-            profileNavigation
+        tabbar.navigationControllers(
+            homeRouter.navigationController,
+            favoritesRouter.navigationController,
+            bellRouter.navigationController,
+            profileRouter.navigationController
         )
         
-        window?.rootViewController = customTabBarController
+        window?.rootViewController = tabbar
         window?.makeKeyAndVisible()
         
     }

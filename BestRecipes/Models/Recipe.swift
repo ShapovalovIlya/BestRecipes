@@ -42,7 +42,7 @@ import Foundation
 /// Модель рецепта
 struct Recipe: Decodable, Hashable {
     /// Уникальный id рецепта
-    let id: Int
+    let id: String
     
     /// Заголовок рецепта
     let title: String
@@ -59,4 +59,15 @@ struct Recipe: Decodable, Hashable {
     /// Список ингредиентов в рецепте
     let extendedIngredients: [Ingredient]?
     
+    let readyInMinutes: Int
+    
+    static let sample = Self(
+        id: UUID().uuidString,
+        title: "title",
+        sourceName: "source name",
+        image: "image.com",
+        summary: "summary",
+        extendedIngredients: Ingredient.sample, 
+        readyInMinutes: 45
+    )
 }

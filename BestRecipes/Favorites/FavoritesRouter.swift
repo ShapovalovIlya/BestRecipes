@@ -7,23 +7,29 @@
 
 import UIKit
 
-final class FavoritesRouter {
+protocol FavoritesRouterProtocol {
+    var navigationController: UINavigationController { get }
+}
+
+final class FavoritesRouter: FavoritesRouterProtocol {
+    let navigationController: UINavigationController
+    
     //MARK: - Private properties
-    private let navigationController: UINavigationController
+    private let assembly: FavoritesAssembly
     
     //MARK: - init(_:)
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        assembly: FavoritesAssembly
+    ) {
         self.navigationController = navigationController
+        self.assembly = assembly
     }
     
     //MARK: - Public methods
     func setupInitial() {
         
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "bookmark"),
-            tag: 1
-        )
+        
     }
     
 }

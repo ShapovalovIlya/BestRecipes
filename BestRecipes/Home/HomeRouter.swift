@@ -8,42 +8,35 @@
 import UIKit
 
 protocol HomeRouterProtocol {
+    var navigationController: UINavigationController { get }
     
+    func showDetail(recipe: Recipe)
 }
 
 final class HomeRouter: HomeRouterProtocol {
+    let navigationController: UINavigationController
+    
     //MARK: - Private properties
-    private let navigationController: UINavigationController
+    private let assembly: HomeAssembly
     
     //MARK: - init(_:)
     init(
-        navigationController: UINavigationController
+        navigationController: UINavigationController,
+        assembly: HomeAssembly
     ) {
         self.navigationController = navigationController
+        self.assembly = assembly
     }
     
     //MARK: - Public methods
     func setupInitial() {
-        let homeView = HomeView()
-        let presenter = HomePresenter(
-            router: self
-        )
-        let homeViewController = HomeViewController(
-            homeView: homeView,
-            presenter: presenter
-        )
-        presenter.delegate = homeViewController
-        
-        navigationController.viewControllers = [homeViewController]
-        navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "house"),
-            tag: 0
-        )
+        let viewController = assembly.makeHomeViewController(router: self)
+        navigationController.viewControllers = [viewController]
     }
     
-    func showDetail() {
-        
+    func showDetail(recipe: Recipe) {
+        let detailViewController = assembly.makeDetailViewController(recipe: recipe)
+        navigationController.pushViewController(detailViewController, animated: true)
     }
     
 }

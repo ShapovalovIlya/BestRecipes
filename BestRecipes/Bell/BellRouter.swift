@@ -7,14 +7,27 @@
 
 import UIKit
 
-final class BellRouter {
-    private let navigationController: UINavigationController
+protocol BellRouterProtocol {
+    var navigationController: UINavigationController { get }
+}
+
+final class BellRouter: BellRouterProtocol {
+    let navigationController: UINavigationController
     
-    init(navigationController: UINavigationController) {
+    //MARK: - Private methods
+    private let assembly: Assembly
+    
+    //MARK: - init(_:)
+    init(
+        navigationController: UINavigationController,
+        assembly: Assembly
+    ) {
         self.navigationController = navigationController
+        self.assembly = assembly
     }
     
+    //MARK: - Public methods
     func setupInitial() {
-        navigationController.tabBarItem = .init(title: nil, image: UIImage(systemName: "bell"), tag: 3)
+        
     }
 }
