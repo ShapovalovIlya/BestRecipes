@@ -18,16 +18,22 @@ protocol DetailPresenterDelegate: AnyObject {
 }
 
 final class DetailPresenter: DetailPresenterProtocol {
+    typealias RecipeRequest = (Endpoint) async throws -> Recipe
     //MARK: - Private properties
-    var recipe: Recipe
-    
+    private var recipe: Recipe
+    private let recipeRequest: RecipeRequest
     
     //MARK: - Public properties
     weak var delegate: DetailPresenterDelegate?
     
     //MARK: - init(_:)
-    init(recipe: Recipe) {
+    init(
+        recipe: Recipe,
+        recipeRequest: @escaping RecipeRequest
+    ) {
         self.recipe = recipe
+        self.recipeRequest = recipeRequest
+        
         Logger.system.debug("DetailPresenter: \(#function)")
     }
     
@@ -37,6 +43,9 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     //MARK: - Public methods
     func viewDidLoad() {
+        Task {
+            recipe = try await recipeRequest(.getRecipeInfo(id: recipe.id))
+        }
         delegate?.recipeDidLoad(recipe)
     }
     
