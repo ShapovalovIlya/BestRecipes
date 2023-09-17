@@ -41,7 +41,6 @@ final class IngredientCell: UICollectionViewCell {
         super.layoutSubviews()
         
         setupConstraints()
-        setupTest()
     }
     
     override func prepareForReuse() {

@@ -18,6 +18,7 @@
 		86405BB02AB6627900636C2B /* FavoriteRecipesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */; };
 		86405BB22AB66D9900636C2B /* RecipeTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BB12AB66D9900636C2B /* RecipeTitleCell.swift */; };
 		86405BB42AB6705C00636C2B /* RecipeSummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BB32AB6705C00636C2B /* RecipeSummaryCell.swift */; };
+		86405BB62AB67BD000636C2B /* String+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86405BB52AB67BD000636C2B /* String+.swift */; };
 		865DA7352AA87BB2009CA2EA /* BellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7332AA87BB2009CA2EA /* BellViewController.swift */; };
 		865DA7362AA87BB2009CA2EA /* BellRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7342AA87BB2009CA2EA /* BellRouter.swift */; };
 		865DA73E2AA87CC9009CA2EA /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865DA7382AA87CC9009CA2EA /* DetailView.swift */; };
@@ -79,6 +80,7 @@
 		86405BAF2AB6627900636C2B /* FavoriteRecipesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipesManager.swift; sourceTree = "<group>"; };
 		86405BB12AB66D9900636C2B /* RecipeTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTitleCell.swift; sourceTree = "<group>"; };
 		86405BB32AB6705C00636C2B /* RecipeSummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSummaryCell.swift; sourceTree = "<group>"; };
+		86405BB52AB67BD000636C2B /* String+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+.swift"; sourceTree = "<group>"; };
 		865DA7332AA87BB2009CA2EA /* BellViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellViewController.swift; sourceTree = "<group>"; };
 		865DA7342AA87BB2009CA2EA /* BellRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BellRouter.swift; sourceTree = "<group>"; };
 		865DA7382AA87CC9009CA2EA /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				866FB88D2AABB666005CAD0D /* UICollectionView+.swift */,
 				866FB88F2AABCE32005CAD0D /* UIButton+.swift */,
 				86405BAB2AB6408C00636C2B /* Int+.swift */,
+				86405BB52AB67BD000636C2B /* String+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				866FB8902AABCE32005CAD0D /* UIButton+.swift in Sources */,
 				866FB8862AAB8E7D005CAD0D /* RecipeCell.swift in Sources */,
 				865DA7492AA888A7009CA2EA /* Assembly.swift in Sources */,
+				86405BB62AB67BD000636C2B /* String+.swift in Sources */,
 				86405BAC2AB6408C00636C2B /* Int+.swift in Sources */,
 				869C6E562A9B390800F4861F /* HomeViewController.swift in Sources */,
 				86B3D0422AA534FA009BF738 /* MealType.swift in Sources */,

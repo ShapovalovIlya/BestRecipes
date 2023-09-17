@@ -75,7 +75,7 @@ private extension RecipeTitleCell {
             recipeImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.offset),
             recipeImage.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.offset),
             recipeImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Drawing.offset),
-            recipeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7),
+            recipeImage.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8),
             
             likesLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.offset),
             likesLabel.topAnchor.constraint(equalTo: recipeImage.bottomAnchor, constant: Drawing.offset),

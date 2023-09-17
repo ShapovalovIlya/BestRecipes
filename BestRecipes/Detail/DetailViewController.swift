@@ -149,7 +149,7 @@ private extension DetailViewController {
     
     func makeIngredientCellRegistration() -> UICollectionView.CellRegistration<IngredientCell, Ingredient> {
         .init { cell, _, ingredient in
-     //       cell.configure(with: ingredient)
+            cell.configure(with: ingredient)
         }
     }
     
