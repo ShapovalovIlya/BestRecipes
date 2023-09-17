@@ -8,44 +8,45 @@
 import UIKit
 
 protocol HomeRouterProtocol {
+    var navigationController: UINavigationController { get }
+    
     func showDetail(recipe: Recipe)
+    func showAll(recipes: [Recipe], sortion: Endpoint.Sortion)
 }
 
 final class HomeRouter: HomeRouterProtocol {
-    private let navigationController: UINavigationController
-    private let apiClient: SponacularApiClientProtocol
+    let navigationController: UINavigationController
     
+    //MARK: - Private properties
+    private let assembly: HomeAssembly
+    
+    //MARK: - init(_:)
     init(
         navigationController: UINavigationController,
-        apiClient: SponacularApiClientProtocol
+        assembly: HomeAssembly
     ) {
         self.navigationController = navigationController
-        self.apiClient = apiClient
+        self.assembly = assembly
     }
     
-    func initialView() {
-        let homeView = HomeView()
-        let homePresenter = HomePresenter(
-            apiClient: apiClient,
-            router: self
-        )
-        let homeViewController = HomeViewController(
-            homeView: homeView,
-            presenter: homePresenter
-        )
-        homePresenter.delegate = homeViewController
-        
-        self.navigationController.viewControllers = [homeViewController]
-        self.navigationController.tabBarItem = .init(
-            title: nil,
-            image: UIImage(systemName: "house"),
-            tag: 0
-        )
+    //MARK: - Public methods
+    func setupInitial() {
+        let viewController = assembly.makeHomeViewController(router: self)
+        navigationController.viewControllers = [viewController]
     }
     
     func showDetail(recipe: Recipe) {
-        let detailViewController = UIViewController()
-        
-        self.navigationController.present(detailViewController, animated: true)
+        let detailViewController = assembly.makeDetailViewController(recipe: recipe)
+        navigationController.pushViewController(detailViewController, animated: true)
     }
+    
+    func showAll(recipes: [Recipe], sortion: Endpoint.Sortion) {
+        let viewController = assembly.makeSeeAllViewController(
+            router: self,
+            recipes: recipes,
+            sortion: sortion
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
 }

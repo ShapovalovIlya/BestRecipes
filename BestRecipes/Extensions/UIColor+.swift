@@ -5,10 +5,20 @@
 //  Created by Максим Нурутдинов on 27.08.2023.
 //
 
-import Foundation
 import UIKit
 
 extension UIColor {
+    static let customRed: UIColor? = .init(hex: "#E23E3E", alpha: 1)
+    static let getStartedButtonColor: UIColor? = .init(named: "onboardingColor")
+    static let onboardingLabelAdditionalColor: UIColor? = .init(named: "onboardingLabelAdditional")
+    static let titleTextColor: UIColor? = .init(hex: "181818")
+    static let subtitleColor: UIColor? = .init(hex: "919191")
+    static let ratingButtonBackground: UIColor? = .init(hex: "#303030", alpha: 0.3)
+    static let ingredientCellBackground: UIColor? = .init(hex: "f1f1f1")
+    static let categoryBackground: UIColor? = .init(hex: "#F1F1F1")
+    static let deselectedRed: UIColor? = .init(hex: "#F3B2B2")
+    static var customBorderColor: UIColor = .init(red: 0.851, green: 0.851, blue: 0.851, alpha: 1)
+    
     public convenience init?(hex: String, alpha: Double = 1.0) {
         var pureString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if (pureString.hasPrefix("#")) {
@@ -30,11 +40,6 @@ extension UIColor {
         }
         return nil
     }
-}
-
-extension UIColor {
-    
-    static var customBorderColor: UIColor { UIColor(red: 0.851, green: 0.851, blue: 0.851, alpha: 1) }
 }
 
 

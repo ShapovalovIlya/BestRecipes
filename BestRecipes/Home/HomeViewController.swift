@@ -10,15 +10,9 @@ import OSLog
 
 final class HomeViewController: UIViewController {
     //MARK: - Private properties
-    private let logger = Logger(
-        subsystem: Bundle.main.bundleIdentifier!,
-        category: String(describing: HomeViewController.self)
-    )
     private let homeView: HomeViewProtocol
     private let presenter: HomePresenterProtocol
-    private var dataSource: UICollectionViewDiffableDataSource<Section, Item>?
-    
-    //MARK: - Public properties
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
     //MARK: - init(_:)
     init(
@@ -29,10 +23,7 @@ final class HomeViewController: UIViewController {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
-        
-        self.dataSource = self.maleDataSource()
-        
-        logger.debug("Initialized")
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     @available(*, unavailable)
@@ -42,157 +33,215 @@ final class HomeViewController: UIViewController {
     
     //MARK: - Deinit
     deinit {
-        logger.debug("Deinitialized")
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
     
     //MARK: - Life Cycle
     override func loadView() {
         self.view = homeView
+        homeView.frame = self.view.bounds
         
-        logger.debug("View loaded")
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.homeView.collectionView.dataSource = dataSource
+        dataSource.supplementaryViewProvider = makeHeaderRegistration().headerProvider
+        homeView.collectionView.dataSource = dataSource
+        homeView.searchBar.delegate = self
+        homeView.collectionView.delegate = self
         
         presenter.viewDidLoad()
-        logger.debug("View did load")
-    }
 
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         presenter.viewDidDisappear()
+        Logger.viewCycle.debug("HomeViewController: \(#function)")
+    }
+    
+    @objc func seeAllTrendingButtonTap() {
+        presenter.seeAllButtonTap(.popularity)
+    }
+    
+    @objc func seeAllRecentButtonTap() {
+        presenter.seeAllButtonTap(.time)
     }
     
 }
 
 //MARK: - HomePresenterDelegate
 extension HomeViewController: HomePresenterDelegate {
+    func showLoading() {
+        homeView.isLoading(true)
+    }
+    
+    func dismissLoading() {
+        homeView.isLoading(false)
+    }
+    
     func recipesDidLoad(_ recipes: RecipesList) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         
         snapshot.appendSections(Section.allCases)
-        
         snapshot.appendItems(
             recipes.trending.map(Item.trending),
             toSection: .trending
         )
+        
         snapshot.appendItems(
-            recipes.popular.map(Item.popular),
-            toSection: .popular
+            MealType.allCases.map(Item.categoryButtons),
+            toSection: .categoryButtons
+        )
+        
+        snapshot.appendItems(
+            recipes.categoryRecipes.map(Item.categoryTitles),
+            toSection: .categoryRecipes
         )
         snapshot.appendItems(
             recipes.recent.map(Item.recent),
             toSection: .recent
         )
-        snapshot.appendItems(
-            recipes.creators.map(Item.creators),
-            toSection: .creators
-        )
         
-        dataSource?.apply(snapshot)
+        dataSource.apply(snapshot)
+        homeView.isLoading(false)
     }
 }
 
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if Section(rawValue: indexPath.section) != .categoryButtons {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
+        presenter.didSelectReceipt(at: indexPath)
+    }
 }
 
-private extension HomeViewController {
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+}
+
+extension HomeViewController {
     //MARK: - Section
     enum Section: Int, CaseIterable {
         case trending
-        case popular
+        case categoryButtons
+        case categoryRecipes
         case recent
-        case creators
     }
     
     enum Item: Hashable {
         case trending(Recipe)
-        case popular(Recipe)
+        case categoryButtons(MealType)
+        case categoryTitles(Recipe)
         case recent(Recipe)
-        case creators(Recipe)
     }
-    
+}
+
+private extension HomeViewController {
     //MARK: - Private methods
-    func maleDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        .init(collectionView: homeView.collectionView) { collectionView, indexPath, item in
+    func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
+        let trendingCellRegistration = makeTrendingRecipeCellRegistration()
+        let categoryButtonRegistration = makeCategoryButtonCellRegistration()
+        let categoryCellRegistration = makeCategoryRecipeCellRegistration()
+        let recentCellRegistration = makeRecentRecipeCellRegistration()
+        
+        return .init(collectionView: homeView.collectionView) { collectionView, indexPath, item in
             switch item {
             case let .trending(recipe):
-                collectionView.dequeueConfiguredReusableCell(
-                    using: self.makeRecipeCellRegistration(),
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: trendingCellRegistration,
                     for: indexPath,
-                    item: recipe)
+                    item: recipe
+                )
                 
-            case let .popular(recipe):
-                collectionView.dequeueConfiguredReusableCell(
-                    using: self.makeRecipeCellRegistration(),
+            case let .categoryButtons(category):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: categoryButtonRegistration,
                     for: indexPath,
-                    item: recipe)
+                    item: category
+                )
+                
+            case let .categoryTitles(recipe):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: categoryCellRegistration,
+                    for: indexPath,
+                    item: recipe
+                )
                 
             case let .recent(recipe):
-                collectionView.dequeueConfiguredReusableCell(
-                    using: self.makeRecipeCellRegistration(),
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: recentCellRegistration,
                     for: indexPath,
-                    item: recipe)
-                
-            case let .creators(recipe):
-                collectionView.dequeueConfiguredReusableCell(
-                    using: self.makeRecipeCellRegistration(),
-                    for: indexPath,
-                    item: recipe)
-                
+                    item: recipe
+                )
             }
         }
     }
     
-    func foo() -> UICollectionView.SupplementaryRegistration<HomeHeader> {
-        .init(elementKind: "Header") { supplementaryView, elementKind, indexPath in
-            if Section(rawValue: indexPath.section) == .trending {
-                
-                supplementaryView.set(title: "Some title")
-            }
-        }
-    }
-    
-    func makeRecipeCellRegistration() -> UICollectionView.CellRegistration<RatedRecipeCell, Recipe> {
-        .init { cell, indexPath, recipe in
+    func makeTrendingRecipeCellRegistration() -> UICollectionView.CellRegistration<TrendingRecipeCell, Recipe> {
+        .init { cell, _, recipe in
             cell.configure(with: recipe)
         }
     }
     
-    func makeCreatorCellRegistration() -> UICollectionView.CellRegistration<CreatorCell, Recipe> {
-        .init { cell, indexPath, recipe in
-            cell.configure(recipe)
+    func makeCategoryButtonCellRegistration() -> UICollectionView.CellRegistration<CategoryCell, MealType> {
+        .init { [selectedCategory = presenter.selectedCategory] cell, _, category in
+            cell.configure(with: category)
+            cell.isSelected = selectedCategory == category
         }
     }
-}
-
-class HomeHeader: UICollectionReusableView {
-    func set(title: String) {
-        
+    
+    func makeCategoryRecipeCellRegistration() -> UICollectionView.CellRegistration<RecipeCategoryCell, Recipe> {
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
+        }
     }
-}
-
-class TrendingCell: UICollectionViewCell {
     
-}
-
-class PopularCell: UICollectionViewCell {
-    
-}
-
-class RecentCell: UICollectionViewCell {
-    
-}
-
-class CreatorCell: UICollectionViewCell {
-    func configure(_ model: Recipe) {
-        
+    func makeRecentRecipeCellRegistration() -> UICollectionView.CellRegistration<RecentRecipeCell, Recipe> {
+        .init { cell, _, recipe in
+            cell.configure(with: recipe)
+        }
     }
+    
+    func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<HeaderView> {
+        .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
+            switch Section(rawValue: indexPath.section) {
+            case .trending:
+                header.configure(title: "Trending now")
+                header.addButton(
+                    target: self,
+                    action: #selector(self.seeAllTrendingButtonTap)
+                )
+                
+            case .categoryButtons:
+                header.configure(title: "Popular category")
+                
+            case .recent:
+                header.configure(title: "Recent recipe")
+                header.addButton(
+                    target: self,
+                    action: #selector(self.seeAllRecentButtonTap)
+                )
+                
+            default:
+                break
+            }
+        }
+    }
+    
 }
+
+
+
+
+
+
 

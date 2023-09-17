@@ -8,8 +8,12 @@
 import Foundation
 
 struct Endpoint {
-    let path: String
-    var queryItems: [URLQueryItem] = .init()
+    //MARK: - Private properties
+    private let path: String
+    private var queryItems: [URLQueryItem]
+    
+    //MARK: - Public properties
+    let method: HTTPMethod
     
     var url: URL {
         var components = URLComponents()
@@ -31,8 +35,21 @@ struct Endpoint {
         return url
     }
     
-    static func getRecipeInfo(id: String) -> Self {
+    //MARK: - init(_:)
+    private init(
+        method: HTTPMethod,
+        path: String,
+        queryItems: [URLQueryItem] = .init()
+    ) {
+        self.method = method
+        self.path = path
+        self.queryItems = queryItems
+    }
+    
+    //MARK: - Public methods
+    static func getRecipeInfo(id: Int) -> Self {
         .init(
+            method: .GET,
             path: "/recipes/\(id)/information",
             queryItems: [
                 .init(name: "includeNutrition", value: false.description)
@@ -46,6 +63,7 @@ struct Endpoint {
         offset: Int = 0
     ) -> Self {
         .init(
+            method: .GET,
             path: "/recipes/complexSearch",
             queryItems: [
                 .init(name: "sort", value: sortion.rawValue),
@@ -64,6 +82,7 @@ struct Endpoint {
         offset: Int = 0
     ) -> Self {
         .init(
+            method: .GET,
             path: "/recipes/complexSearch",
             queryItems: [
                 .init(name: "type", value: type.rawValue),
@@ -78,6 +97,7 @@ struct Endpoint {
     
     static func getAutocomplete(_ text: String?) -> Self {
         .init(
+            method: .GET, 
             path: "/recipes/autocomplete",
             queryItems: [
                 .init(name: "number", value: "10"),
@@ -92,5 +112,17 @@ extension Endpoint {
     enum Sortion: String {
         case time
         case popularity
+        
+        var title: String {
+            switch self {
+            case .time: "Recent recipes"
+            case .popularity: "Popular recipes"
+            }
+        }
+    }
+    
+    enum HTTPMethod: String {
+        case GET
+        case POST
     }
 }
