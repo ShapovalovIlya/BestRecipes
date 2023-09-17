@@ -112,6 +112,13 @@ extension Endpoint {
     enum Sortion: String {
         case time
         case popularity
+        
+        var title: String {
+            switch self {
+            case .time: "Recent recipes"
+            case .popularity: "Popular recipes"
+            }
+        }
     }
     
     enum HTTPMethod: String {

@@ -65,11 +65,11 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func seeAllTrendingButtonTap() {
-        print(#function)
+        presenter.seeAllButtonTap(.popularity)
     }
     
     @objc func seeAllRecentButtonTap() {
-        print(#function)
+        presenter.seeAllButtonTap(.time)
     }
     
 }

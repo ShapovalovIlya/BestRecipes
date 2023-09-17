@@ -52,11 +52,15 @@ final class RecipeCell: UICollectionViewCell {
         recipeImage.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.title
         recipeDescription.text = combineSubtitle(for: recipe)
+        ratingButton.setTitle(
+            recipe.aggregateLikes?.toLikesString,
+            for: .normal
+        )
     }
     
     func testConfigure() {
         recipeImage.image = UIImage(named: "test_img")
-        ratingButton.setTitle(setCountLikes(count: 99), for: .normal)
+        ratingButton.setTitle(3000.toLikesString, for: .normal)
         recipeTitle.text = "How to make yam & vegetable sauce at home"
         recipeDescription.text = "9 Ingredients | 25 min"
     }
@@ -95,7 +99,7 @@ private extension RecipeCell {
     
     static func makeImageView() -> UIImageView {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 12
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -125,13 +129,14 @@ private extension RecipeCell {
             ratingButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Drawing.ratingOffset),
             ratingButton.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.ratingOffset),
             
-            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
-            recipeTitle.topAnchor.constraint(equalTo: contentView.centerYAnchor, constant: Drawing.spacing),
-            recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
-            
             recipeDescription.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
-            recipeDescription.topAnchor.constraint(equalTo: recipeTitle.bottomAnchor, constant: Drawing.spacing),
-            recipeDescription.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset)
+            recipeDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Drawing.spacing),
+            recipeDescription.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
+            recipeDescription.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.1),
+            
+            recipeTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: Drawing.contentOffset),
+            recipeTitle.bottomAnchor.constraint(equalTo: recipeDescription.topAnchor, constant: -Drawing.spacing),
+            recipeTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.contentOffset),
         ])
     }
 }

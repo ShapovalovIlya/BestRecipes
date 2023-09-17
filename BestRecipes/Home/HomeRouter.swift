@@ -11,7 +11,7 @@ protocol HomeRouterProtocol {
     var navigationController: UINavigationController { get }
     
     func showDetail(recipe: Recipe)
-    func showAll(recipes: [Recipe])
+    func showAll(recipes: [Recipe], sortion: Endpoint.Sortion)
 }
 
 final class HomeRouter: HomeRouterProtocol {
@@ -39,9 +39,14 @@ final class HomeRouter: HomeRouterProtocol {
         let detailViewController = assembly.makeDetailViewController(recipe: recipe)
         navigationController.pushViewController(detailViewController, animated: true)
     }
-  
-  func showAll(recipes: [Recipe]) {
     
-  }
+    func showAll(recipes: [Recipe], sortion: Endpoint.Sortion) {
+        let viewController = assembly.makeSeeAllViewController(
+            router: self,
+            recipes: recipes,
+            sortion: sortion
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
     
 }

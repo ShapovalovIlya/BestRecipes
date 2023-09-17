@@ -12,7 +12,8 @@ final class IngredientCell: UICollectionViewCell {
     private let foodImage:  UIImageView = makeImageView()
     private let nameLabel: UILabel = .makeLabel(
         font: .titleFont,
-        color: .titleTextColor
+        color: .titleTextColor,
+        numberOfLines: 2
     )
     private let massLabel: UILabel = .makeLabel(
         font: .subtitleFont,
@@ -99,6 +100,7 @@ private extension IngredientCell {
             
             nameLabel.leftAnchor.constraint(equalTo: foodImage.rightAnchor, constant: Drawing.offset),
             nameLabel.centerYAnchor.constraint(equalTo: foodImage.centerYAnchor),
+            nameLabel.rightAnchor.constraint(equalTo: massLabel.leftAnchor, constant: 5),
             
             massLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.offset),
             massLabel.centerYAnchor.constraint(equalTo: foodImage.centerYAnchor)

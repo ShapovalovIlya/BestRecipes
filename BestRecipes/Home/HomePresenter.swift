@@ -15,7 +15,7 @@ protocol HomePresenterProtocol: AnyObject {
     func viewDidLoad()
     func viewDidDisappear()
     func didSelectReceipt(at indexPath: IndexPath)
-    func addToFavorite(recipe: Recipe)
+    func seeAllButtonTap(_ sortion: Endpoint.Sortion)
 }
 
 //MARK: - HomePresenterDelegate
@@ -86,10 +86,14 @@ final class HomePresenter: HomePresenterProtocol {
         router.showDetail(recipe: recipe)
     }
     
-    func addToFavorite(recipe: Recipe) {
-        print(#function)
+    func seeAllButtonTap(_ sortion: Endpoint.Sortion) {
+        switch sortion {
+        case .time:
+            router.showAll(recipes: recipeList.recent, sortion: sortion)
+        case .popularity:
+            router.showAll(recipes: recipeList.trending, sortion: sortion)
+        }
     }
-    
     
 }
 

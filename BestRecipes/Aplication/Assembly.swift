@@ -24,6 +24,7 @@ protocol FavoritesAssembly {
 protocol HomeAssembly {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController
     func makeDetailViewController(recipe: Recipe) -> DetailViewController
+    func makeSeeAllViewController(router: HomeRouter, recipes: [Recipe], sortion: Endpoint.Sortion) -> SeeAllViewController
 }
 
 protocol ProfileAssembly {
@@ -67,6 +68,26 @@ final class Assembly: AssemblyProtocol {
         )
         presenter.delegate = viewController
         
+        return viewController
+    }
+    
+    func makeSeeAllViewController(
+        router: HomeRouter,
+        recipes: [Recipe],
+        sortion: Endpoint.Sortion
+    ) -> SeeAllViewController {
+        let presenter = SeeAllPresenter(
+            sortion: sortion,
+            recipes: recipes,
+            router: router,
+            recipeRequest: repository.request
+        )
+        let view = SeeAllView()
+        let viewController = SeeAllViewController(
+            seeAllView: view, 
+            presenter: presenter
+        )
+        presenter.delegate = viewController
         return viewController
     }
     
