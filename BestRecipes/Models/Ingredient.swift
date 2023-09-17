@@ -20,6 +20,11 @@ struct Ingredient: Decodable, Hashable {
     let amount: Double
     
     let measures: Measures
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(name)
+    }
 }
 
 extension Ingredient {

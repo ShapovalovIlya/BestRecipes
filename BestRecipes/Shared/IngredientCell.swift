@@ -73,7 +73,7 @@ private extension IngredientCell {
     func combineMassLabel(from ingredient: Ingredient) -> String {
         [
             ingredient.measures.metric.unitShort,
-            ingredient.measures.metric.amount.description
+            round(ingredient.measures.metric.amount).description
         ].joined(separator: " ")
     }
     
@@ -103,7 +103,8 @@ private extension IngredientCell {
             nameLabel.rightAnchor.constraint(equalTo: massLabel.leftAnchor, constant: 5),
             
             massLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -Drawing.offset),
-            massLabel.centerYAnchor.constraint(equalTo: foodImage.centerYAnchor)
+            massLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            massLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor, multiplier: 0.15)
         ])
     }
 }

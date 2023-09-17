@@ -74,7 +74,7 @@ extension DetailViewController: DetailPresenterDelegate {
             toSection: .title
         )
         snapshot.appendItems(
-            [Item.summary(recipe)],
+            [Item.summary(recipe.summary)],
             toSection: .summary
         )
 
@@ -98,9 +98,10 @@ extension DetailViewController {
     //MARK: - Item
     enum Item: Hashable {
         case title(Recipe)
-        case summary(Recipe)
+        case summary(String?)
         case ingredient(Ingredient)
     }
+    
 }
 
 private extension DetailViewController {
@@ -141,9 +142,9 @@ private extension DetailViewController {
         }
     }
     
-    func makeSummaryRegistration() -> UICollectionView.CellRegistration<RecipeSummaryCell, Recipe> {
-        .init { cell, _, recipe in
-            cell.configure(with: recipe)
+    func makeSummaryRegistration() -> UICollectionView.CellRegistration<RecipeSummaryCell, String?> {
+        .init { cell, _, summary in
+            cell.configure(with: summary)
         }
     }
     
