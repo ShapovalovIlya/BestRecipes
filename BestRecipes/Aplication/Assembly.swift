@@ -58,7 +58,7 @@ final class Assembly: AssemblyProtocol {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController {
         let presenter = HomePresenter(
             router: router,
-            recipeRequest: { _ in .sample }
+            recipeRequest: repository.request
         )
         let view = HomeView()
         let viewController = HomeViewController(
@@ -76,16 +76,12 @@ final class Assembly: AssemblyProtocol {
       router: router,
       recipeRequest: { Array(FavoriteRecipesManager.shared.recipes) }
     )
-    
     let view = DiscoverView()
-    
     let viewController = DiscoverViewController(
       discoverView: view,
       presenter: presenter
     )
-    
     presenter.delegate = viewController
-    
     return viewController
   }
  
@@ -138,7 +134,7 @@ final class Assembly: AssemblyProtocol {
     func makeDetailViewController(recipe: Recipe) -> DetailViewController {
         let presenter = DetailPresenter(
             recipe: recipe,
-            recipeRequest: { _ in .sample }
+            recipeRequest: repository.request
         )
         let view = DetailView()
         let viewController = DetailViewController(

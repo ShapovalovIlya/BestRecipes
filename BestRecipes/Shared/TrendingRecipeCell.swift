@@ -77,7 +77,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         recipeTitle.text = recipe.title
         creatorLabel.text = recipe.sourceName
         ratingButton.setTitle(
-            recipe.aggregateLikes.toLikesString,
+            recipe.aggregateLikes?.toLikesString,
             for: .normal
         )
         self.recipe = recipe

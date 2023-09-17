@@ -29,7 +29,7 @@ struct Repository {
         } else {
             Logger.system.debug("Repository: load content of \(endpoint.url) from API")
             let content: T = try await apiClient.request(endpoint)
-//            cache.insert(content, forKey: endpoint.url.absoluteString)
+            cache.insert(content, forKey: endpoint.url.absoluteString)
             return content
         }
     }

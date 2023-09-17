@@ -9,6 +9,7 @@ import Foundation
 
 /// Модель ингредиента
 struct Ingredient: Decodable, Hashable {
+    let id: Int
     /// Название ингредиента
     let name: String
     
@@ -16,14 +17,16 @@ struct Ingredient: Decodable, Hashable {
     let image: String
     
     /// Количество
-    let amount: Amount
+    let amount: Double
+    
+    let measures: Measures
 }
 
 extension Ingredient {
     static let sample: [Ingredient] = [
-        .init(name: "Fish", image: "Fish", amount: .init(unit: "gr", value: 200)),
-        .init(name: "Sugar", image: "Sugar", amount: .init(unit: "gr", value: 200)),
-        .init(name: "Ginger", image: "Ginger", amount: .init(unit: "gr", value: 200)),
-        .init(name: "Salt", image: "Salt", amount: .init(unit: "gr", value: 200))
+        .init(id: 0, name: "Fish", image: "Fish", amount: 1, measures: .init(metric: .init(amount: 1, unitShort: "g"))),
+        .init(id: 1, name: "Sugar", image: "Sugar", amount: 1, measures: .init(metric: .init(amount: 1, unitShort: "g"))),
+        .init(id: 2, name: "Ginger", image: "Ginger", amount: 1, measures: .init(metric: .init(amount: 1, unitShort: "g"))),
+        .init(id: 3, name: "Salt", image: "Salt", amount: 1, measures: .init(metric: .init(amount: 1, unitShort: "g")))
     ]
 }

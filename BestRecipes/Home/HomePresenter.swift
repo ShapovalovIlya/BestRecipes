@@ -104,17 +104,15 @@ private extension HomePresenter {
     func performRecipeRequest() {
         Task(priority: .userInitiated) {
             do {
-                recipeList = try await getRecipeList(category: selectedCategory)
-                delegate?.recipesDidLoad(recipeList)
+                recipeList.trending = try await recipeRequest(.getRecipes(sortedBy: .popularity)).results
+                recipeList.categoryRecipes = try await recipeRequest(.getRecipes(ofType: selectedCategory)).results
+                recipeList.recent = try await recipeRequest(.getRecipes(sortedBy: .time)).results
+                await MainActor.run {
+                    delegate?.recipesDidLoad(recipeList)
+                }
             } catch {
-                delegate?.dismissLoading()
+                print(error)
             }
-        }
-    }
-    
-    func makeTaskRequest(category: MealType) -> Task<RecipesList, Error> {
-        Task(priority: .userInitiated) {
-            try await getRecipeList(category: category)
         }
     }
     

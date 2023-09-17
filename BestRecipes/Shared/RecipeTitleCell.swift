@@ -38,7 +38,7 @@ final class RecipeTitleCell: UICollectionViewCell {
     //MARK: - Public methods
     func configure(with recipe: Recipe) {
         recipeImage.kf.setImage(with: URL(string: recipe.image))
-        likesLabel.setTitle(recipe.aggregateLikes.toLikesString, for: .normal)
+        likesLabel.setTitle(recipe.aggregateLikes?.toLikesString, for: .normal)
     }
 }
 

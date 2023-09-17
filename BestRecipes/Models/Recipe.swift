@@ -61,7 +61,7 @@ struct Recipe: Decodable, Hashable {
     
     let readyInMinutes: Int?
     
-    let aggregateLikes: Int
+    let aggregateLikes: Int?
     
     static let sample = Self(
         id: 716429,

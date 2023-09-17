@@ -71,8 +71,8 @@ private extension IngredientCell {
     //MARK: - Private methods
     func combineMassLabel(from ingredient: Ingredient) -> String {
         [
-            ingredient.amount.unit,
-            ingredient.amount.value.description
+            ingredient.measures.metric.unitShort,
+            ingredient.measures.metric.amount.description
         ].joined(separator: " ")
     }
     
