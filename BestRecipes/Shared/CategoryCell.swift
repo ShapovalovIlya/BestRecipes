@@ -8,26 +8,30 @@
 import UIKit
 
 final class CategoryCell: UICollectionViewCell {
+    private let title = makeTitle()
     
-    var textLabel = UILabel()
-    
-    
-    
-    //MARK: - Public methods
-    static let cellId = "CategoryCellId"
-    
-    //MARK: - Private methods
+    override var isSelected: Bool {
+        didSet {
+            super.isSelected = isSelected
+            
+            switch isSelected {
+            case true:
+                contentView.backgroundColor = .customRed
+                title.textColor = .white
+            case false:
+                contentView.backgroundColor = .white
+                title.textColor = .deselectedRed
+            }
+        }
+    }
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        backgroundColor = .red
-        addSubview(textLabel)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-        textLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        textLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-       
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 10
+        contentView.addSubview(title)
     }
     
     @available(*, unavailable)
@@ -35,10 +39,43 @@ final class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Public methods
-    func configure(with recipe: Product) {
-        textLabel.text = recipe.name
-        textLabel.textColor = .black
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        title.text = nil
+    }
+    
+    //MARK: - Public methods
+    func configure(with category: MealType) {
+        title.text = category.title
+    }
+    
+}
+
+private extension CategoryCell {
+    static func makeTitle() -> UILabel {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.font = .titleFont
+        label.minimumScaleFactor = 0.8
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }
+    
+    func setConstraints() {
+        NSLayoutConstraint.activate([
+            title.topAnchor.constraint(equalTo: contentView.topAnchor),
+            title.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            title.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
 }

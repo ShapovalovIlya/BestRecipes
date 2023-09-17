@@ -44,9 +44,15 @@ final class DetailPresenter: DetailPresenterProtocol {
     //MARK: - Public methods
     func viewDidLoad() {
         Task {
-            recipe = try await recipeRequest(.getRecipeInfo(id: recipe.id))
+            do {
+                recipe = try await recipeRequest(.getRecipeInfo(id: recipe.id))
+                await MainActor.run {
+                    delegate?.recipeDidLoad(recipe)
+                }
+            } catch {
+                print(error)
+            }
         }
-        delegate?.recipeDidLoad(recipe)
     }
     
     func viewDidDisappear() {

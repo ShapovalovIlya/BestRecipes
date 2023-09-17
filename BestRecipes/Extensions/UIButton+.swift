@@ -9,8 +9,9 @@ import UIKit
 
 extension UIButton {
     static func makeButtonBookmark() -> UIButton {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.setImage(.bookmarkImage, for: .normal)
+        button.setImage(.bookmarkTabSelected, for: .selected)
         button.layer.masksToBounds = true
         button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false

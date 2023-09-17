@@ -28,6 +28,7 @@ final class RecipeCategoryCell: UICollectionViewCell {
     )
     
     private let grayBackground: UIView = makeBackground()
+    private var recipe: Recipe?
     
     //MARK: - init(_:)
     override init(frame: CGRect) {
@@ -43,6 +44,8 @@ final class RecipeCategoryCell: UICollectionViewCell {
             timeTextLabel,
             bookmarkButton
         )
+        
+        bookmarkButton.addTarget(self, action: #selector(favoriteButtonTap), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
@@ -57,6 +60,8 @@ final class RecipeCategoryCell: UICollectionViewCell {
         layoutIfNeeded()
         categoryImage.layer.cornerRadius = categoryImage.frame.height * 0.5
         bookmarkButton.layer.cornerRadius = bookmarkButton.frame.height * 0.5
+        guard let recipe = recipe else { return }
+        bookmarkButton.isSelected = FavoriteRecipesManager.shared.recipes.contains(recipe)
     }
     
     override func prepareForReuse() {
@@ -65,6 +70,7 @@ final class RecipeCategoryCell: UICollectionViewCell {
         categoryImage.image = nil
         recipeTitle.text = nil
         timeTextLabel.text = nil
+        recipe = nil
     }
     
     //MARK: - Public methods
@@ -72,6 +78,7 @@ final class RecipeCategoryCell: UICollectionViewCell {
         categoryImage.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.title
         timeTextLabel.text = recipe.readyInMinutes?.description.appending(" Mins")
+        self.recipe = recipe
     }
     
     func setupTest() {
@@ -87,6 +94,16 @@ private extension RecipeCategoryCell {
         static let imageOffset: CGFloat = 22
         static let contentOffset: CGFloat = 12
         static let spacing: CGFloat = 10
+    }
+    
+    @objc func favoriteButtonTap() {
+        guard let recipe = recipe else { return }
+        if FavoriteRecipesManager.shared.recipes.contains(recipe) {
+            FavoriteRecipesManager.shared.recipes.remove(recipe)
+        } else {
+            FavoriteRecipesManager.shared.recipes.insert(recipe)
+        }
+        bookmarkButton.isSelected = FavoriteRecipesManager.shared.recipes.contains(recipe)
     }
     
     static func makeImageView() -> UIImageView {

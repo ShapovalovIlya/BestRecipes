@@ -18,4 +18,8 @@ enum MealType: String, CaseIterable {
     case sauce
     case fingerfood
     case snack
+    
+    var title: String {
+        rawValue.capitalized
+    }
 }

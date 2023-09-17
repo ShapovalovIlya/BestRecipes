@@ -65,11 +65,11 @@ final class HomeViewController: UIViewController {
     }
     
     @objc func seeAllTrendingButtonTap() {
-        print(#function)
+        presenter.seeAllButtonTap(.popularity)
     }
     
     @objc func seeAllRecentButtonTap() {
-        print(#function)
+        presenter.seeAllButtonTap(.time)
     }
     
 }
@@ -92,9 +92,15 @@ extension HomeViewController: HomePresenterDelegate {
             recipes.trending.map(Item.trending),
             toSection: .trending
         )
+        
         snapshot.appendItems(
-            recipes.categoryRecipes.map(Item.category),
-            toSection: .category
+            MealType.allCases.map(Item.categoryButtons),
+            toSection: .categoryButtons
+        )
+        
+        snapshot.appendItems(
+            recipes.categoryRecipes.map(Item.categoryTitles),
+            toSection: .categoryRecipes
         )
         snapshot.appendItems(
             recipes.recent.map(Item.recent),
@@ -109,7 +115,9 @@ extension HomeViewController: HomePresenterDelegate {
 //MARK: - UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        if Section(rawValue: indexPath.section) != .categoryButtons {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        }
         presenter.didSelectReceipt(at: indexPath)
     }
 }
@@ -124,13 +132,15 @@ extension HomeViewController {
     //MARK: - Section
     enum Section: Int, CaseIterable {
         case trending
-        case category
+        case categoryButtons
+        case categoryRecipes
         case recent
     }
     
     enum Item: Hashable {
         case trending(Recipe)
-        case category(Recipe)
+        case categoryButtons(MealType)
+        case categoryTitles(Recipe)
         case recent(Recipe)
     }
 }
@@ -139,6 +149,7 @@ private extension HomeViewController {
     //MARK: - Private methods
     func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let trendingCellRegistration = makeTrendingRecipeCellRegistration()
+        let categoryButtonRegistration = makeCategoryButtonCellRegistration()
         let categoryCellRegistration = makeCategoryRecipeCellRegistration()
         let recentCellRegistration = makeRecentRecipeCellRegistration()
         
@@ -151,7 +162,14 @@ private extension HomeViewController {
                     item: recipe
                 )
                 
-            case let .category(recipe):
+            case let .categoryButtons(category):
+                return collectionView.dequeueConfiguredReusableCell(
+                    using: categoryButtonRegistration,
+                    for: indexPath,
+                    item: category
+                )
+                
+            case let .categoryTitles(recipe):
                 return collectionView.dequeueConfiguredReusableCell(
                     using: categoryCellRegistration,
                     for: indexPath,
@@ -174,6 +192,13 @@ private extension HomeViewController {
         }
     }
     
+    func makeCategoryButtonCellRegistration() -> UICollectionView.CellRegistration<CategoryCell, MealType> {
+        .init { [selectedCategory = presenter.selectedCategory] cell, _, category in
+            cell.configure(with: category)
+            cell.isSelected = selectedCategory == category
+        }
+    }
+    
     func makeCategoryRecipeCellRegistration() -> UICollectionView.CellRegistration<RecipeCategoryCell, Recipe> {
         .init { cell, _, recipe in
             cell.configure(with: recipe)
@@ -188,22 +213,19 @@ private extension HomeViewController {
     
     func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<HeaderView> {
         .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
-            let titles = ["Trending now", "Popular category", "Recent recipe", "Creators"]
-            let title = titles[indexPath.section]
-            
             switch Section(rawValue: indexPath.section) {
             case .trending:
-                header.configure(title: title)
+                header.configure(title: "Trending now")
                 header.addButton(
                     target: self,
                     action: #selector(self.seeAllTrendingButtonTap)
                 )
                 
-            case .category:
-                header.configure(title: title)
+            case .categoryButtons:
+                header.configure(title: "Popular category")
                 
             case .recent:
-                header.configure(title: title)
+                header.configure(title: "Recent recipe")
                 header.addButton(
                     target: self,
                     action: #selector(self.seeAllRecentButtonTap)

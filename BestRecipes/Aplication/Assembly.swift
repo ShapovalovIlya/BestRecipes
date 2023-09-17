@@ -24,6 +24,7 @@ protocol FavoritesAssembly {
 protocol HomeAssembly {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController
     func makeDetailViewController(recipe: Recipe) -> DetailViewController
+    func makeSeeAllViewController(router: HomeRouter, recipes: [Recipe], sortion: Endpoint.Sortion) -> SeeAllViewController
 }
 
 protocol ProfileAssembly {
@@ -58,7 +59,7 @@ final class Assembly: AssemblyProtocol {
     func makeHomeViewController(router: HomeRouterProtocol) -> HomeViewController {
         let presenter = HomePresenter(
             router: router,
-            recipeRequest: { _ in .sample }
+            recipeRequest: repository.request
         )
         let view = HomeView()
         let viewController = HomeViewController(
@@ -70,22 +71,38 @@ final class Assembly: AssemblyProtocol {
         return viewController
     }
     
+    func makeSeeAllViewController(
+        router: HomeRouter,
+        recipes: [Recipe],
+        sortion: Endpoint.Sortion
+    ) -> SeeAllViewController {
+        let presenter = SeeAllPresenter(
+            sortion: sortion,
+            recipes: recipes,
+            router: router,
+            recipeRequest: repository.request
+        )
+        let view = SeeAllView()
+        let viewController = SeeAllViewController(
+            seeAllView: view, 
+            presenter: presenter
+        )
+        presenter.delegate = viewController
+        return viewController
+    }
+    
     //MARK: - Favorite module
   func makeDiscoverViewController(router: FavoritesRouterProtocol) -> DiscoverViewController {
     let presenter = DiscoverPresenter(
       router: router,
-      recipeRequest: {[.sample]}
+      recipeRequest: { Array(FavoriteRecipesManager.shared.recipes) }
     )
-    
     let view = DiscoverView()
-    
     let viewController = DiscoverViewController(
       discoverView: view,
       presenter: presenter
     )
-    
     presenter.delegate = viewController
-    
     return viewController
   }
  
@@ -93,7 +110,7 @@ final class Assembly: AssemblyProtocol {
   func makeFavoritesRouter() -> FavoritesRouterProtocol {
     let navigationController = UINavigationController()
     navigationController.tabBarItem = .init(title: nil, image: .bookmarkImage, tag: 1)
-    navigationController.tabBarItem.selectedImage = .bookmarkTabSelected
+    navigationController.tabBarItem.selectedImage = .bookmarkSelected
     let router = FavoritesRouter(
       navigationController: navigationController,
       assembly: self
@@ -138,7 +155,7 @@ final class Assembly: AssemblyProtocol {
     func makeDetailViewController(recipe: Recipe) -> DetailViewController {
         let presenter = DetailPresenter(
             recipe: recipe,
-            recipeRequest: { _ in .sample }
+            recipeRequest: repository.request
         )
         let view = DetailView()
         let viewController = DetailViewController(

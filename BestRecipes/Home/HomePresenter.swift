@@ -10,9 +10,12 @@ import OSLog
 
 //MARK: - HomePresenterProtocol
 protocol HomePresenterProtocol: AnyObject {
+    var selectedCategory: MealType { get }
+    
     func viewDidLoad()
     func viewDidDisappear()
     func didSelectReceipt(at indexPath: IndexPath)
+    func seeAllButtonTap(_ sortion: Endpoint.Sortion)
 }
 
 //MARK: - HomePresenterDelegate
@@ -52,15 +55,7 @@ final class HomePresenter: HomePresenterProtocol {
     
     //MARK: - Public methods
     func viewDidLoad() {
-        self.delegate?.showLoading()
-        Task {
-            do {
-                recipeList = try await getRecipeList(category: selectedCategory)
-                delegate?.recipesDidLoad(recipeList)
-            } catch {
-                delegate?.dismissLoading()
-            }
-        }
+        performRecipeRequest()
     }
     
     func viewDidDisappear() {
@@ -74,7 +69,12 @@ final class HomePresenter: HomePresenterProtocol {
         case .trending:
             recipe = recipeList.trending[indexPath.item]
             
-        case .category:
+        case .categoryButtons:
+            selectedCategory = MealType.allCases[indexPath.item]
+            performRecipeRequest()
+            return
+            
+        case .categoryRecipes:
             recipe = recipeList.categoryRecipes[indexPath.item]
             
         case .recent:
@@ -86,6 +86,14 @@ final class HomePresenter: HomePresenterProtocol {
         router.showDetail(recipe: recipe)
     }
     
+    func seeAllButtonTap(_ sortion: Endpoint.Sortion) {
+        switch sortion {
+        case .time:
+            router.showAll(recipes: recipeList.recent, sortion: sortion)
+        case .popularity:
+            router.showAll(recipes: recipeList.trending, sortion: sortion)
+        }
+    }
     
 }
 
@@ -97,6 +105,21 @@ private extension HomePresenter {
     }
     
     //MARK: - Private methods
+    func performRecipeRequest() {
+        Task(priority: .userInitiated) {
+            do {
+                recipeList.trending = try await recipeRequest(.getRecipes(sortedBy: .popularity)).results
+                recipeList.categoryRecipes = try await recipeRequest(.getRecipes(ofType: selectedCategory)).results
+                recipeList.recent = try await recipeRequest(.getRecipes(sortedBy: .time)).results
+                await MainActor.run {
+                    delegate?.recipesDidLoad(recipeList)
+                }
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
     func getRecipeList(category: MealType) async throws -> RecipesList {
         try await withThrowingTaskGroup(
             of: Section.self,

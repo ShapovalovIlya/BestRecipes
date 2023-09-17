@@ -24,6 +24,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         color: .subtitleColor
     )
     private let ratingButton: UIButton = makeRatingButton()
+    private var recipe: Recipe?
    
     //MARK: - init(_:)
     override init(frame: CGRect) {
@@ -40,6 +41,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
             creatorLabel
         )
         
+        buttonBookmark.addTarget(self, action: #selector(favoriteButtonTap), for: .touchUpInside)
     }
     
     @available(*, unavailable)
@@ -55,6 +57,8 @@ final class TrendingRecipeCell: UICollectionViewCell {
         layoutIfNeeded()
         creatorImage.layer.cornerRadius = creatorImage.frame.height / 2
         buttonBookmark.layer.cornerRadius = buttonBookmark.frame.height / 2
+        guard let recipe = recipe else { return }
+        buttonBookmark.isSelected = FavoriteRecipesManager.shared.recipes.contains(recipe)
     }
     
     override func prepareForReuse() {
@@ -64,6 +68,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         recipeImageView.image = nil
         recipeTitle.text = nil
         creatorLabel.text = nil
+        recipe = nil
     }
     
     //MARK: - Public methods
@@ -71,6 +76,11 @@ final class TrendingRecipeCell: UICollectionViewCell {
         recipeImageView.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.title
         creatorLabel.text = recipe.sourceName
+        ratingButton.setTitle(
+            recipe.aggregateLikes?.toLikesString,
+            for: .normal
+        )
+        self.recipe = recipe
     }
     
     func setupTest() {
@@ -78,20 +88,7 @@ final class TrendingRecipeCell: UICollectionViewCell {
         creatorImage.image = UIImage(named: "creator")
         recipeTitle.text = "How to sharwama at home"
         creatorLabel.text = "By Zeelicious foods"
-        ratingButton.setTitle(setCountLikes(count: 100), for: .normal)
-    }
-    
-    func setCountLikes(count: Float)->String{
-        switch count {
-        case 0...99:
-            return "\(String(format: "%.0f", count))"
-        case 100...9999:
-            return "\(String(format: "%.1f", count/1000))K"
-        case 10000... :
-            return ">10K"
-        default:
-           return "0"
-        }
+        ratingButton.setTitle(100.toLikesString, for: .normal)
     }
     
 }
@@ -104,6 +101,16 @@ private extension TrendingRecipeCell {
         static let buttonMultiplier: CGFloat = 0.15
         static let contentMultiplier: CGFloat = 0.1
         static let imageMultiplier: CGFloat = 0.65
+    }
+    
+    @objc func favoriteButtonTap() {
+        guard let recipe = recipe else { return }
+        if FavoriteRecipesManager.shared.recipes.contains(recipe) {
+            FavoriteRecipesManager.shared.recipes.remove(recipe)
+        } else {
+            FavoriteRecipesManager.shared.recipes.insert(recipe)
+        }
+        buttonBookmark.isSelected = FavoriteRecipesManager.shared.recipes.contains(recipe)
     }
     
     func setupConstraints() {
