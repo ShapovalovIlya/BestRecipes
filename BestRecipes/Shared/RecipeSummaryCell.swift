@@ -43,8 +43,8 @@ final class RecipeSummaryCell: UICollectionViewCell {
     }
     
     //MARK: - Public properties
-    func configure(with recipe: Recipe) {
-        summaryText.text = recipe.summary?.convertFromHTML
+    func configure(with summary: String?) {
+        summaryText.text = summary?.convertFromHTML
     }
 }
 

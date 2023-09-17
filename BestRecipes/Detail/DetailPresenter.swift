@@ -31,7 +31,7 @@ final class DetailPresenter: DetailPresenterProtocol {
         recipe: Recipe,
         recipeRequest: @escaping RecipeRequest
     ) {
-        self.recipe = recipe
+        self.recipe = Self.removedDuplicateIngredients(from: recipe)
         self.recipeRequest = recipeRequest
         
         Logger.system.debug("DetailPresenter: \(#function)")
@@ -45,7 +45,8 @@ final class DetailPresenter: DetailPresenterProtocol {
     func viewDidLoad() {
         Task {
             do {
-                recipe = try await recipeRequest(.getRecipeInfo(id: recipe.id))
+                let downloaded = try await recipeRequest(.getRecipeInfo(id: recipe.id))
+                recipe = Self.removedDuplicateIngredients(from: downloaded)
                 await MainActor.run {
                     delegate?.recipeDidLoad(recipe)
                 }
@@ -57,5 +58,23 @@ final class DetailPresenter: DetailPresenterProtocol {
     
     func viewDidDisappear() {
         Logger.system.debug("DetailPresenter: \(#function)")
+    }
+    
+    private static func removedDuplicateIngredients(from recipe: Recipe) -> Recipe {
+        guard let ingredients = recipe.extendedIngredients else {
+            return recipe
+        }
+        let unique = Set(ingredients)
+        
+        return .init(
+            id: recipe.id,
+            title: recipe.title,
+            sourceName: recipe.sourceName,
+            image: recipe.image,
+            summary: recipe.summary,
+            extendedIngredients: Array(unique),
+            readyInMinutes: recipe.readyInMinutes,
+            aggregateLikes: recipe.aggregateLikes
+        )
     }
 }

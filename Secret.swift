@@ -8,5 +8,5 @@
 import Foundation
 
 struct Secret {
-    static let apiKeyItem: URLQueryItem = .init(name: "apiKey", value: "317592d32b1e4346ba205b6abdd25330")
+    static let apiKeyItem: URLQueryItem = .init(name: "apiKey", value: "1bade1d832754aad84f72a8699117be5")
 }
