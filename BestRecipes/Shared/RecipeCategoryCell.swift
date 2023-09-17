@@ -78,6 +78,7 @@ final class RecipeCategoryCell: UICollectionViewCell {
         categoryImage.kf.setImage(with: URL(string: recipe.image))
         recipeTitle.text = recipe.title
         timeTextLabel.text = recipe.readyInMinutes?.description.appending(" Mins")
+        self.recipe = recipe
     }
     
     func setupTest() {

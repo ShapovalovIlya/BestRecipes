@@ -213,22 +213,19 @@ private extension HomeViewController {
     
     func makeHeaderRegistration() -> UICollectionView.SupplementaryRegistration<HeaderView> {
         .init(elementKind: UICollectionView.elementKindSectionHeader) { header, elementKind, indexPath in
-            let titles = ["Trending now", "Popular category", "Recent recipe", "Creators"]
-            let title = titles[indexPath.section]
-            
             switch Section(rawValue: indexPath.section) {
             case .trending:
-                header.configure(title: title)
+                header.configure(title: "Trending now")
                 header.addButton(
                     target: self,
                     action: #selector(self.seeAllTrendingButtonTap)
                 )
                 
             case .categoryButtons:
-                header.configure(title: title)
+                header.configure(title: "Popular category")
                 
             case .recent:
-                header.configure(title: title)
+                header.configure(title: "Recent recipe")
                 header.addButton(
                     target: self,
                     action: #selector(self.seeAllRecentButtonTap)
